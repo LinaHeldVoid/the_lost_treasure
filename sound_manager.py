@@ -1,5 +1,7 @@
 import pygame
 
+# button_pressed = pygame.mixer.Sound('sound/button.wav')
+
 
 def define_sound(picture):
 
