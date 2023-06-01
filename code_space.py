@@ -3,7 +3,6 @@ import sys
 from picture_manager import Room
 from sound_manager import define_sound
 
-pygame.init()
 
 screen = pygame.display.set_mode((1150, 640))
 pygame.display.set_caption('Затерянное сокровище')

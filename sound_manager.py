@@ -17,3 +17,12 @@ def define_sound(picture):
     sound_path = 'sound/locations/' + sound
     bg_sound = pygame.mixer.Sound(sound_path)
     return bg_sound
+
+
+pygame.mixer.init()
+room_1_mp3_path = 'sound/locations/room_1.mp3'
+room_1_mp3 = pygame.mixer.Sound(room_1_mp3_path)
+dd_mp3_path = 'sound/locations/danger_death.mp3'
+dd_mp3 = pygame.mixer.Sound(dd_mp3_path)
+room_2_mp3_path = 'sound/locations/room_2.mp3'
+room_2_mp3 = pygame.mixer.Sound(room_2_mp3_path)
