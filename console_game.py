@@ -1,7 +1,9 @@
 import pygame
 import time
+
+from colorama import Fore, Back, Style
 from pprint import pprint
-from read_scenario import scenario
+from read_scenario import scenario as s
 from sound_manager import room_1_mp3, room_2_mp3, dd_mp3
 
 
@@ -19,71 +21,107 @@ def print_effect(text):
 def start_game():
 
     """перевод сценария в переменные"""
-    intro_1 = scenario[1]
-    intro_2 = scenario[2]
-    begin = scenario[5]
-    entrance = scenario[8]
+    start = s[0]
+    intro_1 = s[2]
+    intro_2 = s[3]
+    intro_3 = s[4]
+    intro_4 = s[5]
+    intro_5 = s[6]
+    begin = s[9]
+    cave_entrance = s[11]
+    entrance = s[12]
 
     """алгоритм"""
+    print(Fore.GREEN, f'<------------{start}')
+    print(Style.RESET_ALL)
+    time.sleep(3)
     print_effect(intro_1)
     time.sleep(2)
     print_effect(intro_2)
     time.sleep(2)
-    print_effect(begin)
+    print_effect(intro_3)
     time.sleep(2)
-    print_effect(entrance)
+    print_effect(intro_4)
+    time.sleep(2)
+    print_effect(intro_5 + '\n')
+    time.sleep(2)
+    print_effect(begin + '\n')
+    time.sleep(2)
+    print(cave_entrance)
+    print_effect(entrance + '\n')
     time.sleep(2)
 
 
 def room_1():
 
     """перевод сценария в переменные"""
-    enter = scenario[11] + scenario[12]
-    room_examined = scenario[15]
-    bowl_examined = scenario[19] + scenario[20]
-    painful_death = scenario[23]
-    bowl_not_lifted = scenario[26]
-    chest_examined = scenario[29]
-    stonewall_examined = scenario[32]
-    stone_examined = scenario[35]
-    key_found = scenario[38]
-    chest_opened = scenario[41]
-    need_to_think = scenario[49]
-    twig_attempt = scenario[52]
-    twig_failure = scenario[53] + scenario[54] + scenario[55]
-    no_rope = scenario[58]
-    no_glass = scenario[61]
-    took_diamond = scenario[64]
-    lets_smash = scenario[67]
-    wall_smashed = scenario[68] + scenario[69] + scenario[70] + scenario[71]
-    trapped = scenario[74] + scenario[75]
-    decision = scenario[78]
+    enter_1 = s[15]
+    enter_2 = s[16]
+    enter_3 = s[17]
+    room_examined = s[20]
+    bowl_examined = s[23] + s[24]
+    painful_death = s[27]
+    the_end = s[28]
+    game_over = s[29]
+    death_menu = s[30]
+    game_resume = s[31]
+    bowl_not_lifted = s[36]
+    chest_examined = s[41]
+    stonewall_examined = s[44]
+    stone_examined = s[47]
+    key_found = s[50]
+    chest_opened = s[54]
+    need_to_think = s[63]
+    twig_attempt = s[66]
+    twig_failure = s[67] + s[68] + s[69]
+    no_use = s[73]
+    no_glass = s[75]
+    took_diamond = s[79]
+    lets_smash = s[82]
+    wall_smashed = s[84] + s[85] + s[86] + s[87]
+    trapped_1 = s[89]
+    trapped_2 = s[90]
+    trapped_3 = s[91]
+    decision = s[94]
+    last_hope = s[101]
 
-    look_around = scenario[14]
-    examine_bowl = scenario[18]
-    get_coin = scenario[22]
-    lift_bowl = scenario[25]
-    examine_chest = scenario[28]
-    examine_stonewall = scenario[31]
-    examine_stone = scenario[34]
-    move_stone = scenario[37]
-    open_chest = scenario[40]
-    twig = scenario[43]
-    rope = scenario[44]
-    sledgehammer = scenario[45]
-    diamond = scenario[46]
-    glass = scenario[47]
-    get_coin_twig = scenario[51]
-    take_the_rope = scenario[57]
-    take_the_glass = scenario[60]
-    take_the_brilliant = scenario[63]
-    smash_the_wall = scenario[66]
-    to_room_2 = scenario[84]
+    room_1_location = s[14]
+    look_around = s[19]
+    examine_bowl = s[22]
+    get_coin = s[26]
+    load_game = s[31]
+    exit_game = s[32]
+    lift_bowl = s[35]
+    leave_bowl = s[38]
+    examine_chest = s[40]
+    examine_stonewall = s[43]
+    examine_stone = s[46]
+    move_stone = s[49]
+    leave_stone = s[51]
+    open_chest = s[53]
+    twig = s[56]
+    rope = s[57]
+    sledgehammer = s[58]
+    diamond = s[59]
+    glass = s[60]
+    close_chest = s[61]
+    get_coin_twig = s[65]
+    get_twig_away = s[70]
+    smash_the_wall = s[81]
+    run_away = s[88]
+    return_to_room_1 = s[93]
+    to_room_2 = s[100]
+    another_location = s[102]
 
     """алгоритм"""
     chest_is_opened = False
     stonewall_is_examined = False
-    print_effect(enter)
+    print(room_1_location)
+    print_effect(enter_1)
+    time.sleep(2)
+    print_effect(enter_2)
+    time.sleep(2)
+    print_effect(enter_3)
     time.sleep(2)
     while True:
         print(f'1) {look_around}')
@@ -101,21 +139,30 @@ def room_1():
               f'4) {examine_stone}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
+            print_effect(bowl_examined)
             while True:
-                print_effect(bowl_examined)
                 print(f'1) {get_coin}'
                       f'2) {lift_bowl}'
-                      f'3) <Отойти от чаши>' + '\n')
+                      f'3) {leave_bowl}' + '\n')
                 option = input('Введите цифру: ')
                 if option == '1':
                     while True:
                         room_1_mp3.stop()
-                        print_effect(painful_death)
                         dd_mp3.play(-1)
-                        option = input('Введите цифру: ')
+                        print_effect(painful_death)
+                        time.sleep(2)
+                        print_effect(the_end)
+                        print(Fore.RED, f'<------------{game_over}')
+                        print(Style.RESET_ALL)
+                        print(death_menu)
+                        print(f'1) {load_game}'
+                              f'2) {exit_game}' + '\n')
+                        option = input(f'Введите цифру: ')
                         if option == '1':
                             dd_mp3.stop()
                             room_1_mp3.play(-1)
+                            print(Fore.YELLOW, f'<------------{game_resume}')
+                            print(Style.RESET_ALL)
                             break
                         elif option == '2':
                             exit()
@@ -125,7 +172,7 @@ def room_1():
                     continue
                 elif option == '2':
                     print_effect(bowl_not_lifted)
-                    break
+                    continue
                 elif option == '3':
                     break
                 else:
@@ -140,12 +187,12 @@ def room_1():
                           f'3) {sledgehammer}'
                           f'4) {diamond}'
                           f'5) {glass}'
-                          f'6) <Покинуть сундук>')
+                          f'6) {close_chest}' + '\n')
                     option = input('Введите цифру: ')
                     if option == '1':
                         while True:
                             print(f'1) {get_coin_twig}'
-                                  f'2) <Отложить прут>' + '\n')
+                                  f'2) {get_twig_away}' + '\n')
                             option = input('Введите цифру: ')
                             if option == '1':
                                 print_effect(twig_attempt)
@@ -157,7 +204,7 @@ def room_1():
                                 print(wrong_input())
                                 continue
                     elif option == '2':
-                        print_effect(no_rope)
+                        print_effect(no_use)
                         continue
                     elif option == '3':
                         if stonewall_is_examined:
@@ -169,16 +216,49 @@ def room_1():
                                     time.sleep(2)
                                     print_effect(wall_smashed)
                                     time.sleep(2)
+                                    print(run_away)
                                     room_1_mp3.stop()
-                                    dd_mp3.play()
-                                    print_effect(trapped)
-                                    time.sleep(10)
-                                    return
+                                    dd_mp3.play(-1)
+                                    print_effect(trapped_1)
+                                    time.sleep(2)
+                                    print_effect(trapped_2)
+                                    time.sleep(2)
+                                    print_effect(trapped_3)
+                                    time.sleep(2)
+                                    print(return_to_room_1)
+                                    dd_mp3.stop()
+                                    room_1_mp3.play(-1)
+                                    print_effect(decision)
+                                    while True:
+                                        print(f'1) {open_chest}'
+                                              f'2) {to_room_2}')
+                                        option = input('Введите цифру: ')
+                                        if option == '1':
+                                            while True:
+                                                print(f'1) {rope}'
+                                                      f'2) {glass}'
+                                                      f'3) {close_chest}')
+                                                option = input('Введите цифру: ')
+                                                if option == '1':
+                                                    print_effect(no_use)
+                                                    continue
+                                                elif option == '2':
+                                                    print_effect(no_glass)
+                                                    continue
+                                                elif option == '3':
+                                                    break
+                                                else:
+                                                    print(wrong_input())
+                                                    continue
+                                        elif option == '2':
+                                            print_effect(last_hope)
+                                            print(another_location)
+                                            return
                                 else:
                                     print(wrong_input())
                                     continue
                         else:
-                            print_effect(no_rope)
+                            print_effect(no_use)
                         continue
                     elif option == '4':
                         print_effect(took_diamond)
@@ -201,7 +281,7 @@ def room_1():
             print_effect(stone_examined)
             while True:
                 print(f'1) {move_stone}'
-                      f'2) <Отойти от камня>' + '\n')
+                      f'2) {leave_stone}' + '\n')
                 option = input('Введите цифру: ')
                 if option == '1':
                     print_effect(key_found)
@@ -213,6 +293,11 @@ def room_1():
                             chest_is_opened = True
                             break
                     break
+                elif option == '2':
+                    break
+                else:
+                    print(wrong_input())
+                    continue
             continue
         else:
             print(wrong_input())
@@ -227,5 +312,5 @@ def run_the_game():
 
 pygame.init()
 pygame.mixer.init()
-pprint(scenario)
+pprint(s)
 run_the_game()
