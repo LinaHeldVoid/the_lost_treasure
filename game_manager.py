@@ -35,8 +35,10 @@ def run():
 
             if game_choice == '1':
                 run_game_console(voice_settings)
+                return
             else:
                 run_game_web(voice_settings)
+                return
         else:
             wrong_input()
             continue

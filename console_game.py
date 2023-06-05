@@ -126,6 +126,8 @@ def room_1():
     time.sleep(2)
     print_effect(enter_3)
     time.sleep(2)
+
+    """осматриваемся"""
     while True:
         print(f'1) {look_around}')
         option = input('Введите цифру: ')
@@ -143,11 +145,15 @@ def room_1():
         option = input('Введите цифру: ')
         if option == '1':
             print_effect(bowl_examined)
+
+            """осматриваем чашу"""
             while True:
                 print(f'1) {get_coin}'
                       f'2) {lift_bowl}'
                       f'3) {leave_bowl}' + '\n')
                 option = input('Введите цифру: ')
+
+                """смерть"""
                 if option == '1':
                     while True:
                         room_1_mp3.stop()
@@ -168,6 +174,8 @@ def room_1():
                             print(Style.RESET_ALL)
                             break
                         elif option == '2':
+
+                            """конец игры"""
                             exit()
                         else:
                             print(wrong_input())
@@ -182,6 +190,8 @@ def room_1():
                     print(wrong_input())
                     continue
         elif option == '2':
+
+            """открываем сундук"""
             if chest_is_opened:
                 print_effect(need_to_think)
                 while True:
@@ -193,6 +203,8 @@ def room_1():
                           f'6) {close_chest}' + '\n')
                     option = input('Введите цифру: ')
                     if option == '1':
+
+                        """используем прут"""
                         while True:
                             print(f'1) {get_coin_twig}'
                                   f'2) {get_twig_away}' + '\n')
@@ -211,6 +223,8 @@ def room_1():
                         continue
                     elif option == '3':
                         if stonewall_is_examined:
+
+                            """развиваем стену"""
                             while True:
                                 print(f'1) {smash_the_wall}' + '\n')
                                 option = input('Введите цифру: ')
@@ -219,6 +233,8 @@ def room_1():
                                     time.sleep(2)
                                     print_effect(wall_smashed)
                                     time.sleep(2)
+
+                                    """обвал"""
                                     print(run_away)
                                     room_1_mp3.stop()
                                     dd_mp3.play(-1)
@@ -232,6 +248,8 @@ def room_1():
                                     dd_mp3.stop()
                                     room_1_mp3.play(-1)
                                     print_effect(decision)
+
+                                    """принимаем решение"""
                                     while True:
                                         print(f'1) {open_chest}'
                                               f'2) {to_room_2}')
@@ -281,6 +299,8 @@ def room_1():
             stonewall_is_examined = True
             continue
         elif option == '4':
+
+            """двигаем камень"""
             print_effect(stone_examined)
             while True:
                 print(f'1) {move_stone}'
@@ -311,59 +331,245 @@ def room_1():
 def room_2():
 
     """перевод сценария в переменные"""
-
     look_around_1 = s[105]
     look_around_2 = s[106]
-    table_examined = s[109]
-    shelf_1 = s[112]
-    shelf_2 = s[115]
-    shelf_3 = s[118]
-    shelves_examined = s[119]
-    candle_lightened = s[122]
-    mechanism_examined = s[126]
-    begin_reading = s[129]
-    line_1 = s[130]
-    line_2 = s[131]
-    line_3 = s[133]
-    line_4 = s[134]
-    need_to_think = s[136]
-    why_religion = s[137]
-    back_to_business = s[138]
-    stone_inserted = s[141]
-    great_diamond = s[143]
-    follow_the_light = s[144]
-    storage_found = s[147]
-    storage_opened = s[150]
-    read_1 = s[153]
-    read_2 = s[154]
-    book_1 = s[156]
-    book_2 = s[157]
-    book_3 = s[158]
-    book_4 = s[159]
-    book_5 = s[160]
-    book_6 = s[161]
-    book_7 = s[162]
-    book_8 = s[163]
-    book_9 = s[164]
-    conclusion = s[166]
-    get_tools = s[167]
-    get_away = s[168]
+    table_examined_1 = s[109]
+    table_examined_2 = s[110]
+    shelf_1 = s[113]
+    shelf_2 = s[116]
+    shelf_3 = s[119]
+    shelves_examined = s[120]
+    candle_lightened = s[123]
+    no_light = s[127]
+    mechanism_examined_1 = s[130]
+    mechanism_examined_2 = s[131]
+    begin_reading = s[134]
+    line_1 = s[135]
+    line_2 = s[136]
+    line_3 = s[138]
+    line_4 = s[139]
+    need_to_think = s[141]
+    why_religion = s[142]
+    back_to_business = s[143]
+    stone_inserted = s[146]
+    diamond_correct = s[148]
+    great_diamond = s[149]
+    follow_the_light = s[150]
+    storage_found = s[153]
+    storage_opened = s[156]
+    read_1 = s[159]
+    read_2 = s[160]
+    book_1 = s[162]
+    book_2 = s[163]
+    book_3 = s[164]
+    book_4 = s[165]
+    book_5 = s[166]
+    book_6 = s[167]
+    book_7 = s[168]
+    book_8 = s[169]
+    book_9 = s[170]
+    conclusion = s[172]
+    get_tools = s[173]
+    get_away = s[174]
 
     entry = s[104]
     examine_the_table = s[108]
-    open_shelf_1 = s[111]
-    open_shelf_2 = s[114]
-    open_shelf_3 = s[117]
-    light_candle = s[121]
-    examine_mechanism = s[125]
-    read_papers = s[129]
-    insert_stone = s[140]
-    knock_the_wall = s[146]
-    hit_the_wall = s[149]
-    read_book = s[152]
-    leave_location = s[162]
+    open_shelf_1 = s[112]
+    open_shelf_2 = s[115]
+    open_shelf_3 = s[118]
+    light_candle = s[122]
+    examine_mechanism = s[129]
+    read_papers = s[133]
+    insert_stone = s[145]
+    knock_the_wall = s[152]
+    hit_the_wall = s[155]
+    read_book = s[158]
+    leave_location = s[176]
 
     """алгоритм"""
+    room_2_mp3.play(-1)
+    print(entry)
+    time.sleep(1)
+    print_effect(look_around_1)
+    time.sleep(1)
+    print_effect(look_around_2)
+    time.sleep(1)
+
+    """осматриваем стол"""
+    while True:
+        print(f'1) {examine_the_table}')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(table_examined_1)
+            time.sleep(1)
+            print_effect(table_examined_2)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+    open_1 = False
+    open_2 = False
+    open_3 = False
+
+    """проверяем полки"""
+    while True:
+        if open_1 is True and open_2 is True and open_3 is True:
+            print_effect(shelves_examined)
+            break
+        else:
+            print(f'1) {open_shelf_1}'
+                  f'2) {open_shelf_2}'
+                  f'3) {open_shelf_3}' + '\n')
+            option = input('Введите цифру: ')
+            if option == '1':
+                open_1 = True
+                print_effect(shelf_1)
+                time.sleep(1)
+                continue
+            elif option == '2':
+                open_2 = True
+                print_effect(shelf_2)
+                time.sleep(1)
+                continue
+            elif option == '3':
+                open_3 = True
+                print_effect(shelf_3)
+                time.sleep(1)
+                continue
+            else:
+                print(wrong_input())
+                continue
+
+    """головоломка со светом"""
+    light_on = False
+    papers_read = False
+    mechanism_examined = False
+    while True:
+        if papers_read is True and mechanism_examined is True:
+            break
+        else:
+            print(f'1) {read_papers}'
+                  f'2) {examine_mechanism}'
+                  f'3) {light_candle}' + '\n')
+            option = input('Введите цифру: ')
+            if option == '1':
+                if light_on is True:
+                    papers_read = True
+                    print_effect(begin_reading)
+                    print_effect(line_1)
+                    print_effect(line_2 + '\n')
+                    time.sleep(2)
+                    print_effect(line_3)
+                    print_effect(line_4 + '\n')
+                    time.sleep(2)
+                    print_effect(need_to_think)
+                    time.sleep(1)
+                    print_effect(why_religion)
+                    time.sleep(2)
+                    print_effect(back_to_business)
+                    time.sleep(1)
+                    continue
+                else:
+                    print_effect(no_light)
+                    time.sleep(1)
+                    continue
+            elif option == '2':
+                if light_on is True:
+                    mechanism_examined = True
+                    print_effect(mechanism_examined_1)
+                    time.sleep(1)
+                    print_effect(mechanism_examined_2)
+                    time.sleep(1)
+                    continue
+                else:
+                    print_effect(no_light)
+                    time.sleep(1)
+                    continue
+            elif option == '3':
+                light_on = True
+                print_effect(candle_lightened)
+                time.sleep(1)
+                continue
+            else:
+                print(wrong_input())
+                continue
+
+    """вставляем камень в оправу"""
+    while True:
+        print(f'1) {insert_stone}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(stone_inserted)
+            time.sleep(2)
+            print_effect(diamond_correct)
+            time.sleep(1)
+            print_effect(great_diamond)
+            time.sleep(1)
+            print_effect(follow_the_light)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+
+    """обнаруживаем тайник"""
+    while True:
+        print(f'1) {knock_the_wall}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(storage_found)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+    while True:
+        print(f'1) {hit_the_wall}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(storage_opened)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+
+    """читаем записку"""
+    while True:
+        print(f'1) {read_book}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(read_1)
+            time.sleep(1)
+            print_effect(read_2 + '\n')
+            time.sleep(2)
+            print_effect(book_1)
+            print_effect(book_2)
+            print_effect(book_3)
+            print_effect(book_4)
+            print_effect(book_5)
+            print_effect(book_6)
+            print_effect(book_7)
+            print_effect(book_8)
+            print_effect(book_9 + '\n')
+            time.sleep(2)
+            print_effect(conclusion)
+            time.sleep(2)
+            print_effect(get_tools)
+            time.sleep(1)
+            print_effect(get_away + '\n')
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+
+    """уходим"""
+    while True:
+        print(f'1) {leave_location}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            return
+        else:
+            print(wrong_input())
+            continue
 
 
 # запуск игры в консоли
@@ -371,3 +577,4 @@ def run_game_console(voice_settings=False):
     room_1_mp3.play(-1)
     start_game()
     room_1()
+    room_2()
