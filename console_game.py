@@ -1,23 +1,25 @@
 import pygame
 import time
 
-from colorama import Fore, Back, Style
-from pprint import pprint
+from colorama import Fore, Style
 from read_scenario import scenario as s
 from sound_manager import room_1_mp3, room_2_mp3, dd_mp3
 
 
+# неверный ввод
 def wrong_input():
     message = 'Извините, ваш ответ не распознан. Попробуйте ещё раз!'
     return message
 
 
+# имитация чтения книги
 def print_effect(text):
     for i in text:
-        time.sleep(0.0001)
+        time.sleep(0.05)
         print(i, end='', flush=True)
 
 
+# начало, вход
 def start_game():
 
     """перевод сценария в переменные"""
@@ -52,6 +54,7 @@ def start_game():
     time.sleep(2)
 
 
+# главный зал
 def room_1():
 
     """перевод сценария в переменные"""
@@ -304,13 +307,67 @@ def room_1():
             continue
 
 
-def run_the_game():
+# рабочий кабинет
+def room_2():
+
+    """перевод сценария в переменные"""
+
+    look_around_1 = s[105]
+    look_around_2 = s[106]
+    table_examined = s[109]
+    shelf_1 = s[112]
+    shelf_2 = s[115]
+    shelf_3 = s[118]
+    shelves_examined = s[119]
+    candle_lightened = s[122]
+    mechanism_examined = s[126]
+    begin_reading = s[129]
+    line_1 = s[130]
+    line_2 = s[131]
+    line_3 = s[133]
+    line_4 = s[134]
+    need_to_think = s[136]
+    why_religion = s[137]
+    back_to_business = s[138]
+    stone_inserted = s[141]
+    great_diamond = s[143]
+    follow_the_light = s[144]
+    storage_found = s[147]
+    storage_opened = s[150]
+    read_1 = s[153]
+    read_2 = s[154]
+    book_1 = s[156]
+    book_2 = s[157]
+    book_3 = s[158]
+    book_4 = s[159]
+    book_5 = s[160]
+    book_6 = s[161]
+    book_7 = s[162]
+    book_8 = s[163]
+    book_9 = s[164]
+    conclusion = s[166]
+    get_tools = s[167]
+    get_away = s[168]
+
+    entry = s[104]
+    examine_the_table = s[108]
+    open_shelf_1 = s[111]
+    open_shelf_2 = s[114]
+    open_shelf_3 = s[117]
+    light_candle = s[121]
+    examine_mechanism = s[125]
+    read_papers = s[129]
+    insert_stone = s[140]
+    knock_the_wall = s[146]
+    hit_the_wall = s[149]
+    read_book = s[152]
+    leave_location = s[162]
+
+    """алгоритм"""
+
+
+# запуск игры в консоли
+def run_game_console(voice_settings=False):
     room_1_mp3.play(-1)
     start_game()
     room_1()
-
-
-pygame.init()
-pygame.mixer.init()
-pprint(s)
-run_the_game()

@@ -1,12 +1,14 @@
 import sys
 
 import pygame
-from code_space import screen
+from wed_game import screen
 
 objects = []
 
 
 class Button():
+    """создание класса кнопки (в процессе)"""
+
     def __init__(self, width, height, inactive_color, active_color):
         self.width = width
         self.height = height

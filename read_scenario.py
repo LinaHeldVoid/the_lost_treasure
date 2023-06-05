@@ -6,5 +6,3 @@ with open('text/scenario.txt', 'r', encoding='utf-8') as text:
     i = 1
     for index, line in enumerate(text):
         scenario[index] = line
-
-pprint(scenario)
