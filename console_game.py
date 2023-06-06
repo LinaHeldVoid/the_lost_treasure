@@ -624,7 +624,6 @@ def room_1_again():
     get_coin = s[211]
 
     """алгоритм"""
-    room_1_mp3.play(-1)
     print_effect(begin)
     glass_taken = False
     while True:
@@ -698,6 +697,7 @@ def room_1_again():
             print(wrong_input())
             continue
     bowl_ready = False
+    mistake_made = False
     while True:
         if bowl_ready:
             break
@@ -712,13 +712,15 @@ def room_1_again():
                           f'2) {upside_down}' + '\n')
                     option = input('Введите цифру: ')
                     if option == '1':
+                        mistake_made = True
                         print_effect(no_effect)
                         time.sleep(1)
                         continue
                     elif option == '2':
                         bowl_ready = True
-                        print_effect(of_course)
-                        time.sleep(1)
+                        if mistake_made:
+                            print_effect(of_course)
+                            time.sleep(1)
                         print_effect(effect_1)
                         time.sleep(1)
                         print_effect(effect_2)
@@ -806,10 +808,126 @@ def room_1_again():
                 print(wrong_input())
                 continue
 
+
+def final_location():
+
+    """перевод сценария в переменные"""
+    need_to_think = s[242]
+    cant_smash = s[248]
+    lets_pray = s[249]
+    prayer_1 = s[252]
+    prayer_2 = s[253]
+    hole = s[257]
+    lets_go = s[258]
+    final = s[262]
+    epilogue_1 = s[265]
+    epilogue_2 = s[266]
+    epilogue_3 = s[267]
+    epilogue_4 = s[268]
+    epilogue_5 = s[269]
+    thanks = s[271]
+    good_luck = s[272]
+    end_game = s[274]
+
+    cave_entrance = s[241]
+    smash_wall = s[244]
+    pray = s[245]
+    through_sledgehammer = s[255]
+    escape = s[260]
+    dots = s[261]
+    epilogue = s[264]
+
+    """алгоритм"""
+    print(cave_entrance)
+    time.sleep(1)
+    print_effect(need_to_think)
+    time.sleep(1)
+    while True:
+        print(f'1) {smash_wall}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(cant_smash)
+            time.sleep(2)
+            print_effect(lets_pray)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+
+    """молитва и побег"""
+    while True:
+        print(f'1) {pray}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(prayer_1)
+            time.sleep(2)
+            print_effect(prayer_2)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+    while True:
+        print(f'1) {through_sledgehammer}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            time.sleep(1)
+            print_effect(hole)
+            time.sleep(2)
+            print_effect(lets_go)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+    while True:
+        print(f'1) {escape}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            time.sleep(1)
+            print_effect(dots)
+            time.sleep(1)
+            print_effect(final)
+            room_1_mp3.fadeout(2000)
+            time.sleep(1)
+            time.sleep(2)
+            break
+        else:
+            print(wrong_input())
+            continue
+
+    """ЭПИЛОГ"""
+    room_2_mp3.play()
+    print(epilogue)
+    time.sleep(2)
+    print_effect(epilogue_1)
+    time.sleep(2)
+    print_effect(epilogue_2)
+    time.sleep(2)
+    print_effect(epilogue_3)
+    time.sleep(2)
+    print_effect(epilogue_4 + '\n')
+    time.sleep(2)
+    print_effect(epilogue_5 + '\n')
+    time.sleep(2)
+    room_2_mp3.fadeout(3000)
+    print_effect(thanks)
+    time.sleep(1)
+    print_effect(good_luck)
+    time.sleep(1)
+    print(Fore.GREEN, end_game)
+    print(Style.RESET_ALL)
+    time.sleep(2)
+    return
+
+
 # запуск игры в консоли
 def run_game_console(voice_settings=False):
-    # room_1_mp3.play(-1)
-    # start_game()
-    # room_1()
-    # room_2()
+    room_1_mp3.play(-1)
+    start_game()
+    room_1()
+    room_2()
+    room_1_mp3.play(-1)
     room_1_again()
+    final_location()
