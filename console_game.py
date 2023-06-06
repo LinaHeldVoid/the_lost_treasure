@@ -15,7 +15,7 @@ def wrong_input():
 # имитация чтения книги
 def print_effect(text):
     for i in text:
-        time.sleep(0.05)
+        time.sleep(0.005)
         print(i, end='', flush=True)
 
 
@@ -446,7 +446,7 @@ def room_2():
     papers_read = False
     mechanism_examined = False
     while True:
-        if papers_read is True and mechanism_examined is True:
+        if papers_read and mechanism_examined:
             break
         else:
             print(f'1) {read_papers}'
@@ -572,9 +572,244 @@ def room_2():
             continue
 
 
+def room_1_again():
+
+    """перевод сценария в переменные"""
+    begin = s[177]
+    glass = s[182]
+    pouring_potion = s[185]
+    result_1 = s[187]
+    result_2 = s[188]
+    result_3 = s[189]
+    result_4 = s[190]
+    start_experiment = s[193]
+    paper_in_glass = s[197]
+    need_to_think = s[200]
+    no_effect = s[203]
+    of_course = s[206]
+    effect_1 = s[207]
+    effect_2 = s[208]
+    effect_3 = s[209]
+    coin_stuck = s[212]
+    bowl_effect = s[214]
+    bowl_destiny_1 = s[215]
+    bowl_destiny_2 = s[216]
+    read_paper = s[218]
+    paper_1 = s[220]
+    paper_2 = s[221]
+    paper_3 = s[222]
+    paper_4 = s[223]
+    paper_5 = s[224]
+    paper_6 = s[225]
+    paper_7 = s[227]
+    paper_8 = s[228]
+    so_cool = s[230]
+    lets_get_out = s[231]
+    rope = s[234]
+    sledgehammer = s[236]
+    get_out = s[239]
+
+    open_chest = s[53]
+    close_chest = s[61]
+    no_use = s[73]
+    get_rope = s[179]
+    get_sledgehammer = s[180]
+    get_glass = s[181]
+    pour_potion = s[184]
+    burn_paper = s[192]
+    put_paper = s[196]
+    put_glass = s[199]
+    normal = s[202]
+    upside_down = s[205]
+    get_coin = s[211]
+
+    """алгоритм"""
+    room_1_mp3.play(-1)
+    print_effect(begin)
+    glass_taken = False
+    while True:
+        if glass_taken:
+            break
+        else:
+            print(f'1) {open_chest}' + '\n')
+            option = input('Введите цифру: ')
+            if option == '1':
+                while True:
+                    print(f'1) {get_glass}'
+                          f'2) {get_rope}'
+                          f'3) {get_sledgehammer}'
+                          f'4) {close_chest}' + '\n')
+                    option = input('Введите цифру: ')
+                    if option == '1':
+                        glass_taken = True
+                        print_effect(glass)
+                        time.sleep(1)
+                        break
+                    elif option == '2' or option == '3':
+                        print_effect(no_use)
+                        time.sleep(1)
+                        continue
+                    elif option == '4':
+                        break
+                    else:
+                        print(wrong_input())
+                        continue
+            else:
+                print(wrong_input())
+                continue
+
+    """разбираемся с зельем"""
+    while True:
+        print(f'1) {pour_potion}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(pouring_potion)
+            time.sleep(2)
+            print_effect(result_1)
+            time.sleep(1)
+            print_effect(result_2)
+            time.sleep(1)
+            print_effect(result_3)
+            time.sleep(1)
+            print_effect(result_4)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+    while True:
+        print(f'1) {burn_paper}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(start_experiment)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+    while True:
+        print(f'1) {put_paper}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(paper_in_glass)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+    bowl_ready = False
+    while True:
+        if bowl_ready:
+            break
+        else:
+            print(f'1) {put_glass}' + '\n')
+            option = input('Введите цифру: ')
+            if option == '1':
+                print_effect(need_to_think)
+                time.sleep(1)
+                while True:
+                    print(f'1) {normal}'
+                          f'2) {upside_down}' + '\n')
+                    option = input('Введите цифру: ')
+                    if option == '1':
+                        print_effect(no_effect)
+                        time.sleep(1)
+                        continue
+                    elif option == '2':
+                        bowl_ready = True
+                        print_effect(of_course)
+                        time.sleep(1)
+                        print_effect(effect_1)
+                        time.sleep(1)
+                        print_effect(effect_2)
+                        time.sleep(1)
+                        print_effect(effect_3)
+                        time.sleep(1)
+                        break
+            else:
+                print(wrong_input())
+                continue
+    while True:
+        print(f'1) {get_coin}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '1':
+            print_effect(coin_stuck)
+            time.sleep(1)
+            print_effect(bowl_effect)
+            time.sleep(1)
+            print_effect(bowl_destiny_1)
+            time.sleep(1)
+            print_effect(bowl_destiny_2)
+            time.sleep(1)
+            print_effect(read_paper)
+            time.sleep(2)
+            print_effect(paper_1)
+            time.sleep(1)
+            print_effect(paper_2)
+            print_effect(paper_3)
+            time.sleep(1)
+            print_effect(paper_4)
+            print_effect(paper_5)
+            print_effect(paper_6 + '\n')
+            time.sleep(2)
+            print_effect(paper_7)
+            time.sleep(1)
+            print_effect(paper_8 + '\n')
+            time.sleep(2)
+            print_effect(so_cool)
+            time.sleep(1)
+            print_effect(lets_get_out)
+            time.sleep(1)
+            break
+        else:
+            print(wrong_input())
+            continue
+
+    """забираем всё из сундука"""
+    rope_taken = False
+    sledgehammer_taken = False
+    print(f'1) {open_chest}' + '\n')
+    option = input('Введите цифру: ')
+    while True:
+        if option == '1':
+            while True:
+                if rope_taken and sledgehammer_taken:
+                    break
+                else:
+                    print(f'1) {get_rope}'
+                          f'2) {get_sledgehammer}' + '\n')
+                    option = input('Введите цифру: ')
+                    if option == '1':
+                        rope_taken = True
+                        print_effect(rope)
+                        time.sleep(1)
+                        continue
+                    elif option == '2':
+                        sledgehammer_taken = True
+                        print_effect(sledgehammer)
+                        time.sleep(1)
+                        continue
+                    else:
+                        print(wrong_input())
+                        continue
+        else:
+            print(wrong_input())
+            continue
+
+        """уходим"""
+        while True:
+            print(f'1) {get_out}' + '\n')
+            option = input('Введите цифру: ')
+            if option == '1':
+                return
+            else:
+                print(wrong_input())
+                continue
+
 # запуск игры в консоли
 def run_game_console(voice_settings=False):
-    room_1_mp3.play(-1)
-    start_game()
-    room_1()
-    room_2()
+    # room_1_mp3.play(-1)
+    # start_game()
+    # room_1()
+    # room_2()
+    room_1_again()
