@@ -20,6 +20,25 @@ def run():
         else:
             break
     print('\n' + 'Отлично!' + '\n')
+
+    # параметр, определяющий скорость печати текста
+    text_settings = True
+    while True:
+        print('В данной игре текст появляется постепенно - это имитирует взаимодействие с реальной книгой. ' + '\n'
+              'Желаете ли вы включить эту опцию?' + '\n'
+              '1) Да, включить "медленную" печать"' + '\n'
+              '2) Нет, включить мгновенную печать' + '\n')
+        option = input('Введите любую цифру из предложенных: ')
+        if option == '1':
+            break
+        elif option == '2':
+            text_settings = False
+            break
+        else:
+            print(wrong_input())
+            continue
+    print('\n' + 'Принято!' + '\n')
+
     while True:
         print('Данная игра имеет опцию озвучивания текста. Желаете ли вы включить её?' + '\n'
               '1) Да' + '\n'
@@ -34,7 +53,7 @@ def run():
             voice_settings = False
 
             if game_choice == '1':
-                run_game_console(voice_settings)
+                run_game_console(text_settings)
                 return
             else:
                 run_game_web(voice_settings)
