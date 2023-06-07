@@ -1,5 +1,6 @@
 import time
 
+import pygame.mixer
 from colorama import Fore, Style
 from read_scenario import scenario as s
 from sound_manager import room_1_mp3, room_2_mp3, dd_mp3
@@ -12,8 +13,8 @@ def wrong_input():
 
 
 # имитация чтения книги
-def print_effect(text, text_settings):
-    if text_settings:
+def print_effect(text, t_settings):
+    if t_settings:
         for i in text:
             time.sleep(0.07)
             print(i, end='', flush=True)
@@ -21,11 +22,21 @@ def print_effect(text, text_settings):
         print(text, end='')
 
 
+# управление запуском звука
+def sound_effect(sound_path, settings):
+    if settings:
+        record = pygame.mixer.Sound(sound_path)
+        record.play()
+    else:
+        return
+
+
 # начало, вход
-def start_game(text_settings):
+def start_game(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
     """перевод сценария в переменные"""
     start = s[0]
+    prologue = s[1]
     intro_1 = s[2]
     intro_2 = s[3]
     intro_3 = s[4]
@@ -36,28 +47,43 @@ def start_game(text_settings):
     entrance = s[12]
 
     """алгоритм"""
+    sound_effect('sound/voice_actions/1_start.wav', v_a_settings)
     print(Fore.GREEN, f'{start}')
     print(Style.RESET_ALL)
-    time.sleep(3)
-    print_effect(intro_1, text_settings)
+    time.sleep(2) if v_a_settings else None
+    sound_effect('sound/voice_actions/2_prologue.wav', v_a_settings)
+    print(prologue)
     time.sleep(2)
-    print_effect(intro_2, text_settings)
+    sound_effect('sound/voice_person/1_intro_1.wav', v_p_settings)
+    print_effect(intro_1, t_settings)
+    time.sleep(11) if not t_settings else None
     time.sleep(2)
-    print_effect(intro_3, text_settings)
+    sound_effect('sound/voice_person/2_intro_2.wav', v_p_settings)
+    print_effect(intro_2, t_settings)
+    time.sleep(11) if not t_settings else None
     time.sleep(2)
-    print_effect(intro_4, text_settings)
+    sound_effect('sound/voice_person/3_intro_3.wav', v_p_settings)
+    print_effect(intro_3, t_settings)
+    time.sleep(9) if not t_settings else None
     time.sleep(2)
-    print_effect(intro_5 + '\n', text_settings)
+    sound_effect('sound/voice_person/4_intro_4.wav', v_p_settings)
+    print_effect(intro_4, t_settings)
+    time.sleep(7) if not t_settings else None
     time.sleep(2)
-    print_effect(begin + '\n', text_settings)
+    sound_effect('sound/voice_person/5_intro_5.wav', v_p_settings)
+    print_effect(intro_5 + '\n', t_settings)
+    time.sleep(6) if not t_settings else None
     time.sleep(2)
+    print_effect(begin + '\n', t_settings)
+    time.sleep(2)
+    sound_effect('sound/voice_actions/3_cave_entrance.wav', v_a_settings)
     print(cave_entrance)
-    print_effect(entrance + '\n', text_settings)
+    print_effect(entrance + '\n', t_settings)
     time.sleep(2)
 
 
 # главный зал
-def room_1(text_settings):
+def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
     """перевод сценария в переменные"""
     enter_1 = s[15]
@@ -121,32 +147,36 @@ def room_1(text_settings):
     """алгоритм"""
     chest_is_opened = False
     stonewall_is_examined = False
+    sound_effect('sound/voice_actions/4_room_1.wav', v_a_settings)
     print(room_1_location)
-    print_effect(enter_1, text_settings)
+    print_effect(enter_1, t_settings)
     time.sleep(2)
-    print_effect(enter_2, text_settings)
+    print_effect(enter_2, t_settings)
     time.sleep(2)
-    print_effect(enter_3, text_settings)
+    print_effect(enter_3, t_settings)
     time.sleep(2)
 
     """осматриваемся"""
     while True:
+        sound_effect('sound/voice_actions/5_look_around.wav', v_a_settings)
         print(f'1) {look_around}')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(room_examined, text_settings)
+            print_effect(room_examined, t_settings)
             break
         else:
             print(wrong_input())
             continue
     while True:
+        sound_effect('sound/voice_actions/6_examine_bowl.wav', v_a_settings)
+        time.sleep(2) if v_a_settings else None
         print(f'1) {examine_bowl}'
               f'2) {examine_chest}'
               f'3) {examine_stonewall}'
               f'4) {examine_stone}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(bowl_examined, text_settings)
+            print_effect(bowl_examined, t_settings)
 
             """осматриваем чашу"""
             while True:
@@ -158,11 +188,11 @@ def room_1(text_settings):
                 """смерть"""
                 if option == '1':
                     while True:
-                        room_1_mp3.stop()
-                        dd_mp3.play(-1)
-                        print_effect(painful_death, text_settings)
+                        room_1_mp3.stop() if m_settings else None
+                        dd_mp3.play(-1) if m_settings else None
+                        print_effect(painful_death, t_settings)
                         time.sleep(2)
-                        print_effect(the_end, text_settings)
+                        print_effect(the_end, t_settings)
                         print(Fore.RED, f'{game_over}')
                         print(Style.RESET_ALL)
                         print(death_menu)
@@ -170,8 +200,8 @@ def room_1(text_settings):
                               f'2) {exit_game}' + '\n')
                         option = input(f'Введите цифру: ')
                         if option == '1':
-                            dd_mp3.stop()
-                            room_1_mp3.play(-1)
+                            dd_mp3.stop() if m_settings else None
+                            room_1_mp3.play(-1) if m_settings else None
                             print(Fore.YELLOW, f'{game_resume}')
                             print(Style.RESET_ALL)
                             break
@@ -184,7 +214,7 @@ def room_1(text_settings):
                             continue
                     continue
                 elif option == '2':
-                    print_effect(bowl_not_lifted, text_settings)
+                    print_effect(bowl_not_lifted, t_settings)
                     continue
                 elif option == '3':
                     break
@@ -195,7 +225,7 @@ def room_1(text_settings):
 
             """открываем сундук"""
             if chest_is_opened:
-                print_effect(need_to_think, text_settings)
+                print_effect(need_to_think, t_settings)
                 while True:
                     print(f'1) {twig}'
                           f'2) {rope}'                  
@@ -212,8 +242,8 @@ def room_1(text_settings):
                                   f'2) {get_twig_away}' + '\n')
                             option = input('Введите цифру: ')
                             if option == '1':
-                                print_effect(twig_attempt, text_settings)
-                                print_effect(twig_failure, text_settings)
+                                print_effect(twig_attempt, t_settings)
+                                print_effect(twig_failure, t_settings)
                                 break
                             elif option == '2':
                                 break
@@ -221,7 +251,7 @@ def room_1(text_settings):
                                 print(wrong_input())
                                 continue
                     elif option == '2':
-                        print_effect(no_use, text_settings)
+                        print_effect(no_use, t_settings)
                         continue
                     elif option == '3':
                         if stonewall_is_examined:
@@ -231,25 +261,25 @@ def room_1(text_settings):
                                 print(f'1) {smash_the_wall}' + '\n')
                                 option = input('Введите цифру: ')
                                 if option == '1':
-                                    print_effect(lets_smash, text_settings)
+                                    print_effect(lets_smash, t_settings)
                                     time.sleep(2)
-                                    print_effect(wall_smashed, text_settings)
+                                    print_effect(wall_smashed, t_settings)
                                     time.sleep(2)
 
                                     """обвал"""
                                     print(run_away)
-                                    room_1_mp3.stop()
-                                    dd_mp3.play(-1)
-                                    print_effect(trapped_1, text_settings)
+                                    room_1_mp3.stop() if m_settings else None
+                                    dd_mp3.play(-1) if m_settings else None
+                                    print_effect(trapped_1, t_settings)
                                     time.sleep(2)
-                                    print_effect(trapped_2, text_settings)
+                                    print_effect(trapped_2, t_settings)
                                     time.sleep(2)
-                                    print_effect(trapped_3, text_settings)
+                                    print_effect(trapped_3, t_settings)
                                     time.sleep(2)
                                     print(return_to_room_1)
-                                    dd_mp3.stop()
-                                    room_1_mp3.play(-1)
-                                    print_effect(decision, text_settings)
+                                    dd_mp3.stop() if m_settings else None
+                                    room_1_mp3.play(-1) if m_settings else None
+                                    print_effect(decision, t_settings)
 
                                     """принимаем решение"""
                                     while True:
@@ -263,10 +293,10 @@ def room_1(text_settings):
                                                       f'3) {close_chest}')
                                                 option = input('Введите цифру: ')
                                                 if option == '1':
-                                                    print_effect(no_use, text_settings)
+                                                    print_effect(no_use, t_settings)
                                                     continue
                                                 elif option == '2':
-                                                    print_effect(no_glass, text_settings)
+                                                    print_effect(no_glass, t_settings)
                                                     continue
                                                 elif option == '3':
                                                     break
@@ -274,20 +304,20 @@ def room_1(text_settings):
                                                     print(wrong_input())
                                                     continue
                                         elif option == '2':
-                                            print_effect(last_hope, text_settings)
+                                            print_effect(last_hope, t_settings)
                                             print(another_location)
                                             return
                                 else:
                                     print(wrong_input())
                                     continue
                         else:
-                            print_effect(no_use, text_settings)
+                            print_effect(no_use, t_settings)
                         continue
                     elif option == '4':
-                        print_effect(took_diamond, text_settings)
+                        print_effect(took_diamond, t_settings)
                         continue
                     elif option == '5':
-                        print_effect(no_glass, text_settings)
+                        print_effect(no_glass, t_settings)
                         continue
                     elif option == '6':
                         break
@@ -295,26 +325,26 @@ def room_1(text_settings):
                         print(wrong_input())
                         continue
             else:
-                print_effect(chest_examined, text_settings)
+                print_effect(chest_examined, t_settings)
         elif option == '3':
-            print_effect(stonewall_examined, text_settings)
+            print_effect(stonewall_examined, t_settings)
             stonewall_is_examined = True
             continue
         elif option == '4':
 
             """двигаем камень"""
-            print_effect(stone_examined, text_settings)
+            print_effect(stone_examined, t_settings)
             while True:
                 print(f'1) {move_stone}'
                       f'2) {leave_stone}' + '\n')
                 option = input('Введите цифру: ')
                 if option == '1':
-                    print_effect(key_found, text_settings)
+                    print_effect(key_found, t_settings)
                     while True:
                         print(f'1) {open_chest}' + '\n')
                         option = input('Введите цифру: ')
                         if option == '1':
-                            print_effect(chest_opened, text_settings)
+                            print_effect(chest_opened, t_settings)
                             chest_is_opened = True
                             break
                     break
@@ -330,7 +360,7 @@ def room_1(text_settings):
 
 
 # рабочий кабинет
-def room_2(text_settings):
+def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
     """перевод сценария в переменные"""
     look_around_1 = s[105]
@@ -389,12 +419,12 @@ def room_2(text_settings):
     leave_location = s[176]
 
     """алгоритм"""
-    room_2_mp3.play(-1)
+    room_2_mp3.play(-1) if m_settings else None
     print(entry)
     time.sleep(1)
-    print_effect(look_around_1, text_settings)
+    print_effect(look_around_1, t_settings)
     time.sleep(1)
-    print_effect(look_around_2, text_settings)
+    print_effect(look_around_2, t_settings)
     time.sleep(1)
 
     """осматриваем стол"""
@@ -402,9 +432,9 @@ def room_2(text_settings):
         print(f'1) {examine_the_table}')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(table_examined_1, text_settings)
+            print_effect(table_examined_1, t_settings)
             time.sleep(1)
-            print_effect(table_examined_2, text_settings)
+            print_effect(table_examined_2, t_settings)
             time.sleep(1)
             break
         else:
@@ -417,7 +447,7 @@ def room_2(text_settings):
     """проверяем полки"""
     while True:
         if open_1 is True and open_2 is True and open_3 is True:
-            print_effect(shelves_examined, text_settings)
+            print_effect(shelves_examined, t_settings)
             break
         else:
             print(f'1) {open_shelf_1}'
@@ -426,17 +456,17 @@ def room_2(text_settings):
             option = input('Введите цифру: ')
             if option == '1':
                 open_1 = True
-                print_effect(shelf_1, text_settings)
+                print_effect(shelf_1, t_settings)
                 time.sleep(1)
                 continue
             elif option == '2':
                 open_2 = True
-                print_effect(shelf_2, text_settings)
+                print_effect(shelf_2, t_settings)
                 time.sleep(1)
                 continue
             elif option == '3':
                 open_3 = True
-                print_effect(shelf_3, text_settings)
+                print_effect(shelf_3, t_settings)
                 time.sleep(1)
                 continue
             else:
@@ -458,39 +488,39 @@ def room_2(text_settings):
             if option == '1':
                 if light_on is True:
                     papers_read = True
-                    print_effect(begin_reading, text_settings)
-                    print_effect(line_1, text_settings)
-                    print_effect(line_2 + '\n', text_settings)
+                    print_effect(begin_reading, t_settings)
+                    print_effect(line_1, t_settings)
+                    print_effect(line_2 + '\n', t_settings)
                     time.sleep(2)
-                    print_effect(line_3, text_settings)
-                    print_effect(line_4 + '\n', text_settings)
+                    print_effect(line_3, t_settings)
+                    print_effect(line_4 + '\n', t_settings)
                     time.sleep(2)
-                    print_effect(need_to_think, text_settings)
+                    print_effect(need_to_think, t_settings)
                     time.sleep(1)
-                    print_effect(why_religion, text_settings)
+                    print_effect(why_religion, t_settings)
                     time.sleep(2)
-                    print_effect(back_to_business, text_settings)
+                    print_effect(back_to_business, t_settings)
                     time.sleep(1)
                     continue
                 else:
-                    print_effect(no_light, text_settings)
+                    print_effect(no_light, t_settings)
                     time.sleep(1)
                     continue
             elif option == '2':
                 if light_on is True:
                     mechanism_examined = True
-                    print_effect(mechanism_examined_1, text_settings)
+                    print_effect(mechanism_examined_1, t_settings)
                     time.sleep(1)
-                    print_effect(mechanism_examined_2, text_settings)
+                    print_effect(mechanism_examined_2, t_settings)
                     time.sleep(1)
                     continue
                 else:
-                    print_effect(no_light, text_settings)
+                    print_effect(no_light, t_settings)
                     time.sleep(1)
                     continue
             elif option == '3':
                 light_on = True
-                print_effect(candle_lightened, text_settings)
+                print_effect(candle_lightened, t_settings)
                 time.sleep(1)
                 continue
             else:
@@ -502,13 +532,13 @@ def room_2(text_settings):
         print(f'1) {insert_stone}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(stone_inserted, text_settings)
+            print_effect(stone_inserted, t_settings)
             time.sleep(2)
-            print_effect(diamond_correct, text_settings)
+            print_effect(diamond_correct, t_settings)
             time.sleep(1)
-            print_effect(great_diamond, text_settings)
+            print_effect(great_diamond, t_settings)
             time.sleep(1)
-            print_effect(follow_the_light, text_settings)
+            print_effect(follow_the_light, t_settings)
             time.sleep(1)
             break
         else:
@@ -519,7 +549,7 @@ def room_2(text_settings):
         print(f'1) {knock_the_wall}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(storage_found, text_settings)
+            print_effect(storage_found, t_settings)
             time.sleep(1)
             break
         else:
@@ -528,7 +558,7 @@ def room_2(text_settings):
         print(f'1) {hit_the_wall}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(storage_opened, text_settings)
+            print_effect(storage_opened, t_settings)
             time.sleep(1)
             break
         else:
@@ -539,25 +569,25 @@ def room_2(text_settings):
         print(f'1) {read_book}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(read_1, text_settings)
+            print_effect(read_1, t_settings)
             time.sleep(1)
-            print_effect(read_2 + '\n', text_settings)
+            print_effect(read_2 + '\n', t_settings)
             time.sleep(2)
-            print_effect(book_1, text_settings)
-            print_effect(book_2, text_settings)
-            print_effect(book_3, text_settings)
-            print_effect(book_4, text_settings)
-            print_effect(book_5, text_settings)
-            print_effect(book_6, text_settings)
-            print_effect(book_7, text_settings)
-            print_effect(book_8, text_settings)
-            print_effect(book_9 + '\n', text_settings)
+            print_effect(book_1, t_settings)
+            print_effect(book_2, t_settings)
+            print_effect(book_3, t_settings)
+            print_effect(book_4, t_settings)
+            print_effect(book_5, t_settings)
+            print_effect(book_6, t_settings)
+            print_effect(book_7, t_settings)
+            print_effect(book_8, t_settings)
+            print_effect(book_9 + '\n', t_settings)
             time.sleep(2)
-            print_effect(conclusion, text_settings)
+            print_effect(conclusion, t_settings)
             time.sleep(2)
-            print_effect(get_tools, text_settings)
+            print_effect(get_tools, t_settings)
             time.sleep(1)
-            print_effect(get_away + '\n', text_settings)
+            print_effect(get_away + '\n', t_settings)
             time.sleep(1)
             break
         else:
@@ -574,7 +604,7 @@ def room_2(text_settings):
             continue
 
 
-def room_1_again(text_settings):
+def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
     """перевод сценария в переменные"""
     begin = s[177]
@@ -626,7 +656,7 @@ def room_1_again(text_settings):
     get_coin = s[211]
 
     """алгоритм"""
-    print_effect(begin, text_settings)
+    print_effect(begin, t_settings)
     glass_taken = False
     while True:
         if glass_taken:
@@ -643,11 +673,11 @@ def room_1_again(text_settings):
                     option = input('Введите цифру: ')
                     if option == '1':
                         glass_taken = True
-                        print_effect(glass, text_settings)
+                        print_effect(glass, t_settings)
                         time.sleep(1)
                         break
                     elif option == '2' or option == '3':
-                        print_effect(no_use, text_settings)
+                        print_effect(no_use, t_settings)
                         time.sleep(1)
                         continue
                     elif option == '4':
@@ -664,15 +694,15 @@ def room_1_again(text_settings):
         print(f'1) {pour_potion}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(pouring_potion, text_settings)
+            print_effect(pouring_potion, t_settings)
             time.sleep(2)
-            print_effect(result_1, text_settings)
+            print_effect(result_1, t_settings)
             time.sleep(1)
-            print_effect(result_2, text_settings)
+            print_effect(result_2, t_settings)
             time.sleep(1)
-            print_effect(result_3, text_settings)
+            print_effect(result_3, t_settings)
             time.sleep(1)
-            print_effect(result_4, text_settings)
+            print_effect(result_4, t_settings)
             time.sleep(1)
             break
         else:
@@ -682,7 +712,7 @@ def room_1_again(text_settings):
         print(f'1) {burn_paper}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(start_experiment, text_settings)
+            print_effect(start_experiment, t_settings)
             time.sleep(1)
             break
         else:
@@ -692,7 +722,7 @@ def room_1_again(text_settings):
         print(f'1) {put_paper}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(paper_in_glass, text_settings)
+            print_effect(paper_in_glass, t_settings)
             time.sleep(1)
             break
         else:
@@ -707,7 +737,7 @@ def room_1_again(text_settings):
             print(f'1) {put_glass}' + '\n')
             option = input('Введите цифру: ')
             if option == '1':
-                print_effect(need_to_think, text_settings)
+                print_effect(need_to_think, t_settings)
                 time.sleep(1)
                 while True:
                     print(f'1) {normal}'
@@ -715,19 +745,19 @@ def room_1_again(text_settings):
                     option = input('Введите цифру: ')
                     if option == '1':
                         mistake_made = True
-                        print_effect(no_effect, text_settings)
+                        print_effect(no_effect, t_settings)
                         time.sleep(1)
                         continue
                     elif option == '2':
                         bowl_ready = True
                         if mistake_made:
-                            print_effect(of_course, text_settings)
+                            print_effect(of_course, t_settings)
                             time.sleep(1)
-                        print_effect(effect_1, text_settings)
+                        print_effect(effect_1, t_settings)
                         time.sleep(1)
-                        print_effect(effect_2, text_settings)
+                        print_effect(effect_2, t_settings)
                         time.sleep(1)
-                        print_effect(effect_3, text_settings)
+                        print_effect(effect_3, t_settings)
                         time.sleep(1)
                         break
             else:
@@ -737,32 +767,32 @@ def room_1_again(text_settings):
         print(f'1) {get_coin}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(coin_stuck, text_settings)
+            print_effect(coin_stuck, t_settings)
             time.sleep(1)
-            print_effect(bowl_effect, text_settings)
+            print_effect(bowl_effect, t_settings)
             time.sleep(1)
-            print_effect(bowl_destiny_1, text_settings)
+            print_effect(bowl_destiny_1, t_settings)
             time.sleep(1)
-            print_effect(bowl_destiny_2, text_settings)
+            print_effect(bowl_destiny_2, t_settings)
             time.sleep(1)
-            print_effect(read_paper, text_settings)
+            print_effect(read_paper, t_settings)
             time.sleep(2)
-            print_effect(paper_1, text_settings)
+            print_effect(paper_1, t_settings)
             time.sleep(1)
-            print_effect(paper_2, text_settings)
-            print_effect(paper_3, text_settings)
+            print_effect(paper_2, t_settings)
+            print_effect(paper_3, t_settings)
             time.sleep(1)
-            print_effect(paper_4, text_settings)
-            print_effect(paper_5, text_settings)
-            print_effect(paper_6 + '\n', text_settings)
+            print_effect(paper_4, t_settings)
+            print_effect(paper_5, t_settings)
+            print_effect(paper_6 + '\n', t_settings)
             time.sleep(2)
-            print_effect(paper_7, text_settings)
+            print_effect(paper_7, t_settings)
             time.sleep(1)
-            print_effect(paper_8 + '\n', text_settings)
+            print_effect(paper_8 + '\n', t_settings)
             time.sleep(2)
-            print_effect(so_cool, text_settings)
+            print_effect(so_cool, t_settings)
             time.sleep(1)
-            print_effect(lets_get_out, text_settings)
+            print_effect(lets_get_out, t_settings)
             time.sleep(1)
             break
         else:
@@ -785,12 +815,12 @@ def room_1_again(text_settings):
                     option = input('Введите цифру: ')
                     if option == '1':
                         rope_taken = True
-                        print_effect(rope, text_settings)
+                        print_effect(rope, t_settings)
                         time.sleep(1)
                         continue
                     elif option == '2':
                         sledgehammer_taken = True
-                        print_effect(sledgehammer, text_settings)
+                        print_effect(sledgehammer, t_settings)
                         time.sleep(1)
                         continue
                     else:
@@ -811,7 +841,7 @@ def room_1_again(text_settings):
                 continue
 
 
-def final_location(text_settings):
+def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
     """перевод сценария в переменные"""
     need_to_think = s[242]
@@ -842,15 +872,15 @@ def final_location(text_settings):
     """алгоритм"""
     print(cave_entrance)
     time.sleep(1)
-    print_effect(need_to_think, text_settings)
+    print_effect(need_to_think, t_settings)
     time.sleep(1)
     while True:
         print(f'1) {smash_wall}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(cant_smash, text_settings)
+            print_effect(cant_smash, t_settings)
             time.sleep(2)
-            print_effect(lets_pray, text_settings)
+            print_effect(lets_pray, t_settings)
             time.sleep(1)
             break
         else:
@@ -862,9 +892,9 @@ def final_location(text_settings):
         print(f'1) {pray}' + '\n')
         option = input('Введите цифру: ')
         if option == '1':
-            print_effect(prayer_1, text_settings)
+            print_effect(prayer_1, t_settings)
             time.sleep(2)
-            print_effect(prayer_2, text_settings)
+            print_effect(prayer_2, t_settings)
             time.sleep(1)
             break
         else:
@@ -875,9 +905,9 @@ def final_location(text_settings):
         option = input('Введите цифру: ')
         if option == '1':
             time.sleep(1)
-            print_effect(hole, text_settings)
+            print_effect(hole, t_settings)
             time.sleep(2)
-            print_effect(lets_go, text_settings)
+            print_effect(lets_go, t_settings)
             time.sleep(1)
             break
         else:
@@ -888,10 +918,10 @@ def final_location(text_settings):
         option = input('Введите цифру: ')
         if option == '1':
             time.sleep(1)
-            print_effect(dots, text_settings)
+            print_effect(dots, t_settings)
             time.sleep(1)
-            print_effect(final, text_settings)
-            room_1_mp3.fadeout(2000)
+            print_effect(final, t_settings)
+            room_1_mp3.fadeout(2000) if m_settings else None
             time.sleep(1)
             time.sleep(2)
             break
@@ -900,23 +930,23 @@ def final_location(text_settings):
             continue
 
     """ЭПИЛОГ"""
-    room_2_mp3.play()
+    room_2_mp3.play() if m_settings else None
     print(epilogue)
     time.sleep(2)
-    print_effect(epilogue_1, text_settings)
+    print_effect(epilogue_1, t_settings)
     time.sleep(2)
-    print_effect(epilogue_2, text_settings)
+    print_effect(epilogue_2, t_settings)
     time.sleep(2)
-    print_effect(epilogue_3, text_settings)
+    print_effect(epilogue_3, t_settings)
     time.sleep(2)
-    print_effect(epilogue_4 + '\n', text_settings)
+    print_effect(epilogue_4 + '\n', t_settings)
     time.sleep(2)
-    print_effect(epilogue_5 + '\n', text_settings)
+    print_effect(epilogue_5 + '\n', t_settings)
     time.sleep(2)
-    room_2_mp3.fadeout(3000)
-    print_effect(thanks, text_settings)
+    room_2_mp3.fadeout(3000) if m_settings else None
+    print_effect(thanks, t_settings)
     time.sleep(1)
-    print_effect(good_luck, text_settings)
+    print_effect(good_luck, t_settings)
     time.sleep(1)
     print(Fore.GREEN, end_game)
     print(Style.RESET_ALL)
@@ -925,11 +955,12 @@ def final_location(text_settings):
 
 
 # запуск игры в консоли
-def run_game_console(text_settings):
-    room_1_mp3.play(-1)
-    start_game(text_settings)
-    room_1(text_settings)
-    room_2(text_settings)
-    room_1_mp3.play(-1)
-    room_1_again(text_settings)
-    final_location(text_settings)
+def run_game_console(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
+    room_1_mp3.set_volume(0.2) if m_settings else None
+    room_1_mp3.play(-1) if m_settings else None
+    start_game(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
+    room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
+    room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
+    room_1_mp3.play(-1) if m_settings else None
+    room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
+    final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
