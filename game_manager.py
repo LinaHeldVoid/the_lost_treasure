@@ -2,7 +2,11 @@ import pygame
 
 from wed_game import run_game_web
 from console_game import run_game_console
-from console_game import wrong_input
+
+
+def wrong_input():
+    message = 'Извините, ваш ответ не распознан. Попробуйте ещё раз!'
+    return message
 
 
 # функция, управляющая запуском игры
@@ -58,7 +62,8 @@ def run():
         print('Игра имеет опцию озвучивания текста. Какой вариант больше подходит вам?' + '\n'
               '1) Озвучивать весь текст' + '\n'
               '2) Озвучивать только реплики и слова от автора' + '\n'         
-              '3) Не озвучивать ничего' + '\n')
+              '3) Не озвучивать ничего' + '\n'
+              '4) Озвучивать только действия' + '\n')
         record_choice = input('Введите любую цифру из предложенных: ')
         if record_choice == '1':
             break
@@ -67,6 +72,10 @@ def run():
             break
         elif record_choice == '3':
             voice_action_settings = False
+            voice_person_settings = False
+            break
+        elif record_choice == '4':
+            voice_action_settings = True
             voice_person_settings = False
             break
         else:

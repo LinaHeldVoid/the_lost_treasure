@@ -8,7 +8,9 @@ from read_scenario import prologue as p, room_1 as r_1, room_2 as r_2, \
 
 
 # неверный ввод
-def wrong_input():
+def wrong_input(t_settings, v_a_settings):
+    sound_effect('sound/voice_actions/wrong_input.wav', v_a_settings)
+    time.sleep(5) if not t_settings and v_a_settings else None
     message = 'Извините, ваш ответ не распознан. Попробуйте ещё раз!'
     return message
 
@@ -33,11 +35,11 @@ def sound_effect(sound_path, settings):
 
 
 def quit_menu(t_settings, v_a_settings):
+    print('Вы уверены, что хотите выйти из игры?' + '\n'
+          '1) Да, выйти' + '\n'
+          '2) Нет, остаться' + '\n')
     sound_effect('sound/voice_actions/quit_menu.wav', v_a_settings)
     time.sleep(13) if not t_settings and v_a_settings else None
-    print('Вы уверены, что хотите выйти из игры?'
-          '1) Да, выйти'
-          '2) Нет, остаться')
     sound_effect('sound/voice_actions/option.wav', v_a_settings)
     time.sleep(2) if not t_settings and v_a_settings else None
     option = input('Введите цифру: ')
@@ -47,7 +49,7 @@ def quit_menu(t_settings, v_a_settings):
         elif option == '2':
             return
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
 
 
@@ -88,7 +90,7 @@ def start_game(t_settings, v_a_settings, v_p_settings):
     time.sleep(2)
     sound_effect('sound/voice_person/4_intro_4.wav', v_p_settings)
     print_effect(intro_4, t_settings)
-    time.sleep(6) if not t_settings and v_p_settings else None
+    time.sleep(5) if not t_settings and v_p_settings else None
     time.sleep(2)
     sound_effect('sound/voice_person/5_intro_5.wav', v_p_settings)
     print_effect(intro_5 + '\n', t_settings)
@@ -98,10 +100,9 @@ def start_game(t_settings, v_a_settings, v_p_settings):
     print_effect(begin + '\n', t_settings)
     time.sleep(9) if not t_settings and v_p_settings else None
     time.sleep(2)
+    print(cave_entrance)
     sound_effect('sound/voice_actions/3_cave_entrance.wav', v_a_settings)
     time.sleep(2) if not t_settings and v_a_settings else None
-    print(cave_entrance)
-    time.sleep(2)
     sound_effect('sound/voice_person/7_entrance.wav', v_p_settings)
     print_effect(entrance + '\n', t_settings)
     time.sleep(7) if not t_settings and v_p_settings else None
@@ -184,12 +185,23 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                     sound_effect('sound/voice_actions/option.wav', v_a_settings)
                     time.sleep(2) if not t_settings and v_a_settings else None
                     option = input('Введите цифру: ')
-                    if option == '1':
+                    if option == '100':
+                        quit_menu(t_settings, v_a_settings)
+                        continue
+                    elif option == '0':
+                        if v_a_settings:
+                            sound_effect('sound/voice_actions/6_menu_1.wav', v_a_settings)
+                            time.sleep(13) if not t_settings else None
+                            continue
+                        else:
+                            print('Озвучивание опций отключено')
+                            continue
+                    elif option == '1':
                         if book_found:
                             glass_taken = True
                             print_effect(glass, t_settings)
                             time.sleep(1)
-                            break
+                            continue
                         else:
                             print_effect(no_use, t_settings)
                             time.sleep(1)
@@ -201,10 +213,10 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                     elif option == '4':
                         break
                     else:
-                        print(wrong_input())
+                        print(wrong_input(t_settings, v_a_settings))
                         continue
             else:
-                print(wrong_input())
+                print(wrong_input(t_settings, v_a_settings))
                 continue
 
     """разбираемся с зельем"""
@@ -213,7 +225,18 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
         sound_effect('sound/voice_actions/option.wav', v_a_settings)
         time.sleep(2) if not t_settings and v_a_settings else None
         option = input('Введите цифру: ')
-        if option == '1':
+        if option == '100':
+            quit_menu(t_settings, v_a_settings)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                sound_effect('sound/voice_actions/6_menu_1.wav', v_a_settings)
+                time.sleep(13) if not t_settings else None
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option == '1':
             print_effect(pouring_potion, t_settings)
             time.sleep(2)
             print_effect(result_1, t_settings)
@@ -226,7 +249,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
     while True:
         print(f'1) {burn_paper}' + '\n')
@@ -238,7 +261,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
     while True:
         print(f'1) {put_paper}' + '\n')
@@ -250,7 +273,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
     bowl_ready = False
     mistake_made = False
@@ -289,7 +312,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         time.sleep(1)
                         break
             else:
-                print(wrong_input())
+                print(wrong_input(t_settings, v_a_settings))
                 continue
     while True:
         print(f'1) {get_coin}' + '\n')
@@ -326,7 +349,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
 
     """забираем всё из сундука"""
@@ -358,10 +381,10 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         time.sleep(1)
                         continue
                     else:
-                        print(wrong_input())
+                        print(wrong_input(t_settings, v_a_settings))
                         continue
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
 
         """уходим"""
@@ -373,7 +396,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             if option == '1':
                 return
             else:
-                print(wrong_input())
+                print(wrong_input(t_settings, v_a_settings))
                 continue
 
 
@@ -472,42 +495,60 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
     """осматриваемся"""
     while True:
-        sound_effect('sound/voice_actions/5_look_around.wav', v_a_settings)
-        time.sleep(2) if not t_settings and v_a_settings else None
         print(f'1) {look_around}')
+        sound_effect('sound/voice_actions/5_look_around.wav', v_a_settings)
+        time.sleep(3) if not t_settings and v_a_settings else None
         sound_effect('sound/voice_actions/option.wav', v_a_settings)
         time.sleep(2) if not t_settings and v_a_settings else None
         option = input('Введите цифру: ')
-        if option == '1':
+        if option == '100':
+            quit_menu(t_settings, v_a_settings)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option == '1':
             sound_effect('sound/voice_person/11_room_examined.wav', v_p_settings)
             print_effect(room_examined, t_settings)
             time.sleep(8) if not t_settings and v_p_settings else None
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
     while True:
         if chest_is_opened:
-            sound_effect('sound/voice_actions/6_menu_1.wav', v_a_settings)
-            time.sleep(13) if not t_settings and v_a_settings else None
             print(f'1) {examine_bowl}'
                   f'2) {open_chest}'
                   f'3) {examine_stonewall}'
                   f'4) {examine_stone}' + '\n')
+            sound_effect('sound/voice_actions/12_menu_2.wav', v_a_settings)
+            time.sleep(13.5) if not t_settings and v_a_settings else None
             sound_effect('sound/voice_actions/option.wav', v_a_settings)
             time.sleep(2) if not t_settings and v_a_settings else None
             option = input('Введите цифру: ')
         else:
-            sound_effect('sound/voice_actions/12_menu_2.wav', v_a_settings)
-            time.sleep(13.5) if not t_settings and v_a_settings else None
             print(f'1) {examine_bowl}'
                   f'2) {examine_chest}'
                   f'3) {examine_stonewall}'
                   f'4) {examine_stone}' + '\n')
+            sound_effect('sound/voice_actions/6_menu_1.wav', v_a_settings)
+            time.sleep(13) if not t_settings and v_a_settings else None
             sound_effect('sound/voice_actions/option.wav', v_a_settings)
             time.sleep(2) if not t_settings and v_a_settings else None
             option = input('Введите цифру: ')
-        if option == '1':
+        if option == '100':
+            quit_menu(t_settings, v_a_settings)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option == '1':
             sound_effect('sound/voice_person/12_bowl_examined_1.wav', v_p_settings)
             print_effect(bowl_examined_1, t_settings)
             time.sleep(17) if not t_settings and v_p_settings else None
@@ -519,11 +560,11 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
             """осматриваем чашу"""
             while True:
-                sound_effect('sound/voice_actions/7_bowl_options.wav', v_a_settings)
-                time.sleep(10) if not t_settings and v_a_settings else None
                 print(f'1) {get_coin}'
                       f'2) {lift_bowl}'
                       f'3) {leave_bowl}' + '\n')
+                sound_effect('sound/voice_actions/7_bowl_options.wav', v_a_settings)
+                time.sleep(10) if not t_settings and v_a_settings else None
                 sound_effect('sound/voice_actions/option.wav', v_a_settings)
                 time.sleep(2) if not t_settings and v_a_settings else None
                 option = input('Введите цифру: ')
@@ -547,11 +588,11 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                         time.sleep(1)
                         print(Fore.RED, f'{game_over}')
                         print(Style.RESET_ALL)
-                        sound_effect('sound/voice_actions/10_death_menu.wav', v_a_settings)
-                        time.sleep(13) if not t_settings and v_a_settings else None
                         print(death_menu)
                         print(f'1) {load_game}'
                               f'2) {exit_game}' + '\n')
+                        sound_effect('sound/voice_actions/10_death_menu.wav', v_a_settings)
+                        time.sleep(13) if not t_settings and v_a_settings else None
                         sound_effect('sound/voice_actions/option.wav', v_a_settings)
                         time.sleep(2) if not t_settings and v_a_settings else None
                         option = input(f'Введите цифру: ')
@@ -568,7 +609,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                             """конец игры"""
                             exit()
                         else:
-                            print(wrong_input())
+                            print(wrong_input(t_settings, v_a_settings))
                             continue
                     continue
                 elif option == '2':
@@ -579,8 +620,17 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                     continue
                 elif option == '3':
                     break
+                elif option == '100':
+                    quit_menu(t_settings, v_a_settings)
+                    continue
+                elif option == '0':
+                    if v_a_settings:
+                        continue
+                    else:
+                        print('Озвучивание опций отключено')
+                        continue
                 else:
-                    print(wrong_input())
+                    print(wrong_input(t_settings, v_a_settings))
                     continue
         elif option == '2':
 
@@ -593,17 +643,18 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                 time.sleep(3) if not t_settings and v_p_settings else None
                 time.sleep(1)
                 while True:
-                    sound_effect('sound/voice_actions/8_chest_inside.wav', v_a_settings)
-                    time.sleep(20.5) if not t_settings and v_a_settings else None
                     print(f'1) {twig}'
                           f'2) {rope}'                  
                           f'3) {sledgehammer}'
                           f'4) {diamond}'
                           f'5) {glass}'
                           f'6) {close_chest}' + '\n')
+                    sound_effect('sound/voice_actions/8_chest_inside.wav', v_a_settings)
+                    time.sleep(20.5) if not t_settings and v_a_settings else None
                     sound_effect('sound/voice_actions/option.wav', v_a_settings)
                     time.sleep(2) if not t_settings and v_a_settings else None
                     option = input('Введите цифру: ')
+
                     if option == '1':
 
                         """используем прут"""
@@ -612,10 +663,10 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                 print_effect(enough_watching, t_settings)
                                 break
                             else:
-                                sound_effect('sound/voice_actions/9_twig_options.wav', v_a_settings)
-                                time.sleep(7.5) if not t_settings and v_a_settings else None
                                 print(f'1) {get_coin_twig}'
                                       f'2) {get_twig_away}' + '\n')
+                                sound_effect('sound/voice_actions/9_twig_options.wav', v_a_settings)
+                                time.sleep(7.5) if not t_settings and v_a_settings else None
                                 sound_effect('sound/voice_actions/option.wav', v_a_settings)
                                 time.sleep(2) if not t_settings and v_a_settings else None
                                 option = input('Введите цифру: ')
@@ -640,8 +691,17 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                     break
                                 elif option == '2':
                                     break
+                                elif option == '100':
+                                    quit_menu(t_settings, v_a_settings)
+                                    continue
+                                elif option == '0':
+                                    if v_a_settings:
+                                        continue
+                                    else:
+                                        print('Озвучивание опций отключено')
+                                        continue
                                 else:
-                                    print(wrong_input())
+                                    print(wrong_input(t_settings, v_a_settings))
                                     continue
                     elif option == '2':
                         sound_effect('sound/voice_person/26_no_use.wav', v_p_settings)
@@ -654,9 +714,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
                             """разбиваем стену"""
                             while True:
+                                print(f'1) {smash_the_wall}' + '\n')
                                 sound_effect('sound/voice_actions/14_smash_menu.wav', v_a_settings)
                                 time.sleep(3.5) if not t_settings and v_a_settings else None
-                                print(f'1) {smash_the_wall}' + '\n')
                                 sound_effect('sound/voice_actions/option.wav', v_a_settings)
                                 time.sleep(2) if not t_settings and v_a_settings else None
                                 option = input('Введите цифру: ')
@@ -708,10 +768,10 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
                                     """принимаем решение"""
                                     while True:
-                                        sound_effect('sound/voice_actions/16_final_menu.wav', v_a_settings)
-                                        time.sleep(6.5) if not t_settings and v_a_settings else None
                                         print(f'1) {open_chest}'
                                               f'2) {to_room_2}')
+                                        sound_effect('sound/voice_actions/16_final_menu.wav', v_a_settings)
+                                        time.sleep(6.5) if not t_settings and v_a_settings else None
                                         sound_effect('sound/voice_actions/option.wav', v_a_settings)
                                         time.sleep(2) if not t_settings and v_a_settings else None
                                         option = input('Введите цифру: ')
@@ -719,25 +779,78 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                             sound_effect('sound/sound_effects/open_chest.wav', s_settings)
                                             time.sleep(1.5) if s_settings else None
                                             while True:
-                                                print(f'1) {rope}'
-                                                      f'2) {glass}'
-                                                      f'3) {close_chest}')
-                                                sound_effect('sound/voice_actions/option.wav', v_a_settings)
-                                                time.sleep(2) if not t_settings and v_a_settings else None
-                                                option = input('Введите цифру: ')
-                                                if option == '1':
-                                                    print_effect(no_use, t_settings)
-                                                    continue
-                                                elif option == '2':
-                                                    print_effect(enough_watching, t_settings)
-                                                    continue
-                                                elif option == '3':
-                                                    sound_effect('sound/sound_effects/close_chest.wav', s_settings)
-                                                    time.sleep(1.5) if s_settings else None
-                                                    break
+                                                if diamond_is_taken:
+                                                    print(f'1) {rope}'
+                                                          f'2) {glass}'
+                                                          f'3) {close_chest}')
+                                                    sound_effect('sound/voice_actions/18_fm_2.wav', v_a_settings)
+                                                    time.sleep(9.5) if not t_settings and v_a_settings else None
+                                                    sound_effect('sound/voice_actions/option.wav', v_a_settings)
+                                                    time.sleep(2) if not t_settings and v_a_settings else None
+                                                    option = input('Введите цифру: ')
+                                                    if option == '1':
+                                                        print_effect(no_use, t_settings)
+                                                        continue
+                                                    elif option == '2':
+                                                        print_effect(enough_watching, t_settings)
+                                                        continue
+                                                    elif option == '3':
+                                                        sound_effect('sound/sound_effects/close_chest.wav', s_settings)
+                                                        time.sleep(1.5) if s_settings else None
+                                                        break
+                                                    elif option == '100':
+                                                        quit_menu(t_settings, v_a_settings)
+                                                        continue
+                                                    elif option == '0':
+                                                        if v_a_settings:
+                                                            continue
+                                                        else:
+                                                            print('Озвучивание опций отключено')
+                                                            continue
+                                                    else:
+                                                        print(wrong_input(t_settings, v_a_settings))
+                                                        continue
                                                 else:
-                                                    print(wrong_input())
-                                                    continue
+                                                    print(f'1) {rope}'
+                                                          f'2) {glass}'
+                                                          f'3) {diamond}'
+                                                          f'4) {close_chest}')
+                                                    sound_effect('sound/voice_actions/19_fm_3.wav', v_a_settings)
+                                                    time.sleep(13) if not t_settings and v_a_settings else None
+                                                    sound_effect('sound/voice_actions/option.wav', v_a_settings)
+                                                    time.sleep(2) if not t_settings and v_a_settings else None
+                                                    option = input('Введите цифру: ')
+                                                    if option == '1':
+                                                        print_effect(no_use, t_settings)
+                                                        continue
+                                                    elif option == '2':
+                                                        print_effect(enough_watching, t_settings)
+                                                        continue
+                                                    elif option == '3':
+                                                        diamond_is_taken = True
+                                                        sound_effect('sound/voice_person/28_took_diamond.wav',
+                                                                     v_p_settings)
+                                                        print_effect(took_diamond, t_settings)
+                                                        time.sleep(16) if not t_settings and v_p_settings else None
+                                                        time.sleep(1)
+                                                        continue
+                                                    elif option == '4':
+                                                        sound_effect('sound/sound_effects/close_chest.wav', s_settings)
+                                                        time.sleep(1.5) if s_settings else None
+                                                        break
+                                                    elif option == '100':
+                                                        quit_menu(t_settings, v_a_settings)
+                                                        continue
+                                                    elif option == '0':
+                                                        if v_a_settings:
+                                                            continue
+                                                        else:
+                                                            print('Озвучивание опций отключено')
+                                                            continue
+                                                    else:
+                                                        print(wrong_input(t_settings, v_a_settings))
+                                                        continue
+
                                         elif option == '2':
                                             sound_effect('sound/voice_person/35_last_hope.wav', v_p_settings)
                                             print_effect(last_hope, t_settings)
@@ -746,7 +859,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                             print(another_location)
                                             return
                                 else:
-                                    print(wrong_input())
+                                    print(wrong_input(t_settings, v_a_settings))
                                     continue
                         else:
                             sound_effect('sound/voice_person/26_no_use.wav', v_p_settings)
@@ -759,6 +872,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                             print_effect(enough_watching, t_settings)
                             continue
                         else:
+                            diamond_is_taken = True
                             sound_effect('sound/voice_person/28_took_diamond.wav', v_p_settings)
                             print_effect(took_diamond, t_settings)
                             time.sleep(16) if not t_settings and v_p_settings else None
@@ -778,8 +892,17 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                         sound_effect('sound/sound_effects/close_chest.wav', s_settings)
                         time.sleep(1.5) if s_settings else None
                         break
+                    elif option == '100':
+                        quit_menu(t_settings, v_a_settings)
+                        continue
+                    elif option == '0':
+                        if v_a_settings:
+                            continue
+                        else:
+                            print('Озвучивание опций отключено')
+                            continue
                     else:
-                        print(wrong_input())
+                        print(wrong_input(t_settings, v_a_settings))
                         continue
             else:
                 if chest_is_examined:
@@ -814,10 +937,10 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                 time.sleep(6.5) if not t_settings and v_p_settings else None
                 time.sleep(1)
                 while True:
-                    sound_effect('sound/voice_actions/13_stone_menu.wav', v_a_settings)
-                    time.sleep(6.5) if not t_settings and v_a_settings else None
                     print(f'1) {move_stone}'
                           f'2) {leave_stone}' + '\n')
+                    sound_effect('sound/voice_actions/13_stone_menu.wav', v_a_settings)
+                    time.sleep(6.5) if not t_settings and v_a_settings else None
                     sound_effect('sound/voice_actions/option.wav', v_a_settings)
                     time.sleep(2) if not t_settings and v_a_settings else None
                     option = input('Введите цифру: ')
@@ -829,8 +952,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                         time.sleep(3) if not t_settings and v_p_settings else None
                         time.sleep(1)
                         while True:
-
                             print(f'1) {open_chest}' + '\n')
+                            sound_effect('sound/voice_actions/17_open_chest_menu.wav', v_a_settings)
+                            time.sleep(2) if not t_settings and v_a_settings else None
                             sound_effect('sound/voice_actions/option.wav', v_a_settings)
                             time.sleep(2) if not t_settings and v_a_settings else None
                             option = input('Введите цифру: ')
@@ -843,15 +967,33 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                 time.sleep(1)
                                 chest_is_opened = True
                                 break
+                            elif option == '100':
+                                quit_menu(t_settings, v_a_settings)
+                                continue
+                            elif option == '0':
+                                if v_a_settings:
+                                    continue
+                                else:
+                                    print('Озвучивание опций отключено')
+                                    continue
                         break
                     elif option == '2':
                         break
+                    elif option == '100':
+                        quit_menu(t_settings, v_a_settings)
+                        continue
+                    elif option == '0':
+                        if v_a_settings:
+                            continue
+                        else:
+                            print('Озвучивание опций отключено')
+                            continue
                     else:
-                        print(wrong_input())
+                        print(wrong_input(t_settings, v_a_settings))
                         continue
                 continue
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
 
 
@@ -936,7 +1078,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
     open_1 = False
     open_2 = False
@@ -970,7 +1112,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                 time.sleep(1)
                 continue
             else:
-                print(wrong_input())
+                print(wrong_input(t_settings, v_a_settings))
                 continue
 
     """головоломка со светом"""
@@ -1030,7 +1172,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                     time.sleep(1)
                     continue
             else:
-                print(wrong_input())
+                print(wrong_input(t_settings, v_a_settings))
                 continue
 
     """вставляем камень в оправу"""
@@ -1050,7 +1192,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
 
     """обнаруживаем тайник"""
     while True:
@@ -1063,7 +1205,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
     while True:
         print(f'1) {hit_the_wall}' + '\n')
         sound_effect('sound/voice_actions/option.wav', v_a_settings)
@@ -1074,7 +1216,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
 
     """читаем записку"""
     while True:
@@ -1105,7 +1247,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
 
     """уходим"""
     while True:
@@ -1116,7 +1258,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
         if option == '1':
             return
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
 
 
@@ -1165,7 +1307,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
 
     """молитва и побег"""
@@ -1181,7 +1323,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
     while True:
         print(f'1) {through_sledgehammer}' + '\n')
@@ -1196,7 +1338,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
             time.sleep(1)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
     while True:
         print(f'1) {escape}' + '\n')
@@ -1213,7 +1355,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
             time.sleep(2)
             break
         else:
-            print(wrong_input())
+            print(wrong_input(t_settings, v_a_settings))
             continue
 
     """ЭПИЛОГ"""

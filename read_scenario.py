@@ -10,7 +10,6 @@ with open('text/2_room_1.txt', 'r', encoding='utf-8') as text:
     room_1 = {}
     for index, line in enumerate(text):
         room_1[index] = line
-    pprint(room_1)
 
 with open('text/3_room_2.txt', 'r', encoding='utf-8') as text:
     room_2 = {}
