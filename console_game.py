@@ -80,10 +80,16 @@ def random_no(t_settings, v_p_settings, no_use):
     return
 
 
+def random_open_shelf(t_settings, v_p_settings, open_shelf_again):
+    choose_reaction = random.choice(open_shelf_again)
+    print_effect(choose_reaction, t_settings)
+    return
+
+
 # начало, вход
 def start_game(t_settings, v_a_settings, v_p_settings):
 
-    """перевод сценария в переменные"""
+    """Перевод сценария в переменные"""
     start = p[0]
     prologue = p[2]
     intro_1 = p[3]
@@ -138,7 +144,7 @@ def start_game(t_settings, v_a_settings, v_p_settings):
 
 def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, book_found):
 
-    """перевод сценария в переменные"""
+    """Перевод сценария в переменные"""
     begin = r_1_2[177]
     glass = r_1_2[182]
     pouring_potion = r_1_2[185]
@@ -431,7 +437,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
 # главный зал
 def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
-    """перевод сценария в переменные"""
+    """Перевод сценария в переменные"""
     enter_1 = r_1[1]
     enter_2 = r_1[2]
     enter_3 = r_1[3]
@@ -505,6 +511,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     chest_is_opened = False
     stonewall_is_examined = False
     glass_is_examined = False
+    bowl_is_examined = False
     diamond_is_taken = False
     twig_melted = False
     print(room_1_location)
@@ -579,6 +586,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                 print('Озвучивание опций отключено')
                 continue
         elif option == '1':
+            bowl_is_examined = True
             sound_effect('sound/voice_person/room_1/12_bowl_examined_1.wav', v_p_settings)
             print_effect(bowl_examined_1, t_settings)
             time.sleep(17) if not t_settings and v_p_settings else None
@@ -696,52 +704,57 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
                         """используем прут"""
                         while True:
-                            if twig_melted:
-                                print_effect(no_use_twig, t_settings)
-                                sound_effect('sound/voice_person/room_1/26_no_use_twig.wav', v_a_settings)
-                                time.sleep(5.5) if not t_settings and v_a_settings else None
-                                break
-                            else:
-                                print(f'1) {get_coin_twig}'
-                                      f'2) {get_twig_away}' + '\n')
-                                sound_effect('sound/voice_actions/option.wav', v_a_settings)
-                                time.sleep(2) if not t_settings and v_a_settings else None
-                                record = sound_effect('sound/voice_actions/9_twig_options.wav', v_a_settings)
-                                option = input('Введите цифру: ')
-                                record.stop() if v_a_settings else None
-                                if option == '1':
-                                    twig_melted = True
-                                    sound_effect('sound/voice_person/room_1/23_twig_attempt.wav', v_p_settings)
-                                    print_effect(twig_attempt, t_settings)
-                                    time.sleep(1.5) if not t_settings and v_p_settings else None
-                                    time.sleep(1)
-                                    print(acid_hiss)
-                                    sound_effect('sound/sound_effects/acid_hiss.wav', s_settings)
-                                    time.sleep(2.5) if s_settings else None
-                                    time.sleep(1)
-                                    sound_effect('sound/voice_person/room_1/24_twig_failure_1.wav', v_p_settings)
-                                    print_effect(twig_failure_1, t_settings)
-                                    time.sleep(10) if not t_settings and v_p_settings else None
-                                    time.sleep(1)
-                                    sound_effect('sound/voice_person/room_1/25_twig_failure_2.wav', v_p_settings)
-                                    print_effect(twig_failure_2, t_settings)
-                                    time.sleep(15) if not t_settings and v_p_settings else None
-                                    time.sleep(1)
+                            if bowl_is_examined:
+                                if twig_melted:
+                                    print_effect(no_use_twig, t_settings)
+                                    sound_effect('sound/voice_person/room_1/26_no_use_twig.wav', v_a_settings)
+                                    time.sleep(5.5) if not t_settings and v_a_settings else None
                                     break
-                                elif option == '2':
-                                    break
-                                elif option == '100':
-                                    quit_menu(t_settings, v_a_settings)
-                                    continue
-                                elif option == '0':
-                                    if v_a_settings:
-                                        continue
-                                    else:
-                                        print('Озвучивание опций отключено')
-                                        continue
                                 else:
-                                    print(wrong_input(t_settings, v_a_settings))
-                                    continue
+                                    print(f'1) {get_coin_twig}'
+                                          f'2) {get_twig_away}' + '\n')
+                                    sound_effect('sound/voice_actions/option.wav', v_a_settings)
+                                    time.sleep(2) if not t_settings and v_a_settings else None
+                                    record = sound_effect('sound/voice_actions/9_twig_options.wav', v_a_settings)
+                                    option = input('Введите цифру: ')
+                                    record.stop() if v_a_settings else None
+                                    if option == '1':
+                                        twig_melted = True
+                                        sound_effect('sound/voice_person/room_1/23_twig_attempt.wav', v_p_settings)
+                                        print_effect(twig_attempt, t_settings)
+                                        time.sleep(1.5) if not t_settings and v_p_settings else None
+                                        time.sleep(1)
+                                        print(acid_hiss)
+                                        sound_effect('sound/sound_effects/acid_hiss.wav', s_settings)
+                                        time.sleep(2.5) if s_settings else None
+                                        time.sleep(1)
+                                        sound_effect('sound/voice_person/room_1/24_twig_failure_1.wav', v_p_settings)
+                                        print_effect(twig_failure_1, t_settings)
+                                        time.sleep(10) if not t_settings and v_p_settings else None
+                                        time.sleep(1)
+                                        sound_effect('sound/voice_person/room_1/25_twig_failure_2.wav', v_p_settings)
+                                        print_effect(twig_failure_2, t_settings)
+                                        time.sleep(15) if not t_settings and v_p_settings else None
+                                        time.sleep(1)
+                                        break
+                                    elif option == '2':
+                                        break
+                                    elif option == '100':
+                                        quit_menu(t_settings, v_a_settings)
+                                        continue
+                                    elif option == '0':
+                                        if v_a_settings:
+                                            continue
+                                        else:
+                                            print('Озвучивание опций отключено')
+                                            continue
+                                    else:
+                                        print(wrong_input(t_settings, v_a_settings))
+                                        continue
+                            else:
+                                random_no(t_settings, v_p_settings, no_use)
+                                time.sleep(1)
+                                continue
                     elif option == '2':
                         random_no(t_settings, v_p_settings, no_use)
                         time.sleep(1)
@@ -792,7 +805,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                     print_effect(trapped_2, t_settings)
                                     time.sleep(12) if not t_settings and v_p_settings else None
                                     time.sleep(1)
-                                    sound_effect('sound/voice_person/room_1/33_trapped_3.wav.wav', v_p_settings)
+                                    sound_effect('sound/voice_person/room_1/33_trapped_3.wav', v_p_settings)
                                     print_effect(trapped_3, t_settings)
                                     time.sleep(6) if not t_settings and v_p_settings else None
                                     time.sleep(1)
@@ -824,7 +837,8 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                           f'3) {close_chest}')
                                                     sound_effect('sound/voice_actions/option.wav', v_a_settings)
                                                     time.sleep(2) if not t_settings and v_a_settings else None
-                                                    record = sound_effect('sound/voice_actions/18_fm_2.wav', v_a_settings)
+                                                    record = sound_effect('sound/voice_actions/18_fm_2.wav',
+                                                                          v_a_settings)
                                                     option = input('Введите цифру: ')
                                                     record.stop() if v_a_settings else None
                                                     if option == '1':
@@ -1077,120 +1091,422 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 # рабочий кабинет
 def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
-    """перевод сценария в переменные"""
-    look_around_1 = r_2[105]
-    look_around_2 = r_2[106]
-    table_examined_1 = r_2[109]
-    table_examined_2 = r_2[110]
-    shelf_1 = r_2[113]
-    shelf_2 = r_2[116]
-    shelf_3 = r_2[119]
-    shelves_examined = r_2[120]
-    candle_lightened = r_2[123]
-    no_light = r_2[127]
-    mechanism_examined_1 = r_2[130]
-    mechanism_examined_2 = r_2[131]
-    begin_reading = r_2[134]
-    line_1 = r_2[135]
-    line_2 = r_2[136]
-    line_3 = r_2[138]
-    line_4 = r_2[139]
-    need_to_think = r_2[141]
-    why_religion = r_2[142]
-    back_to_business = r_2[143]
-    stone_inserted = r_2[146]
-    diamond_correct = r_2[148]
-    great_diamond = r_2[149]
-    follow_the_light = r_2[150]
-    storage_found = r_2[153]
-    storage_opened = r_2[156]
-    read_1 = r_2[159]
-    read_2 = r_2[160]
-    book_1 = r_2[162]
-    book_2 = r_2[163]
-    book_3 = r_2[164]
-    book_4 = r_2[165]
-    book_5 = r_2[166]
-    book_6 = r_2[167]
-    book_7 = r_2[168]
-    book_8 = r_2[169]
-    book_9 = r_2[170]
-    conclusion = r_2[172]
-    get_tools = r_2[173]
-    get_away = r_2[174]
+    """Перевод сценария в переменные"""
+    look_around_1 = r_2[1]
+    look_around_2 = r_2[2]
+    table_examined_1 = r_2[8]
+    table_examined_2 = r_2[9]
+    shelf_1 = r_2[16]
+    shelf_2_1 = r_2[19]
+    shelf_2_2 = r_2[20]
+    shelf_3 = r_2[23]
+    shelves_examined = r_2[24]
+    open_shelf_again = [r_2[27], r_2[28], r_2[29]]
+    candle_lightened = r_2[38]
+    no_light = r_2[42]
+    mechanism_examined_1 = r_2[45]
+    mechanism_examined_2 = r_2[46]
+    lets_read = r_2[49]
+    string_1 = riddle[1]
+    string_2 = riddle[2]
+    reaction_1 = r_2[51]
+    reaction_2 = r_2[52]
+    string_3 = riddle[5]
+    string_4 = riddle[6]
+    reaction_3 = r_2[55]
+    reaction_4 = r_2[56]
+    reaction_5 = r_2[57]
+    reaction_6 = r_2[59]
+    string_5 = riddle[9]
+    string_6 = riddle[10]
+    reaction_7 = r_2[66]
+    reaction_8 = r_2[69]
+    reaction_9 = r_2[70]
+    reaction_10 = r_2[73]
+    riddle_1 = riddle[12]
+    riddle_2 = riddle[13]
+    riddle_3 = riddle[14]
+    riddle_4 = riddle[15]
+    riddle_5 = riddle[17]
+    riddle_6 = riddle[18]
+    riddle_7 = riddle[19]
+    riddle_8 = riddle[20]
+    riddle_9 = riddle[22]
+    riddle_10 = riddle[23]
+    riddle_11 = riddle[24]
+    riddle_12 = riddle[25]
+    riddle_13 = riddle[27]
+    riddle_14 = riddle[28]
+    riddle_15 = riddle[29]
+    riddle_16 = riddle[30]
+    four_candles_1 = r_2[78]
+    four_candles_2 = r_2[79]
+    chest_closed_1 = r_2[82]
+    chest_closed_2 = r_2[83]
+    candles_examined_1 = r_2[91]
+    candles_examined_2 = r_2[92]
+    need_to_read = r_2[95]
+    candles_examined_1 = r_2[97]
+    candles_examined_2 = r_2[98]
+    candles_examined_3 = r_2[99]
+    tries = [r_2[107], r_2[108], r_2[109], r_2[110]]
+    first_failure = r_2[113]
+    failures = [r_2[116], r_2[117], r_2[118], r_2[119]]
+    death_1 = r_2[123]
+    death_2 = r_2[124]
+    riddle_solved_1 = r_2[128]
+    riddle_solved_2 = r_2[129]
+    chest_opened = r_2[132]
+    begin_reading = r_2[138]
+    line_1 = r_2[140]
+    line_2 = r_2[141]
+    line_3 = r_2[143]
+    line_4 = r_2[144]
+    need_to_think = r_2[146]
+    why_religion = r_2[147]
+    back_to_business = r_2[148]
+    sack_1 = r_2[151]
+    sack_2 = r_2[152]
+    sack_3 = r_2[153]
+    stone_inserted = r_2[156]
+    diamond_correct = r_2[158]
+    great_diamond = r_2[159]
+    follow_the_light = r_2[160]
+    storage_found = r_2[163]
+    storage_opened = r_2[166]
+    read_1 = r_2[167]
+    read_2 = r_2[168]
+    read_3 = r_2[175]
+    book_1 = r_2[177]
+    book_2 = r_2[178]
+    book_3 = r_2[179]
+    book_4 = r_2[181]
+    book_5 = r_2[182]
+    book_6 = r_2[183]
+    book_7 = r_2[184]
+    book_8 = r_2[186]
+    book_9 = r_2[187]
+    book_10 = r_2[189]
+    book_11 = r_2[190]
+    book_12 = r_2[191]
+    conclusion = r_2[193]
+    read_log_1 = r_2[196]
+    read_log_2 = r_2[197]
+    log_1 = r_2[199]
+    log_2 = r_2[200]
+    log_3 = r_2[201]
+    log_4 = r_2[202]
+    log_5 = r_2[203]
+    log_6 = r_2[204]
+    log_7 = r_2[205]
+    log_8 = r_2[206]
+    log_9 = r_2[207]
+    log_10 = r_2[208]
+    log_11 = r_2[209]
+    log_12 = r_2[210]
+    much_information = r_2[212]
+    get_steroids_1 = r_2[215]
+    get_steroids_2 = r_2[216]
+    get_steroids_3 = r_2[217]
+    get_tools = r_2[219]
+    get_away = r_2[220]
+    no_use = [r_1[119], r_1[120], r_1[121], r_1[122], r_1[123]]
 
-    entry = r_2[104]
-    examine_the_table = r_2[108]
-    open_shelf_1 = r_2[112]
-    open_shelf_2 = r_2[115]
-    open_shelf_3 = r_2[118]
-    light_candle = r_2[122]
-    examine_mechanism = r_2[129]
-    read_papers = r_2[133]
-    insert_stone = r_2[145]
-    knock_the_wall = r_2[152]
-    hit_the_wall = r_2[155]
-    read_book = r_2[158]
-    leave_location = r_2[176]
+    room_2_location = r_2[0]
+    examine_the_table = r_2[4]
+    examine_altar = r_2[5]
+    open_shelf_1 = r_2[11]
+    open_shelf_2 = r_2[12]
+    open_shelf_3 = r_2[13]
+    light_candle = r_2[34]
+    examine_mechanism = r_2[44]
+    read_paper_1 = r_2[31]
+    read_paper_2 = r_2[32]
+    read_paper_3 = r_2[33]
+    combine_papers = r_2[68]
+    leave_table = r_2[75]
+    open_chest = r_2[81]
+    read_riddle = r_2[85]
+    open_chest = r_2[86]
+    look_at_candles = r_2[87]
+    leave_altar = r_2[88]
+    light_angel = r_2[101]
+    light_crow = r_2[102]
+    light_censer = r_2[103]
+    light_hood = r_2[104]
+    read_papers = r_2[134]
+    take_sack = r_2[135]
+    insert_stone = r_2[155]
+    knock_the_wall = r_2[162]
+    hit_the_wall = r_2[165]
+    read_book = r_2[170]
+    read_log = r_2[171]
+    take_bundle = r_2[172]
+    leave_location = r_2[222]
 
     """алгоритм"""
+    open_1 = False
+    open_2 = False
+    open_3 = False
+    mechanism_is_examined = False
+    light_on = False
+    riddle_is_combined = False
     room_2_mp3.play(-1) if m_settings else None
-    print(entry)
+    print(room_2_location)
     time.sleep(1)
     print_effect(look_around_1, t_settings)
     time.sleep(1)
     print_effect(look_around_2, t_settings)
     time.sleep(1)
 
-    """осматриваем стол"""
+    """главное меню"""
     while True:
-        print(f'1) {examine_the_table}')
-        sound_effect('sound/voice_actions/option.wav', v_a_settings)
-        time.sleep(2) if not t_settings and v_a_settings else None
+        if open_1 and open_2 and open_3:
+            if riddle_is_combined:
+                print(f'1) {examine_the_table}'
+                      f'2) {examine_altar}' + '\n')
+            else:
+                print(f'1) {examine_the_table}'
+                      f'2) {examine_altar}'
+                      f'3) {read_papers}' + '\n')
+        else:
+            print(f'1) {examine_the_table}'
+                  f'2) {examine_altar}' + '\n')
         option = input('Введите цифру: ')
-        if option == '1':
+        if option == '100':
+            quit_menu(t_settings, v_a_settings)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option == '1':
+
+            """осматриваем стол"""
             print_effect(table_examined_1, t_settings)
             time.sleep(1)
             print_effect(table_examined_2, t_settings)
             time.sleep(1)
-            break
+            while True:
+
+                """проверяем полки"""
+                if open_1 and open_2 and open_3 and mechanism_is_examined:
+                    print_effect(shelves_examined, t_settings)
+                    break
+                else:
+                    if light_on:
+                        print(f'1) {open_shelf_1}'
+                              f'2) {open_shelf_2}'
+                              f'3) {open_shelf_3}'
+                              f'4) {examine_mechanism}'
+                              f'5) {leave_table}' + '\n')
+                    else:
+                        print(f'1) {open_shelf_1}'
+                              f'2) {open_shelf_2}'
+                              f'3) {open_shelf_3}'
+                              f'4) {examine_mechanism}'
+                              f'5) {light_candle}'
+                              f'6) {leave_table}' + '\n')
+                    option = input('Введите цифру: ')
+                    if option == '100':
+                        quit_menu(t_settings, v_a_settings)
+                        continue
+                    elif option == '0':
+                        if v_a_settings:
+                            continue
+                        else:
+                            print('Озвучивание опций отключено')
+                            continue
+                    elif option == '1':
+                        if open_1:
+                            random_open_shelf(t_settings, v_p_settings, open_shelf_again)
+                            time.sleep(1)
+                            continue
+                        else:
+                            if light_on:
+                                open_1 = True
+                                print_effect(shelf_1, t_settings)
+                                time.sleep(1)
+                                continue
+                            else:
+                                print_effect(no_light, t_settings)
+                                time.sleep(1)
+                                continue
+                    elif option == '2':
+                        if open_2:
+                            random_open_shelf(t_settings, v_p_settings, open_shelf_again)
+                            time.sleep(1)
+                            continue
+                        else:
+                            if light_on:
+                                open_2 = True
+                                print_effect(shelf_2_1, t_settings)
+                                time.sleep(1)
+                                print_effect(shelf_2_2, t_settings)
+                                time.sleep(1)
+                                continue
+                            else:
+                                print_effect(no_light, t_settings)
+                                continue
+                    elif option == '3':
+                        if open_3:
+                            random_open_shelf(t_settings, v_p_settings, open_shelf_again)
+                            time.sleep(1)
+                            continue
+                        else:
+                            if light_on:
+                                open_3 = True
+                                print_effect(shelf_3, t_settings)
+                                time.sleep(1)
+                                continue
+                            else:
+                                print_effect(no_light, t_settings)
+                                time.sleep(1)
+                                continue
+                    elif option == '4':
+                        if mechanism_is_examined:
+                            random_no(t_settings, v_p_settings, no_use)
+                            time.sleep(1)
+                            continue
+                        else:
+                            if light_on is True:
+                                mechanism_is_examined = True
+                                print_effect(mechanism_examined_1, t_settings)
+                                time.sleep(1)
+                                print_effect(mechanism_examined_2, t_settings)
+                                time.sleep(1)
+                                continue
+                            else:
+                                print_effect(no_light, t_settings)
+                                time.sleep(1)
+                                continue
+                    elif option == '5':
+                        if light_on:
+                            break
+                        else:
+                            light_on = True
+                            print_effect(candle_lightened, t_settings)
+                            time.sleep(1)
+                    elif option == '6':
+                        if not light_on:
+                            break
+                        else:
+                            print(wrong_input(t_settings, v_a_settings))
+                            continue
+                    else:
+                        print(wrong_input(t_settings, v_a_settings))
+                        continue
+        elif option == '2':
+            pass
+        elif option == '3':
+            paper_1_read = False
+            paper_2_read = False
+            paper_3_read = False
+            while True:
+                if paper_1_read and paper_2_read and paper_3_read:
+                    print(f'1) {read_paper_1}'
+                          f'2) {read_paper_2}'
+                          f'3) {read_paper_3}'
+                          f'4) {combine_papers}' + '\n')
+                else:
+                    print(f'1) {read_paper_1}'
+                          f'2) {read_paper_2}'
+                          f'3) {read_paper_3}' + '\n')
+                option = input('Введите цифру: ')
+                if option == '100':
+                    quit_menu(t_settings, v_a_settings)
+                    continue
+                elif option == '0':
+                    if v_a_settings:
+                        continue
+                    else:
+                        print('Озвучивание опций отключено')
+                        continue
+                elif option == '1':
+                    if paper_1_read:
+                        random_no(t_settings, v_p_settings, no_use)
+                        continue
+                    else:
+                        paper_1_read = True
+                        print_effect(lets_read, t_settings)
+                        print('')
+                        time.sleep(1)
+                        print_effect(string_1, t_settings)
+                        print_effect(string_2, t_settings)
+                        time.sleep(1)
+                        print_effect(reaction_1, t_settings)
+                        time.sleep(1)
+                        print_effect(reaction_2, t_settings)
+                        time.sleep(1)
+                        continue
+                elif option == '2':
+                    if paper_2_read:
+                        random_no(t_settings, v_p_settings, no_use)
+                        continue
+                    else:
+                        paper_2_read = True
+                        print_effect(reaction_3, t_settings)
+                        time.sleep(1)
+                        print_effect(reaction_4, t_settings)
+                        time.sleep(1)
+                        print_effect(reaction_5, t_settings)
+                        print('')
+                        time.sleep(1)
+                        print_effect(string_3, t_settings)
+                        print_effect(string_4, t_settings)
+                        time.sleep(1)
+                        print_effect(reaction_6, t_settings)
+                        time.sleep(1)
+                        continue
+                elif option == '3':
+                    if paper_3_read:
+                        random_no(t_settings, v_p_settings, no_use)
+                        continue
+                    else:
+                        paper_2_read = True
+                        print_effect(reaction_7, t_settings)
+                        time.sleep(1)
+                        print_effect(reaction_8, t_settings)
+                        time.sleep(1)
+                        print_effect(reaction_9, t_settings)
+                        print('')
+                        time.sleep(1)
+                        print_effect(string_5, t_settings)
+                        print_effect(string_6, t_settings)
+                        time.sleep(1)
+                        continue
+                elif option == '4':
+                    if paper_1_read and paper_2_read and paper_3_read:
+                        print_effect(riddle_1, t_settings)
+                        print_effect(riddle_2, t_settings)
+                        print_effect(riddle_3, t_settings)
+                        print_effect(riddle_4, t_settings)
+                        print('')
+                        print_effect(riddle_5, t_settings)
+                        print_effect(riddle_6, t_settings)
+                        print_effect(riddle_7, t_settings)
+                        print_effect(riddle_8, t_settings)
+                        print('')
+                        print_effect(riddle_9, t_settings)
+                        print_effect(riddle_10, t_settings)
+                        print_effect(riddle_11, t_settings)
+                        print_effect(riddle_12, t_settings)
+                        print('')
+                        print_effect(riddle_13, t_settings)
+                        print_effect(riddle_14, t_settings)
+                        print_effect(riddle_15, t_settings)
+                        print_effect(riddle_16, t_settings)
+                        print('')
+                        print_effect(reaction_10, t_settings)
+                        time.sleep(1)
+                    else:
+                        print(wrong_input(t_settings, v_a_settings))
+                        continue
         else:
             print(wrong_input(t_settings, v_a_settings))
             continue
-    open_1 = False
-    open_2 = False
-    open_3 = False
-
-    """проверяем полки"""
-    while True:
-        if open_1 is True and open_2 is True and open_3 is True:
-            print_effect(shelves_examined, t_settings)
-            break
-        else:
-            print(f'1) {open_shelf_1}'
-                  f'2) {open_shelf_2}'
-                  f'3) {open_shelf_3}' + '\n')
-            sound_effect('sound/voice_actions/option.wav', v_a_settings)
-            time.sleep(2) if not t_settings and v_a_settings else None
-            option = input('Введите цифру: ')
-            if option == '1':
-                open_1 = True
-                print_effect(shelf_1, t_settings)
-                time.sleep(1)
-                continue
-            elif option == '2':
-                open_2 = True
-                print_effect(shelf_2, t_settings)
-                time.sleep(1)
-                continue
-            elif option == '3':
-                open_3 = True
-                print_effect(shelf_3, t_settings)
-                time.sleep(1)
-                continue
-            else:
-                print(wrong_input(t_settings, v_a_settings))
-                continue
 
     """головоломка со светом"""
     light_on = False
@@ -1201,10 +1517,8 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             break
         else:
             print(f'1) {read_papers}'
-                  f'2) {examine_mechanism}'
                   f'3) {light_candle}' + '\n')
-            sound_effect('sound/voice_actions/option.wav', v_a_settings)
-            time.sleep(2) if not t_settings and v_a_settings else None
+
             option = input('Введите цифру: ')
             if option == '1':
                 if light_on is True:
@@ -1227,30 +1541,6 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                     print_effect(no_light, t_settings)
                     time.sleep(1)
                     continue
-            elif option == '2':
-                if light_on is True:
-                    mechanism_examined = True
-                    print_effect(mechanism_examined_1, t_settings)
-                    time.sleep(1)
-                    print_effect(mechanism_examined_2, t_settings)
-                    time.sleep(1)
-                    continue
-                else:
-                    print_effect(no_light, t_settings)
-                    time.sleep(1)
-                    continue
-            elif option == '3':
-                if light_on:
-                    print('Свеча уже горит')
-                    continue
-                else:
-                    light_on = True
-                    print_effect(candle_lightened, t_settings)
-                    time.sleep(1)
-                    continue
-            else:
-                print(wrong_input(t_settings, v_a_settings))
-                continue
 
     """вставляем камень в оправу"""
     while True:
@@ -1341,7 +1631,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
 def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
-    """перевод сценария в переменные"""
+    """Перевод сценария в переменные"""
     need_to_think = e[242]
     cant_smash = e[248]
     lets_pray = e[249]
@@ -1464,7 +1754,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
 def run_game_console(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     room_1_mp3.set_volume(0.2) if m_settings else None
     room_1_mp3.play(-1) if m_settings else None
-    # start_game(t_settings, v_a_settings, v_p_settings)
+    start_game(t_settings, v_a_settings, v_p_settings)
     room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
     # room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
     # room_1_mp3.play(-1) if m_settings else None
