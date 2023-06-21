@@ -20,18 +20,28 @@ def numbers_check(num_list):
     message = 'Ввод должен состоять из четырёх разных цифр. Попробуйте снова!'
 
     """проверяем состав ввода"""
-    good_list = [1, 2, 3, 4, 5, 6]
+    if len(num_list) != '4':
+        print(message)
+        time.sleep(1)
+        return
+
+    """проверяем состав ввода"""
+    good_list = [1, 2, 3, 4]
     for i in num_list:
         if i.isnumeric():
-            if i not in good_list:
+            if int(i) not in good_list:
                 print(message)
+                time.sleep(1)
                 return
         else:
+            print(message)
+            time.sleep(1)
             return
 
     """проверяем уникальность чисел"""
     if len(set(num_list)) != len(num_list):
         print(message)
+        time.sleep(1)
         return
     else:
         return True
