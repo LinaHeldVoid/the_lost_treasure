@@ -19,8 +19,8 @@ def wrong_input(t_settings, v_a_settings):
 def numbers_check(num_list):
     message = 'Ввод должен состоять из четырёх разных цифр. Попробуйте снова!'
 
-    """проверяем состав ввода"""
-    if len(num_list) != '4':
+    """проверяем длину ввода"""
+    if len(num_list) != 4:
         print(message)
         time.sleep(1)
         return
@@ -41,6 +41,7 @@ def numbers_check(num_list):
     """проверяем уникальность чисел"""
     if len(set(num_list)) != len(num_list):
         print(message)
+        print(4)
         time.sleep(1)
         return
     else:
@@ -1215,6 +1216,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     sack_1 = r_2[151]
     sack_2 = r_2[152]
     sack_3 = r_2[153]
+    cant_close = r_2[234]
     stone_inserted = r_2[156]
     diamond_correct = r_2[158]
     great_diamond = r_2[159]
@@ -1285,6 +1287,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     chest_unlocked = r_2[127]
     read_papers = r_2[134]
     take_sack = r_2[135]
+    close_chest = r_2[231]
     insert_stone = r_2[155]
     knock_the_wall = r_2[162]
     hit_the_wall = r_2[165]
@@ -1772,13 +1775,67 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             print(wrong_input(t_settings, v_a_settings))
             continue
 
-    # while True:
-    #     print_effect(chest_opened, t_settings)
-    #     time.sleep(1)
-    #     print(f'1) {examine_the_table}'
-    #           f'2) {examine_altar}' + '\n')
-    #     option = input('Введите цифру: ')
-
+    papers_read = False
+    sack_took = False
+    while True:
+        if papers_read and sack_took:
+            break
+        print_effect(chest_opened, t_settings)
+        time.sleep(1)
+        print(f'1) {read_papers}'
+              f'2) {take_sack}'
+              f'3) {close_chest}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            quit_menu(t_settings, v_a_settings)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option == '1':
+            if papers_read:
+                random_no(t_settings, v_p_settings, no_use)
+                continue
+            else:
+                papers_read = True
+                print_effect(begin_reading, t_settings)
+                print_effect(line_1, t_settings)
+                print_effect(line_2 + '\n', t_settings)
+                time.sleep(2)
+                print_effect(line_3, t_settings)
+                print_effect(line_4 + '\n', t_settings)
+                time.sleep(2)
+                print_effect(need_to_think, t_settings)
+                time.sleep(1)
+                print_effect(why_religion, t_settings)
+                time.sleep(2)
+                print_effect(back_to_business, t_settings)
+                time.sleep(1)
+                continue
+        elif option == '2':
+            if sack_took:
+                random_no(t_settings, v_p_settings, no_use)
+                continue
+            else:
+                sack_took = True
+                print_effect(sack_1, t_settings)
+                time.sleep(1)
+                print_effect(sack_2, t_settings)
+                time.sleep(1)
+                print_effect(sack_3, t_settings)
+                time.sleep(1)
+        elif option == '3':
+            if papers_read:
+                break
+            else:
+                print_effect(cant_close, t_settings)
+                continue
+        else:
+            print(wrong_input(t_settings, v_a_settings))
+            continue
     # """головоломка со светом"""
     # light_on = False
     # papers_read = False
