@@ -1217,6 +1217,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     sack_2 = r_2[152]
     sack_3 = r_2[153]
     cant_close = r_2[234]
+    mechanism_again = r_2[237]
     stone_inserted = r_2[156]
     diamond_correct = r_2[158]
     great_diamond = r_2[159]
@@ -1272,6 +1273,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     read_paper_1 = r_2[31]
     read_paper_2 = r_2[32]
     read_paper_3 = r_2[33]
+    papers_away = r_2[246]
     combine_papers = r_2[68]
     leave_table = r_2[75]
     examine_chest = r_2[81]
@@ -1289,6 +1291,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     take_sack = r_2[135]
     close_chest = r_2[231]
     insert_stone = r_2[155]
+    click = r_2[157]
     knock_the_wall = r_2[162]
     hit_the_wall = r_2[165]
     read_book = r_2[170]
@@ -1297,6 +1300,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     leave_location = r_2[222]
     chest_wont_open = [r_2[226], r_2[227], r_2[228]]
     leave_candles = r_2[230]
+    leave_storage = r_2[239]
+    cant_go = r_2[244]
+    examine_storage = r_2[241]
     game_over = r_1[24]
     death_menu = r_1[25]
     load_game = r_1[27]
@@ -1312,8 +1318,11 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     table_is_examined = False
     mechanism_is_examined = False
     light_on = False
-    riddle_is_combined = False
+    paper_1_read = False
+    paper_2_read = False
+    paper_3_read = False
     papers_combined = False
+    сhest_opened = False
     tries_number = 0
     room_2_mp3.play(-1) if m_settings else None
     print(room_2_location)
@@ -1635,9 +1644,6 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
         elif option == '3':
 
             """читаем отрывки загадки"""
-            paper_1_read = False
-            paper_2_read = False
-            paper_3_read = False
             language_found = 0
             read_count = 0
             while True:
@@ -1647,13 +1653,16 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                     print(f'1) {read_paper_1}'
                           f'2) {read_paper_2}'
                           f'3) {read_paper_3}'
-                          f'4) {combine_papers}' + '\n')
+                          f'4) {combine_papers}'
+                          f'5) {papers_away}' + '\n')
                 else:
                     print(f'1) {read_paper_1}'
                           f'2) {read_paper_2}'
-                          f'3) {read_paper_3}' + '\n')
+                          f'3) {read_paper_3}'
+                          f'4) {papers_away}' + '\n')
                 option = input('Введите цифру: ')
-                print_effect(reactions[0], t_settings) if read_count == 0 else None
+                print_effect(reactions[0], t_settings) if \
+                    read_count == 0 and option != '4' and option != '5' else None
                 if option == '100':
                     quit_menu(t_settings, v_a_settings)
                     continue
@@ -1712,6 +1721,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                             print_effect(reactions[10], t_settings) if read_count == 3 else None
                             time.sleep(1) if read_count == 3 else None
                             continue
+                        else:
+                            print_effect(no_light, t_settings)
+                            time.sleep(1)
                 elif option == '3':
                     if paper_3_read:
                         random_no(t_settings, v_p_settings, no_use)
@@ -1738,6 +1750,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                             print_effect(reactions[10], t_settings) if read_count == 3 else None
                             time.sleep(1) if read_count == 3 else None
                             continue
+                        else:
+                            print_effect(no_light, t_settings)
+                            time.sleep(1)
                 elif option == '4':
                     if paper_1_read and paper_2_read and paper_3_read:
                         papers_combined = True
@@ -1769,8 +1784,16 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                         time.sleep(1)
                         continue
                     else:
+                        break
+                elif option == '5':
+                    if paper_1_read and paper_2_read and paper_3_read:
+                        break
+                    else:
                         print(wrong_input(t_settings, v_a_settings))
                         continue
+                else:
+                    print(wrong_input(t_settings, v_a_settings))
+                    continue
         else:
             print(wrong_input(t_settings, v_a_settings))
             continue
@@ -1780,8 +1803,10 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     while True:
         if papers_read and sack_took:
             break
-        print_effect(chest_opened, t_settings)
-        time.sleep(1)
+        if not chest_opened:
+            chest_opened = True
+            print_effect(chest_opened, t_settings)
+            time.sleep(1)
         print(f'1) {read_papers}'
               f'2) {take_sack}'
               f'3) {close_chest}' + '\n')
@@ -1836,125 +1861,237 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
         else:
             print(wrong_input(t_settings, v_a_settings))
             continue
-    # """головоломка со светом"""
-    # light_on = False
-    # papers_read = False
-    # mechanism_examined = False
-    # while True:
-    #     if papers_read and mechanism_examined:
-    #         break
-    #     else:
-    #         print(f'1) {read_papers}'
-    #               f'3) {light_candle}' + '\n')
-    #
-    #         option = input('Введите цифру: ')
-    #         if option == '1':
-    #             if light_on is True:
-    #                 papers_read = True
-    #                 print_effect(begin_reading, t_settings)
-    #                 print_effect(line_1, t_settings)
-    #                 print_effect(line_2 + '\n', t_settings)
-    #                 time.sleep(2)
-    #                 print_effect(line_3, t_settings)
-    #                 print_effect(line_4 + '\n', t_settings)
-    #                 time.sleep(2)
-    #                 print_effect(need_to_think, t_settings)
-    #                 time.sleep(1)
-    #                 print_effect(why_religion, t_settings)
-    #                 time.sleep(2)
-    #                 print_effect(back_to_business, t_settings)
-    #                 time.sleep(1)
-    #                 continue
-    #             else:
-    #                 print_effect(no_light, t_settings)
-    #                 time.sleep(1)
-    #                 continue
-    #
-    # """вставляем камень в оправу"""
-    # while True:
-    #     print(f'1) {insert_stone}' + '\n')
-    #     sound_effect('sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         print_effect(stone_inserted, t_settings)
-    #         time.sleep(2)
-    #         print_effect(diamond_correct, t_settings)
-    #         time.sleep(1)
-    #         print_effect(great_diamond, t_settings)
-    #         time.sleep(1)
-    #         print_effect(follow_the_light, t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(wrong_input(t_settings, v_a_settings))
-    #
-    # """обнаруживаем тайник"""
-    # while True:
-    #     print(f'1) {knock_the_wall}' + '\n')
-    #     sound_effect('sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         print_effect(storage_found, t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(wrong_input(t_settings, v_a_settings))
-    # while True:
-    #     print(f'1) {hit_the_wall}' + '\n')
-    #     sound_effect('sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         print_effect(storage_opened, t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(wrong_input(t_settings, v_a_settings))
-    #
-    # """читаем записку"""
-    # while True:
-    #     print(f'1) {read_book}' + '\n')
-    #     sound_effect('sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         print_effect(read_1, t_settings)
-    #         time.sleep(1)
-    #         print_effect(read_2 + '\n', t_settings)
-    #         time.sleep(2)
-    #         print_effect(book_1, t_settings)
-    #         print_effect(book_2, t_settings)
-    #         print_effect(book_3, t_settings)
-    #         print_effect(book_4, t_settings)
-    #         print_effect(book_5, t_settings)
-    #         print_effect(book_6, t_settings)
-    #         print_effect(book_7, t_settings)
-    #         print_effect(book_8, t_settings)
-    #         print_effect(book_9 + '\n', t_settings)
-    #         time.sleep(2)
-    #         print_effect(conclusion, t_settings)
-    #         time.sleep(2)
-    #         print_effect(get_tools, t_settings)
-    #         time.sleep(1)
-    #         print_effect(get_away + '\n', t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(wrong_input(t_settings, v_a_settings))
-    #
-    # """уходим"""
-    # while True:
-    #     print(f'1) {leave_location}' + '\n')
-    #     sound_effect('sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         return
-    #     else:
-    #         print(wrong_input(t_settings, v_a_settings))
-    #         continue
+
+    """обнаруживаем тайник"""
+    break_indicator = False
+    while True:
+        if break_indicator:
+            break
+        print(f'1) {examine_the_table}'
+              f'2) {examine_altar}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            quit_menu(t_settings, v_a_settings)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option == '1':
+            while True:
+                if break_indicator:
+                    break
+                print_effect(mechanism_again, t_settings)
+                time.sleep(1)
+                print(f'1) {insert_stone}'
+                      f'2) {leave_table}' + '\n')
+                option = input('Введите цифру: ')
+                if option == '100':
+                    quit_menu(t_settings, v_a_settings)
+                    continue
+                elif option == '0':
+                    if v_a_settings:
+                        continue
+                    else:
+                        print('Озвучивание опций отключено')
+                        continue
+                elif option == '1':
+                    print_effect(stone_inserted, t_settings)
+                    time.sleep(1)
+                    print(click)
+                    time.sleep(1)
+                    print_effect(diamond_correct, t_settings)
+                    time.sleep(1)
+                    print_effect(great_diamond, t_settings)
+                    time.sleep(1)
+                    print_effect(follow_the_light, t_settings)
+                    time.sleep(1)
+                    while True:
+                        if break_indicator:
+                            break
+                        print(f'1) {knock_the_wall}' + '\n')
+                        option = input('Введите цифру: ')
+                        if option == '100':
+                            quit_menu(t_settings, v_a_settings)
+                            continue
+                        elif option == '0':
+                            if v_a_settings:
+                                continue
+                            else:
+                                print('Озвучивание опций отключено')
+                                continue
+                        elif option == '1':
+                            print_effect(storage_found, t_settings)
+                            time.sleep(1)
+                            while True:
+                                print(f'1) {hit_the_wall}' + '\n')
+                                option = input('Введите цифру: ')
+                                if option == '100':
+                                    quit_menu(t_settings, v_a_settings)
+                                    continue
+                                elif option == '0':
+                                    if v_a_settings:
+                                        continue
+                                    else:
+                                        print('Озвучивание опций отключено')
+                                        continue
+                                elif option == '1':
+                                    break_indicator = True
+                                    print_effect(storage_opened, t_settings)
+                                    time.sleep(1)
+                                    print_effect(read_1, t_settings)
+                                    time.sleep(1)
+                                    print_effect(read_2, t_settings)
+                                    time.sleep(1)
+                                    break
+                        else:
+                            print(wrong_input(t_settings, v_a_settings))
+                            continue
+                elif option == '2':
+                    break
+                else:
+                    print(wrong_input(t_settings, v_a_settings))
+                    continue
+        elif option == '2':
+            random_no(t_settings, v_p_settings, no_use)
+            continue
+        else:
+            print(wrong_input(t_settings, v_a_settings))
+            continue
+
+    """осматриваем тайник и уходим"""
+    book_read = False
+    log_read = False
+    steroids_taken = False
+    leave_point = False
+    while True:
+        if book_read and log_read:
+            leave_point = True
+        print(f'1) {examine_storage}'
+              f'2) {leave_location}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            quit_menu(t_settings, v_a_settings)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option == '1':
+            while True:
+                if leave_point:
+                    return
+                print(f'1) {read_book}'
+                      f'2) {read_log}'
+                      f'3) {take_bundle}' 
+                      f'4) {leave_storage}' + '\n')
+                # sound_effect('sound/voice_actions/option.wav', v_a_settings)
+                # time.sleep(2) if not t_settings and v_a_settings else None
+                option = input('Введите цифру: ')
+                if option == '100':
+                    quit_menu(t_settings, v_a_settings)
+                    continue
+                elif option == '0':
+                    if v_a_settings:
+                        continue
+                    else:
+                        print('Озвучивание опций отключено')
+                        continue
+                elif option == '1':
+                    if book_read:
+                        random_no(t_settings, v_p_settings, no_use)
+                        continue
+                    else:
+                        book_read = True
+                        print_effect(read_3, t_settings)
+                        time.sleep(2)
+                        print_effect(book_1, t_settings)
+                        print_effect(book_2, t_settings)
+                        print_effect(book_3, t_settings)
+                        time.sleep(2)
+                        print('')
+                        print_effect(book_4, t_settings)
+                        print_effect(book_5, t_settings)
+                        print_effect(book_6, t_settings)
+                        print_effect(book_7, t_settings)
+                        time.sleep(2)
+                        print('')
+                        print_effect(book_8, t_settings)
+                        print_effect(book_9, t_settings)
+                        time.sleep(2)
+                        print('')
+                        print_effect(book_10, t_settings)
+                        print_effect(book_11, t_settings)
+                        print_effect(book_12, t_settings)
+                        time.sleep(2)
+                        print('')
+                        print_effect(conclusion, t_settings)
+                        time.sleep(1)
+                        continue
+                elif option == '2':
+                    if log_read:
+                        random_no(t_settings, v_p_settings, no_use)
+                        continue
+                    else:
+                        log_read = True
+                        print_effect(read_log_1, t_settings)
+                        time.sleep(1)
+                        print_effect(read_log_2, t_settings)
+                        time.sleep(2)
+                        print('')
+                        print_effect(log_1, t_settings)
+                        print_effect(log_2, t_settings)
+                        print_effect(log_3, t_settings)
+                        print_effect(log_4, t_settings)
+                        print_effect(log_5, t_settings)
+                        print_effect(log_6, t_settings)
+                        print_effect(log_7, t_settings)
+                        print_effect(log_8, t_settings)
+                        print_effect(log_9, t_settings)
+                        print_effect(log_10, t_settings)
+                        print_effect(log_11, t_settings)
+                        print_effect(log_12, t_settings)
+                        time.sleep(2)
+                        print('')
+                        print_effect(much_information, t_settings)
+                        time.sleep(1)
+                        continue
+                elif option == '3':
+                    if steroids_taken:
+                        random_no(t_settings, v_p_settings, no_use)
+                        continue
+                    else:
+                        steroids_taken = True
+                        print_effect(get_steroids_1, t_settings)
+                        time.sleep(1)
+                        print_effect(get_steroids_2, t_settings)
+                        time.sleep(1)
+                        print_effect(get_steroids_3, t_settings)
+                        time.sleep(1)
+                        continue
+                elif option == '4':
+                    break
+                else:
+                    print(wrong_input(t_settings, v_a_settings))
+                    continue
+        elif option == '2':
+            if leave_point:
+                print_effect(get_tools, t_settings)
+                time.sleep(1)
+                print_effect(get_away, t_settings)
+                time.sleep(1)
+                return
+            else:
+                print_effect(cant_go, t_settings)
+                time.sleep(1)
+                continue
+        else:
+            print(wrong_input(t_settings, v_a_settings))
+            continue
 
 
 def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
