@@ -1,7 +1,7 @@
 import pygame
 import sys
 from picture_manager import Room
-from sound_manager import define_sound
+from console_game.sound_manager import define_sound
 
 # def print_text(message, x, y, font_color=(0, 0, 0))
 

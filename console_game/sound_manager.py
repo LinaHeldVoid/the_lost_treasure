@@ -20,9 +20,9 @@ def define_sound(picture):
 
 
 pygame.mixer.init()
-room_1_mp3_path = 'sound/locations/room_1.wav'
+room_1_mp3_path = '../sound/locations/room_1.wav'
 room_1_mp3 = pygame.mixer.Sound(room_1_mp3_path)
-dd_mp3_path = 'sound/locations/danger_death.wav'
+dd_mp3_path = '../sound/locations/danger_death.wav'
 dd_mp3 = pygame.mixer.Sound(dd_mp3_path)
-room_2_mp3_path = 'sound/locations/room_2.wav'
+room_2_mp3_path = '../sound/locations/room_2.wav'
 room_2_mp3 = pygame.mixer.Sound(room_2_mp3_path)
