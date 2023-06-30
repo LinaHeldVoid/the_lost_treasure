@@ -9,11 +9,11 @@ from console_game.service_fuctions import print_effect as p_e, sound_effect as s
 def start_game(t_settings, v_a_settings, v_p_settings):
 
     g = generate_base('text/1_prologue.txt')
-    s_e('sound/voice_actions/1_start.wav', v_a_settings)
+    s_e('sound/voice_actions/room_1/1_start.wav', v_a_settings)
     print(Fore.GREEN, f'{next(g)}')
     print(Style.RESET_ALL)
     time.sleep(2) if v_a_settings else None
-    s_e('sound/voice_actions/2_prologue.wav', v_a_settings)
+    s_e('sound/voice_actions/room_1/2_prologue.wav', v_a_settings)
     next(g)
     print(next(g))
     time.sleep(2)
@@ -45,7 +45,7 @@ def start_game(t_settings, v_a_settings, v_p_settings):
     time.sleep(2)
     next(g)
     print(next(g))
-    s_e('sound/voice_actions/3_cave_entrance.wav', v_a_settings)
+    s_e('sound/voice_actions/room_1/3_cave_entrance.wav', v_a_settings)
     time.sleep(2) if not t_settings and v_a_settings else None
     s_e('sound/voice_person/room_1/7_entrance.wav', v_p_settings)
     p_e(next(g) + '\n', t_settings)

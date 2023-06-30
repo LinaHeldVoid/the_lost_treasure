@@ -3,7 +3,6 @@ import pygame
 import random
 
 from scenario_generator import generate_base
-from colorama import Fore, Style
 
 
 def set_generator_1(line):
@@ -126,54 +125,3 @@ def random_no(t_settings, v_p_settings, no_use):
         print_effect(choose_no_use, t_settings)
         time.sleep(3) if not t_settings and v_p_settings else None
     return
-
-
-def death(t_settings, v_p_settings, v_a_settings):
-    while True:
-        g = set_generator_1(29)
-        print(next(g))
-        # room_1_mp3.stop() if m_settings else None
-        # sound_effect('sound/sound_effects/death.wav', s_settings)
-        # time.sleep(1) if s_settings else None
-        # dd_mp3.set_volume(0.2) if m_settings else None
-        # dd_mp3.play(-1) if m_settings else None
-        # sound_effect('sound/voice_person/room_1/14_painful_death.wav',
-        #              v_p_settings)
-        print_effect(next(g), t_settings)
-        # time.sleep(10) if not t_settings and v_p_settings else None
-        time.sleep(1)
-        # sound_effect('sound/voice_person/room_1/15_the_end.wav', v_p_settings)
-        print_effect(next(g), t_settings)
-        print('')
-        # time.sleep(9) if not t_settings and v_p_settings else None
-        # time.sleep(1)
-        print(Fore.RED, f'{next(g)}')
-        print(Style.RESET_ALL)
-        print(next(g))
-        next(g)
-        print(f'1) {next(g)}'
-              f'2) {next(g)}' + '\n')
-        # record = sound_effect('sound/voice_actions/10_death_menu.wav',
-        #                       v_a_settings)
-        option = input(f'Введите цифру: ')
-        # record.stop() if v_a_settings else None
-        if option == '1':
-            # dd_mp3.stop() if m_settings else None
-            # room_1_mp3.play(-1) if m_settings else None
-            # sound_effect('sound/voice_actions/11_game_resume.wav',
-            # v_a_settings)
-            print('')
-            next(g)
-            next(g)
-            print(Fore.YELLOW, f'{next(g)}')
-            print(Style.RESET_ALL)
-            # time.sleep(2.5) if not t_settings and v_a_settings else None
-            tries_number = 0
-            break
-        elif option == '2':
-
-            """конец игры"""
-            exit()
-        else:
-            print(wrong_input(t_settings, v_a_settings))
-            continue
