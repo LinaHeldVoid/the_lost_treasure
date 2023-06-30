@@ -3,6 +3,25 @@ import pygame
 import random
 
 from scenario_generator import generate_base
+from colorama import Fore, Style
+
+
+def set_generator_1(line):
+    i = 0
+    g = generate_base('../text/2_room_1.txt')
+    while i < line:
+        next(g)
+        i += 1
+    return g
+
+
+def set_generator_2(line):
+    i = 0
+    g = generate_base('../text/3_room_2.txt.txt')
+    while i < line:
+        next(g)
+        i += 1
+    return g
 
 
 # неверный ввод
@@ -86,19 +105,19 @@ def quit_menu(t_settings, v_a_settings):
 
 def random_no(t_settings, v_p_settings, no_use):
     choose_no_use = random.choice(no_use)
-    if choose_no_use == r_1[119]:
+    if choose_no_use == next(set_generator_2(146)):
         sound_effect('../sound/voice_person/no_use.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(4) if not t_settings and v_p_settings else None
-    elif choose_no_use == r_1[120]:
+    elif choose_no_use == next(set_generator_2(147)):
         sound_effect('../sound/voice_person/no_use_2.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(2.5) if not t_settings and v_p_settings else None
-    elif choose_no_use == r_1[121]:
+    elif choose_no_use == next(set_generator_2(148)):
         sound_effect('../sound/voice_person/no_use_3.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(2) if not t_settings and v_p_settings else None
-    elif choose_no_use == r_1[122]:
+    elif choose_no_use == next(set_generator_2(149)):
         sound_effect('../sound/voice_person/no_use_4.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(2) if not t_settings and v_p_settings else None
@@ -109,44 +128,52 @@ def random_no(t_settings, v_p_settings, no_use):
     return
 
 
-def random_wont_open(t_settings, v_p_settings, wont_open_list):
-    choice = random.choice(wont_open_list)
-    if choice == r_2[226]:
-        print_effect(choice, t_settings)
-    elif choice == r_2[227]:
-        print_effect(choice, t_settings)
-    else:
-        print_effect(choice, t_settings)
-    return
+def death(t_settings, v_p_settings, v_a_settings):
+    while True:
+        g = set_generator_1(29)
+        print(next(g))
+        # room_1_mp3.stop() if m_settings else None
+        # sound_effect('sound/sound_effects/death.wav', s_settings)
+        # time.sleep(1) if s_settings else None
+        # dd_mp3.set_volume(0.2) if m_settings else None
+        # dd_mp3.play(-1) if m_settings else None
+        # sound_effect('sound/voice_person/room_1/14_painful_death.wav',
+        #              v_p_settings)
+        print_effect(next(g), t_settings)
+        # time.sleep(10) if not t_settings and v_p_settings else None
+        time.sleep(1)
+        # sound_effect('sound/voice_person/room_1/15_the_end.wav', v_p_settings)
+        print_effect(next(g), t_settings)
+        print('')
+        # time.sleep(9) if not t_settings and v_p_settings else None
+        # time.sleep(1)
+        print(Fore.RED, f'{next(g)}')
+        print(Style.RESET_ALL)
+        print(next(g))
+        next(g)
+        print(f'1) {next(g)}'
+              f'2) {next(g)}' + '\n')
+        # record = sound_effect('sound/voice_actions/10_death_menu.wav',
+        #                       v_a_settings)
+        option = input(f'Введите цифру: ')
+        # record.stop() if v_a_settings else None
+        if option == '1':
+            # dd_mp3.stop() if m_settings else None
+            # room_1_mp3.play(-1) if m_settings else None
+            # sound_effect('sound/voice_actions/11_game_resume.wav',
+            # v_a_settings)
+            print('')
+            next(g)
+            next(g)
+            print(Fore.YELLOW, f'{next(g)}')
+            print(Style.RESET_ALL)
+            # time.sleep(2.5) if not t_settings and v_a_settings else None
+            tries_number = 0
+            break
+        elif option == '2':
 
-
-def random_try(t_settings, v_p_settings, tries):
-    choice = random.choice(tries)
-    if choice == r_2[107]:
-        print_effect(choice, t_settings)
-    elif choice == r_2[108]:
-        print_effect(choice, t_settings)
-    elif choice == r_2[109]:
-        print_effect(choice, t_settings)
-    else:
-        print_effect(choice, t_settings)
-    return
-
-
-def random_failure(t_settings, v_p_settings, failures):
-    choice = random.choice(failures)
-    if choice == r_2[116]:
-        print_effect(choice, t_settings)
-    elif choice == r_2[117]:
-        print_effect(choice, t_settings)
-    elif choice == r_2[118]:
-        print_effect(choice, t_settings)
-    else:
-        print_effect(choice, t_settings)
-    return
-
-
-def random_open_shelf(t_settings, v_p_settings, open_shelf_again):
-    choose_reaction = random.choice(open_shelf_again)
-    print_effect(choose_reaction, t_settings)
-    return
+            """конец игры"""
+            exit()
+        else:
+            print(wrong_input(t_settings, v_a_settings))
+            continue

@@ -1,7 +1,5 @@
-import pygame
-
-from wed_game import run_game_web
-from console_game import run_game_console
+from web_game.wed_game import run_game_web
+from console_game.console_game import run_game_console
 
 
 def wrong_input():

@@ -1,7 +1,7 @@
 import pygame
 import sys
 from picture_manager import Room
-from console_game.sound_manager import define_sound
+from sound_manager import define_sound
 
 # def print_text(message, x, y, font_color=(0, 0, 0))
 
@@ -12,10 +12,10 @@ def run_game_web():
     pygame.display.set_caption('Затерянное сокровище')
     bg_color = (0, 0, 0)
 
-    icon = pygame.image.load('icon.png')
+    icon = pygame.image.load('../icon.png')
     pygame.display.set_icon(icon)
 
-    picture = Room(screen, pygame.image.load('locations/door/1_start.png'))
+    picture = Room(screen, pygame.image.load('../locations/door/1_start.png'))
     pic = 'locations/door/1_start.png'
     bg_sound = define_sound(pic)
 

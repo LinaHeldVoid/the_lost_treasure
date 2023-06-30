@@ -1,7 +1,4 @@
-import sys
-
 import pygame
-from wed_game import screen
 
 objects = []
 
