@@ -23,6 +23,18 @@ def set_generator_2(line):
     return g
 
 
+def set_generator_dnd(line):
+    i = 0
+    g = generate_base('text/8_death&determination.txt')
+    while i < line:
+        next(g)
+        i += 1
+    return g
+
+
+def random_revival(t_settings, v_a_settings)
+
+
 # неверный ввод
 def wrong_input(t_settings, v_a_settings):
     sound_effect('../sound/voice_actions/wrong_input.wav', v_a_settings)
