@@ -46,7 +46,7 @@ def start_game(t_settings, v_a_settings, v_p_settings):
     next(g)
     print(next(g))
     s_e('sound/voice_actions/room_1/3_cave_entrance.wav', v_a_settings)
-    time.sleep(2) if not t_settings and v_a_settings else None
+    time.sleep(2) if v_a_settings else None
     s_e('sound/voice_person/room_1/7_entrance.wav', v_p_settings)
     p_e(next(g) + '\n', t_settings)
     time.sleep(7) if not t_settings and v_p_settings else None

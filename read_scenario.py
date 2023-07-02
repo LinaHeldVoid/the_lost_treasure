@@ -48,4 +48,4 @@ with open('../text/8_death&determination.txt', 'r', encoding='utf-8') as text:
         dnd[index] = line
 
 
-pprint(dnd)
+pprint(room_2)
