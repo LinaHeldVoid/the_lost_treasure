@@ -674,8 +674,10 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                     record = s_e('sound/voice_actions/room_2/50. menu.wav', v_a_settings)
                 option = input('Введите цифру: ')
                 record.stop() if v_a_settings else None
-                p_e(reactions[0], t_settings) if \
-                    read_count == 0 and option != '4' and option != '5' else None
+                if read_count == 0 and option != '4' and option != '5':
+                    s_e('sound/voice_person/room_2/67.wav', v_a_settings)
+                    p_e(reactions[1], t_settings)
+                    time.sleep(1)
                 if option == '100':
                     q(t_settings, v_a_settings)
                     continue
@@ -699,21 +701,24 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             g = set_generator_riddle(1)
                             s_e('sound/sound_effects/papers_open.mp3', s_settings)
                             time.sleep(2) if s_settings else None
+                            p_e(next(g), t_settings)
+                            p_e(next(g), t_settings)
                             s_e('sound/voice_person/room_2/R1.wav', v_p_settings)
-                            p_e(next(g), t_settings)
                             time.sleep(19) if not t_settings and v_p_settings else None
-                            p_e(next(g), t_settings)
-                            p_e(next(g), t_settings)
                             time.sleep(1)
-                            s_e('sound/voice_person/room_2/', s_settings)
+                            s_e('sound/voice_person/room_2/69.wav', v_p_settings)
                             p_e(reactions[1], t_settings) if read_count == 1 else None
-                            time.sleep(1) if read_count == 1 else None
+                            time.sleep(6) if read_count == 1 else None
+                            s_e('sound/voice_person/room_2/70.wav', v_p_settings)
+                            p_e(reactions[2], t_settings) if read_count == 1 else None
+                            time.sleep(3.5) if read_count == 1 else None
+                            s_e('sound/voice_person/room_2/77.wav', v_p_settings)
                             p_e(reactions[6], t_settings) if read_count == 2 else None
-                            time.sleep(1) if read_count == 2 else None
+                            time.sleep(6) if read_count == 2 else None
+                            s_e('sound/voice_person/room_2/84.wav', v_p_settings)
                             p_e(reactions[10], t_settings) if read_count == 3 else None
-                            time.sleep(1) if read_count == 3 else None
+                            time.sleep(7) if read_count == 3 else None
                             s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                            time.sleep(2) if s_settings else None
                             continue
                         else:
                             p_e(no_light, t_settings)
@@ -731,25 +736,38 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             g = set_generator_riddle(5)
                             s_e('sound/sound_effects/papers_open.mp3', s_settings)
                             time.sleep(2) if s_settings else None
-                            p_e(reactions[7], t_settings) if language_found == 2 else None
-                            time.sleep(1) if language_found == 2 else None
+                            if language_found == 2:
+                                s_e('sound/voice_person/room_2/80.wav', v_p_settings)
+                                p_e(reactions[7], t_settings)
+                                time.sleep(4) if v_p_settings else None
+                                time.sleep(1)
+                            s_e('sound/voice_person/room_2/73.wav', v_p_settings)
                             p_e(reactions[3], t_settings)
-                            time.sleep(1)
+                            time.sleep(6.5) if v_p_settings else None
+                            s_e('sound/voice_person/room_2/74.wav', v_p_settings)
                             p_e(reactions[4], t_settings)
-                            time.sleep(1)
+                            time.sleep(6.5) if v_p_settings else None
+                            s_e('sound/voice_person/room_2/75.wav', v_p_settings)
                             p_e(reactions[5], t_settings)
                             time.sleep(1)
                             p_e(next(g), t_settings)
                             p_e(next(g), t_settings)
+                            s_e('sound/voice_person/room_2/R2.wav', v_p_settings)
+                            time.sleep(19) if not t_settings and v_p_settings else None
                             time.sleep(1)
+                            s_e('sound/voice_person/room_2/69.wav', v_a_settings)
                             p_e(reactions[1], t_settings) if read_count == 1 else None
-                            time.sleep(1) if read_count == 1 else None
+                            time.sleep(6) if read_count == 1 else None
+                            s_e('sound/voice_person/room_2/70.wav', v_p_settings)
+                            p_e(reactions[2], t_settings) if read_count == 1 else None
+                            time.sleep(3.5) if read_count == 1 else None
+                            s_e('sound/voice_person/room_2/77.wav', v_p_settings)
                             p_e(reactions[6], t_settings) if read_count == 2 else None
-                            time.sleep(1) if read_count == 2 else None
+                            time.sleep(6) if read_count == 2 else None
+                            s_e('sound/voice_person/room_2/84.wav', v_p_settings)
                             p_e(reactions[10], t_settings) if read_count == 3 else None
-                            time.sleep(1) if read_count == 3 else None
+                            time.sleep(7) if read_count == 3 else None
                             s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                            time.sleep(2) if s_settings else None
                             continue
                         else:
                             p_e(no_light, t_settings)
@@ -766,24 +784,36 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             g = set_generator_riddle(9)
                             s_e('sound/sound_effects/papers_open.mp3', s_settings)
                             time.sleep(2) if s_settings else None
-                            p_e(reactions[7], t_settings) if language_found == 2 else None
-                            time.sleep(1) if language_found == 2 else None
+                            if language_found == 2:
+                                s_e('sound/voice_person/room_2/80.wav', v_p_settings)
+                                p_e(reactions[7], t_settings)
+                                time.sleep(4)
+                            s_e('sound/voice_person/room_2/81.wav', v_p_settings)
                             p_e(reactions[8], t_settings)
+                            time.sleep(8) if v_p_settings else None
                             time.sleep(1)
+                            s_e('sound/voice_person/room_2/82.wav', v_p_settings)
                             p_e(reactions[9], t_settings)
-                            time.sleep(1)
+                            time.sleep(1) if v_p_settings else None
                             time.sleep(1)
                             p_e(next(g), t_settings)
                             p_e(next(g), t_settings)
+                            s_e('sound/voice_person/room_2/R3.wav', v_p_settings)
+                            time.sleep(19) if not t_settings and v_p_settings else None
                             time.sleep(1)
+                            s_e('sound/voice_person/room_2/69.wav', v_a_settings)
                             p_e(reactions[1], t_settings) if read_count == 1 else None
-                            time.sleep(1) if read_count == 1 else None
+                            time.sleep(6) if read_count == 1 else None
+                            s_e('sound/voice_person/room_2/70.wav', v_p_settings)
+                            p_e(reactions[2], t_settings) if read_count == 1 else None
+                            time.sleep(3.5) if read_count == 1 else None
+                            s_e('sound/voice_person/room_2/77.wav', v_p_settings)
                             p_e(reactions[6], t_settings) if read_count == 2 else None
-                            time.sleep(1) if read_count == 2 else None
+                            time.sleep(6) if read_count == 2 else None
+                            s_e('sound/voice_person/room_2/84.wav', v_p_settings)
                             p_e(reactions[10], t_settings) if read_count == 3 else None
-                            time.sleep(1) if read_count == 3 else None
+                            time.sleep(7) if read_count == 3 else None
                             s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                            time.sleep(2) if s_settings else None
                             continue
                         else:
                             p_e(no_light, t_settings)
@@ -793,9 +823,13 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         papers_combined = True
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
                         time.sleep(2) if s_settings else None
+                        s_e('sound/voice_person/room_2/87.wav', v_p_settings)
                         p_e(reactions[11], t_settings)
+                        time.sleep(6) if v_p_settings else None
                         time.sleep(1)
+                        s_e('sound/voice_person/room_2/88.wav', v_p_settings)
                         p_e(reactions[12], t_settings)
+                        time.sleep(4) if v_p_settings else None
                         time.sleep(1)
                         p_e(riddle_strings[0], t_settings)
                         p_e(riddle_strings[1], t_settings)
@@ -817,9 +851,13 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         p_e(riddle_strings[14], t_settings)
                         p_e(riddle_strings[15], t_settings)
                         print('')
+                        s_e('sound/voice_person/room_2/88.wav', v_p_settings)
+                        time.sleep(39) if v_p_settings else None
                         s_e('sound/sound_effects/papers_close.mp3', s_settings)
                         time.sleep(2) if s_settings else None
+                        s_e('sound/voice_person/room_2/91.wav', v_p_settings)
                         p_e(reactions[13], t_settings)
+                        time.sleep(9) if v_p_settings else None
                         time.sleep(1)
                         continue
                     else:
