@@ -38,9 +38,9 @@ def set_generator_riddle(line):
 def no_use_generator():
     no_use = []
     i = 0
-    g = set_generator(130)
+    k = set_generator(130)
     while i < 5:
-        no_use.append(next(g))
+        no_use.append(next(k))
         i += 1
     return no_use
 
@@ -48,50 +48,50 @@ def no_use_generator():
 def generate_open_shelf():
     open_shelf_again = []
     i = 0
-    g = set_generator(27)
+    k = set_generator(27)
     while i < 3:
-        open_shelf_again.append(next(g))
+        open_shelf_again.append(next(k))
         i += 1
     return open_shelf_again
 
 
 def generate_reactions():
     reactions = []
-    g = set_generator(67)
-    reactions.append(next(g))
-    next(g)
-    reactions.append(next(g))
-    reactions.append(next(g))
-    next(g)
-    next(g)
-    reactions.append(next(g))
-    reactions.append(next(g))
-    reactions.append(next(g))
-    next(g)
-    next(g)
-    reactions.append(next(g))
-    next(g)
-    reactions.append(next(g))
-    reactions.append(next(g))
-    reactions.append(next(g))
-    next(g)
-    reactions.append(next(g))
-    next(g)
-    next(g)
-    reactions.append(next(g))
-    reactions.append(next(g))
-    next(g)
-    next(g)
-    reactions.append(next(g))
+    k = set_generator(67)
+    reactions.append(next(k))
+    next(k)
+    reactions.append(next(k))
+    reactions.append(next(k))
+    next(k)
+    next(k)
+    reactions.append(next(k))
+    reactions.append(next(k))
+    reactions.append(next(k))
+    next(k)
+    next(k)
+    reactions.append(next(k))
+    next(k)
+    reactions.append(next(k))
+    reactions.append(next(k))
+    reactions.append(next(k))
+    next(k)
+    reactions.append(next(k))
+    next(k)
+    next(k)
+    reactions.append(next(k))
+    reactions.append(next(k))
+    next(k)
+    next(k)
+    reactions.append(next(k))
     return reactions
 
 
 def generate_chest_wont_open():
     chest_wont_open = []
     i = 0
-    g = set_generator(107)
+    k = set_generator(113)
     while i < 3:
-        chest_wont_open.append(next(g))
+        chest_wont_open.append(next(k))
         i += 1
     return chest_wont_open
 
@@ -99,9 +99,9 @@ def generate_chest_wont_open():
 def generate_tries():
     tries = []
     i = 0
-    g = set_generator(107)
+    k = set_generator(107)
     while i < 4:
-        tries.append(next(g))
+        tries.append(next(k))
         i += 1
     return tries
 
@@ -109,9 +109,9 @@ def generate_tries():
 def generate_failures():
     failures = []
     i = 0
-    g = set_generator(116)
+    k = set_generator(116)
     while i < 4:
-        failures.append(next(g))
+        failures.append(next(k))
         i += 1
     return failures
 
@@ -119,13 +119,13 @@ def generate_failures():
 def generate_riddle():
     riddle = []
     i = 0
-    g = set_generator_riddle(11)
+    k = set_generator_riddle(11)
     while i < 4:
-        next(g)
+        next(k)
         i += 1
         j = 0
         while j < 4:
-            riddle.append(next(g))
+            riddle.append(next(k))
             j += 1
     return riddle
 
@@ -590,33 +590,31 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                         else:
 
                                             """смерть от дротика"""
-                                            while True:
-                                                g = set_generator(150)
-                                                print(next(g))
-                                                room_2_mp3.stop() if m_settings else None
-                                                s_e('sound/sound_effects/death.wav', s_settings)
-                                                time.sleep(1) if s_settings else None
-                                                dd_mp3.set_volume(0.2) if m_settings else None
-                                                dd_mp3.play(-1) if m_settings else None
-                                                s_e('sound/voice_person/room_2/151.wav', v_p_settings)
-                                                p_e(next(g), t_settings)
-                                                time.sleep(10) if not t_settings and v_p_settings else None
-                                                time.sleep(1)
-                                                s_e('sound/voice_person/room_2/152.wav', v_p_settings)
-                                                p_e(next(g), t_settings)
-                                                print('')
-                                                time.sleep(5) if not t_settings and v_p_settings else None
-                                                time.sleep(1)
-                                                death_menu(t_settings, v_a_settings, m_settings)
-                                                room_2_mp3.play(-1) if m_settings else None
-                                                determination = new_determination(t_settings, v_p_settings,
-                                                                                  v_a_settings, m_settings,
-                                                                                  s_settings, determination, '-5')
-                                                continue
+                                            g = set_generator(150)
+                                            print(next(g))
+                                            room_2_mp3.stop() if m_settings else None
+                                            s_e('sound/sound_effects/death.wav', s_settings)
+                                            time.sleep(1) if s_settings else None
+                                            dd_mp3.set_volume(0.2) if m_settings else None
+                                            dd_mp3.play(-1) if m_settings else None
+                                            s_e('sound/voice_person/room_2/151.wav', v_p_settings)
+                                            p_e(next(g), t_settings)
+                                            time.sleep(10) if not t_settings and v_p_settings else None
+                                            time.sleep(1)
+                                            s_e('sound/voice_person/room_2/152.wav', v_p_settings)
+                                            p_e(next(g), t_settings)
+                                            print('')
+                                            time.sleep(5) if not t_settings and v_p_settings else None
+                                            time.sleep(1)
+                                            death_menu(t_settings, v_a_settings, m_settings)
+                                            room_2_mp3.play(-1) if m_settings else None
+                                            determination = new_determination(t_settings, v_p_settings,
+                                                                              v_a_settings, m_settings,
+                                                                              s_settings, determination, '-5')
                                 else:
                                     continue
                     else:
-                        if candles_examined:
+                        if candles_examined and papers_combined:
                             g = set_generator(121)
                             s_e('sound/voice_person/room_2/121.wav', v_p_settings)
                             p_e(next(g), t_settings)

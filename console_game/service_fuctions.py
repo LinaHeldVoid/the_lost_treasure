@@ -19,7 +19,7 @@ def set_generator_1(line):
 
 def set_generator_2(line):
     i = 0
-    g = generate_base('text/3_room_2.txt.txt')
+    g = generate_base('text/3_room_2.txt')
     while i < line:
         next(g)
         i += 1
@@ -149,9 +149,7 @@ def quit_menu(t_settings, v_a_settings):
 
 def death_menu(t_settings, v_a_settings, m_settings):
     while True:
-        g = set_generator_dnd(0)
-        print(Fore.RED, f'{next(g)}')
-        print(Style.RESET_ALL)
+        g = set_generator_dnd(1)
         print(next(g))
         next(g)
         print(f'1) {next(g)}'
@@ -386,7 +384,7 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
     new_number = number + int(value)
     if str(value[0]) == '-':
         sound_effect('sound/voice_actions/d&d/21.wav', v_a_settings)
-        print(f'{next(set_generator_dnd(21))}: {str(value)[:0]}')
+        print(f'{next(set_generator_dnd(21))}: {str(value)}')
         time.sleep(2) if v_a_settings else None
     else:
         sound_effect('sound/voice_actions/d&d/20.wav', v_a_settings)
@@ -397,7 +395,7 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
 
     determination_announcement(v_a_settings, new_number)
 
-    if new_number <= 0:
+    if int(new_number) <= 0:
         g = set_generator_dnd(29)
         print(next(g))
         pygame.mixer.stop() if m_settings else None
