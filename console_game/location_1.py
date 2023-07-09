@@ -5,7 +5,7 @@ from colorama import Fore, Style
 from sound_manager import room_1_mp3, dd_mp3
 from scenario_generator import generate_base
 from console_game.service_fuctions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
-    quit_menu as q, random_no as r_n, determination_announcement as d_a, death_menu, new_determination
+    quit_menu as q, random_no as r_n, determination_announcement as d_a, death_menu, new_determination, random_revival
 
 
 def set_generator(line):
@@ -170,7 +170,8 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                         death_menu(t_settings, v_a_settings, m_settings)
                         room_1_mp3.play(-1) if m_settings else None
                         determination = new_determination(t_settings, v_p_settings, v_a_settings, m_settings,
-                                                          s_settings, determination, '-7')
+                                                          s_settings, determination, 7, '-')
+                        random_revival(t_settings, v_p_settings)
                 elif option == '2':
                     g = set_generator(39)
                     s_e('sound/voice_person/room_1/16_bowl_not_lifted.wav', v_p_settings)
@@ -209,8 +210,6 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                     time.sleep(3) if not t_settings and v_p_settings else None
                 time.sleep(1)
                 while True:
-                    s_e('sound/voice_actions/option.wav', v_a_settings)
-                    time.sleep(2) if v_a_settings else None
                     if diamond_is_taken:
                         g = set_generator(68)
                         print(f'1) {next(g)}'
@@ -218,7 +217,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                               f'3) {next(g)}'
                               f'4) {next(g)}'
                               f'5) {next(g)}' + '\n')
-                        record = s_e('sound/voice_actions/room_1/17_chest_inside.wav', v_a_settings)
+                        s_e('sound/voice_actions/option.wav', v_a_settings)
+                        time.sleep(2) if v_a_settings else None
+                        record = s_e('sound/voice_actions/room_1/17_chest_opened_no_diamond.wav', v_a_settings)
                     else:
                         g = set_generator(61)
                         print(f'1) {next(g)}'
@@ -227,7 +228,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                               f'4) {next(g)}'
                               f'5) {next(g)}'
                               f'6) {next(g)}' + '\n')
-                        record = s_e('sound/voice_actions/room_1/17_chest_opened_no_diamond.wav', v_a_settings)
+                        s_e('sound/voice_actions/option.wav', v_a_settings)
+                        time.sleep(2) if v_a_settings else None
+                        record = s_e('sound/voice_actions/room_1/17_chest_inside.wav', v_a_settings)
                     option = input('Введите цифру: ')
                     record.stop() if v_a_settings else None
 
@@ -343,7 +346,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                     time.sleep(2)
                                     determination = new_determination(t_settings, v_p_settings, v_a_settings,
                                                                       m_settings,
-                                                                      s_settings, determination, '-10')
+                                                                      s_settings, determination, 10, '-')
                                     s_e('sound/voice_person/room_1/32_trapped_2.wav', v_p_settings)
                                     p_e(next(g), t_settings)
                                     time.sleep(12) if not t_settings and v_p_settings else None
@@ -529,7 +532,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                 p_e(next(g), t_settings)
                                 break
                             else:
-                                g = set_generator(98)
+                                g = set_generator(93)
                                 s_e('sound/voice_person/room_1/27_no_glass.wav', v_p_settings)
                                 p_e(next(g), t_settings)
                                 time.sleep(6) if not t_settings and v_p_settings else None

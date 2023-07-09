@@ -162,6 +162,7 @@ def death_menu(t_settings, v_a_settings, m_settings):
             sound_effect('sound/voice_actions/room_1/11_game_resume.wav', v_a_settings)
             print('')
             next(g)
+            next(g)
             print(Fore.YELLOW, f'{next(g)}')
             print(Style.RESET_ALL)
             time.sleep(2.5) if not t_settings and v_a_settings else None
@@ -369,28 +370,38 @@ def determination_first_number(v_a_settings, some_number):
 def determination_announcement(v_a_settings, new_number):
     print(f'{next(set_generator_dnd(22))}: {new_number}')
     sound_effect('sound/voice_actions/d&d/22.wav', v_a_settings)
-    time.sleep(1) if v_a_settings else None
-    if len(str(new_number)) == 2:
-        next_number = determination_first_number(v_a_settings, str(new_number))
-        if next_number:
-            determination_second_number(v_a_settings, str(new_number)[1])
-    else:
-        determination_second_number(v_a_settings, new_number)
+    time.sleep(2.5) if v_a_settings else None
+    next_number = determination_first_number(v_a_settings, str(new_number))
+    if next_number:
+        determination_second_number(v_a_settings, str(new_number)[1])
     return
 
 
 # функция, реагирующая на изменение количества очков решимости
-def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, number, value):
-    new_number = number + int(value)
-    if str(value[0]) == '-':
+def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, number, value, operation):
+    if operation == '-':
+        new_number = number - value
         sound_effect('sound/voice_actions/d&d/21.wav', v_a_settings)
-        print(f'{next(set_generator_dnd(21))}: {str(value)}')
+        print(f'{next(set_generator_dnd(21))}: {value}')
         time.sleep(2) if v_a_settings else None
+        if len(str(value)) == 1:
+            determination_second_number(v_a_settings, str(value))
+        else:
+            next_num = determination_first_number(v_a_settings, str(value))
+            if next_num:
+                determination_second_number(v_a_settings, str(value)[1])
     else:
+        new_number = number + value
         sound_effect('sound/voice_actions/d&d/20.wav', v_a_settings)
-        print(f'{next(set_generator_dnd(20))}: {str(value)}')
+        print(f'{next(set_generator_dnd(20))}: {value}')
         time.sleep(2.2) if v_a_settings else None
-    determination_second_number(v_a_settings, value)
+        next_num = determination_first_number(v_a_settings, str(value))
+        if len(str(value)) == 1:
+            determination_second_number(v_a_settings, str(value))
+        else:
+            next_num = determination_first_number(v_a_settings, str(value))
+            if next_num:
+                determination_second_number(v_a_settings, str(value)[1])
     time.sleep(1) if v_a_settings else None
 
     determination_announcement(v_a_settings, new_number)
@@ -417,7 +428,7 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
         dd_mp3.fadeout(3) if m_settings else None
         time.sleep(1) if m_settings else None
         exit()
-    if new_number < 6:
+    if new_number < 11:
         print_effect(t_settings, random_warning(t_settings, v_p_settings))
 
     return new_number

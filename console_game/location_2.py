@@ -205,7 +205,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     tries_number = 0
 
     g = set_generator(0)
-    room_2_mp3.set_volume(0.2)
+    room_2_mp3.set_volume(0.15)
     room_2_mp3.play(-1) if m_settings else None
     s_e('sound/voice_actions/room_2/0.wav', v_a_settings)
     print(next(g))
@@ -566,11 +566,11 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                 if tries_number == 0:
                                     determination = new_determination(t_settings, v_p_settings,
                                                                       v_a_settings, m_settings,
-                                                                      s_settings, determination, '3')
+                                                                      s_settings, determination, 3, '-')
                                 elif tries_number == 1:
                                     determination = new_determination(t_settings, v_p_settings,
                                                                       v_a_settings, m_settings,
-                                                                      s_settings, determination, '1')
+                                                                      s_settings, determination, 1, '-')
 
                                 s_e('sound/voice_person/room_2/157', v_a_settings)
                                 p_e(next(g), t_settings)
@@ -613,7 +613,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                             room_2_mp3.play(-1) if m_settings else None
                                             determination = new_determination(t_settings, v_p_settings,
                                                                               v_a_settings, m_settings,
-                                                                              s_settings, determination, '-5')
+                                                                              s_settings, determination, 7, '-')
                                 else:
                                     continue
                     else:
