@@ -395,7 +395,6 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
         sound_effect('sound/voice_actions/d&d/20.wav', v_a_settings)
         print(f'{next(set_generator_dnd(20))}: {value}')
         time.sleep(2.2) if v_a_settings else None
-        next_num = determination_first_number(v_a_settings, str(value))
         if len(str(value)) == 1:
             determination_second_number(v_a_settings, str(value))
         else:
