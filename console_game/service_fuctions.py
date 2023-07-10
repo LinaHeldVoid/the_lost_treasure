@@ -385,6 +385,16 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
     if operation == '-':
         new_number = number - value
 
+        sound_effect('sound/voice_actions/d&d/21.wav', v_a_settings)
+        print(f'{next(set_generator_dnd(21))}: {value}')
+        time.sleep(2) if v_a_settings else None
+        if len(str(value)) == 1:
+            determination_second_number(v_a_settings, str(value))
+        else:
+            next_num = determination_first_number(v_a_settings, str(value))
+            if next_num:
+                determination_second_number(v_a_settings, str(value)[1])
+
         # смерть персонажа из-за низкой решимости
         if new_number <= 0:
             pygame.mixer.stop() if m_settings else None
@@ -408,15 +418,6 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
             dd_mp3.fadeout(3) if m_settings else None
             time.sleep(3) if m_settings else None
             exit()
-        sound_effect('sound/voice_actions/d&d/21.wav', v_a_settings)
-        print(f'{next(set_generator_dnd(21))}: {value}')
-        time.sleep(2) if v_a_settings else None
-        if len(str(value)) == 1:
-            determination_second_number(v_a_settings, str(value))
-        else:
-            next_num = determination_first_number(v_a_settings, str(value))
-            if next_num:
-                determination_second_number(v_a_settings, str(value)[1])
     else:
         new_number = number + value
         sound_effect('sound/voice_actions/d&d/20.wav', v_a_settings)

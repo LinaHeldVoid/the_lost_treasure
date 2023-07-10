@@ -40,7 +40,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     diamond_is_taken = False
     twig_melted = False
     open_count = 0
-    determination = 50
+    determination = 15
 
     g = set_generator(0)
     print(next(g))
