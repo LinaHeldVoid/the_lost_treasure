@@ -49,7 +49,7 @@ def revival_generator():
 def warning_generator():
     warnings = []
     i = 0
-    g = set_generator_dnd(20)
+    g = set_generator_dnd(24)
     while i < 3:
         warnings.append(next(g))
         i += 1
@@ -371,9 +371,12 @@ def determination_announcement(v_a_settings, new_number):
     print(f'{next(set_generator_dnd(22))}: {new_number}')
     sound_effect('sound/voice_actions/d&d/22.wav', v_a_settings)
     time.sleep(2.5) if v_a_settings else None
-    next_number = determination_first_number(v_a_settings, str(new_number))
-    if next_number:
-        determination_second_number(v_a_settings, str(new_number)[1])
+    if len(str(new_number)) == 1:
+        determination_second_number(v_a_settings, str(new_number))
+    else:
+        next_number = determination_first_number(v_a_settings, str(new_number))
+        if next_number:
+            determination_second_number(v_a_settings, str(new_number)[1])
     return
 
 
@@ -381,6 +384,30 @@ def determination_announcement(v_a_settings, new_number):
 def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, number, value, operation):
     if operation == '-':
         new_number = number - value
+
+        # смерть персонажа из-за низкой решимости
+        if new_number <= 0:
+            pygame.mixer.stop() if m_settings else None
+            random_death(t_settings, v_p_settings)
+            sound_effect('sound/sound_effects/death.wav', s_settings)
+            time.sleep(1) if s_settings else None
+            dd_mp3.set_volume(0.2) if m_settings else None
+            dd_mp3.play(-1) if m_settings else None
+            g = set_generator_dnd(34)
+            sound_effect('sound/voice_person/d&d/34.wav', v_p_settings)
+            print_effect(next(g), t_settings)
+            time.sleep(11) if not t_settings and v_p_settings else None
+            time.sleep(1)
+            sound_effect('sound/voice_person/d&d/35.wav', v_p_settings)
+            print_effect(next(g), t_settings)
+            print('')
+            time.sleep(7) if not t_settings and v_p_settings else None
+            time.sleep(1)
+            g = set_generator_dnd(0)
+            print(Fore.RED, f'{next(g)}')
+            dd_mp3.fadeout(3) if m_settings else None
+            time.sleep(3) if m_settings else None
+            exit()
         sound_effect('sound/voice_actions/d&d/21.wav', v_a_settings)
         print(f'{next(set_generator_dnd(21))}: {value}')
         time.sleep(2) if v_a_settings else None
@@ -404,30 +431,9 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
     time.sleep(1) if v_a_settings else None
 
     determination_announcement(v_a_settings, new_number)
+    random_revival(t_settings, v_p_settings)
 
-    if int(new_number) <= 0:
-        g = set_generator_dnd(29)
-        print(next(g))
-        pygame.mixer.stop() if m_settings else None
-        sound_effect('sound/sound_effects/death.wav', s_settings)
-        time.sleep(1) if s_settings else None
-        dd_mp3.set_volume(0.2) if m_settings else None
-        dd_mp3.play(-1) if m_settings else None
-        sound_effect('sound/voice_person/room_1/14_painful_death.wav', v_p_settings)
-        print_effect(next(g), t_settings)
-        time.sleep(10) if not t_settings and v_p_settings else None
-        time.sleep(1)
-        sound_effect('sound/voice_person/room_1/15_the_end.wav', v_p_settings)
-        print(next(g), t_settings)
-        print('')
-        time.sleep(9) if not t_settings and v_p_settings else None
-        time.sleep(1)
-        print(Fore.RED, f'{next(g)}')
-        print(Style.RESET_ALL)
-        dd_mp3.fadeout(3) if m_settings else None
-        time.sleep(1) if m_settings else None
-        exit()
-    if new_number < 11:
-        print_effect(t_settings, random_warning(t_settings, v_p_settings))
+    if new_number <= 10:
+        random_warning(t_settings, v_p_settings)
 
     return new_number
