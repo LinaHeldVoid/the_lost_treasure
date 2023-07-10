@@ -20,9 +20,23 @@ def define_sound(picture):
 
 
 pygame.mixer.init()
+
+# музыка на локациях
 room_1_mp3_path = 'sound/locations/room_1.wav'
 room_1_mp3 = pygame.mixer.Sound(room_1_mp3_path)
-dd_mp3_path = 'sound/locations/danger_death.wav'
-dd_mp3 = pygame.mixer.Sound(dd_mp3_path)
 room_2_mp3_path = 'sound/locations/room_2.wav'
 room_2_mp3 = pygame.mixer.Sound(room_2_mp3_path)
+room_1_again_path = 'sound/locations/room_1_again.mp3'
+room_1_2 = pygame.mixer.Sound(room_1_again_path)
+
+# музыка на видениях
+sight_1_path = 'sound/locations/sight_1.mp3'
+sight_1 = pygame.mixer.Sound(sight_1_path)
+sight_2_path = 'sound/locations/sight_2.mp3'
+sight_2 = pygame.mixer.Sound(sight_2_path)
+sight_3_path = 'sound/locations/sight_3.mp3'
+sight_3 = pygame.mixer.Sound(sight_3_path)
+
+# обвал и смерть
+dd_mp3_path = 'sound/locations/danger_death.wav'
+dd_mp3 = pygame.mixer.Sound(dd_mp3_path)

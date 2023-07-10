@@ -2,7 +2,7 @@ import time
 
 from scenario_generator import generate_base
 from colorama import Fore, Style
-from console_game.service_fuctions import print_effect as p_e, sound_effect as s_e
+from console_game.service_functions import print_effect as p_e, sound_effect as s_e
 
 
 # начало, вход

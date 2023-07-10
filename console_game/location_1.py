@@ -4,8 +4,8 @@ from colorama import Fore, Style
 
 from sound_manager import room_1_mp3, dd_mp3
 from scenario_generator import generate_base
-from console_game.service_fuctions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
-    quit_menu as q, random_no as r_n, determination_announcement as d_a, death_menu, new_determination
+from console_game.service_functions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
+    quit_menu as q, random_no as r_n, determination_announcement as d_a, death_menu, new_determination, print_help
 
 
 def set_generator(line):
@@ -80,6 +80,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             else:
                 print('Озвучивание опций отключено')
                 continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
         elif option == '1':
             s_e('sound/voice_person/room_1/11_room_examined.wav', v_p_settings)
             p_e(next(g), t_settings)
@@ -124,6 +127,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             else:
                 print('Озвучивание опций отключено')
                 continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
         elif option == '1':
             g = set_generator(19)
             bowl_is_examined = True
@@ -192,6 +198,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                     else:
                         print('Озвучивание опций отключено')
                         continue
+                elif option.lower() == 'помощь' or option.lower() == 'help':
+                    print_help(v_a_settings)
+                    continue
                 else:
                     print(w(t_settings, v_a_settings))
                     continue
@@ -287,6 +296,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                         else:
                                             print('Озвучивание опций отключено')
                                             continue
+                                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                                        print_help(v_a_settings)
+                                        continue
                                     else:
                                         print(w(t_settings, v_a_settings))
                                         continue
@@ -419,6 +431,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                         else:
                                                             print('Озвучивание опций отключено')
                                                             continue
+                                                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                                                        print_help(v_a_settings)
+                                                        continue
                                                     else:
                                                         print(w(t_settings, v_a_settings))
                                                         continue
@@ -473,6 +488,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                         else:
                                                             print('Озвучивание опций отключено')
                                                             continue
+                                                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                                                        print_help(v_a_settings)
+                                                        continue
                                                     else:
                                                         print(w(t_settings, v_a_settings))
                                                         continue
@@ -557,6 +575,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                         else:
                             print('Озвучивание опций отключено')
                             continue
+                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                        print_help(v_a_settings)
+                        continue
                     else:
                         print(w(t_settings, v_a_settings))
                         continue
@@ -654,6 +675,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                 else:
                                     print('Озвучивание опций отключено')
                                     continue
+                            elif option.lower() == 'помощь' or option.lower() == 'help':
+                                print_help(v_a_settings)
+                                continue
                         break
                     elif option == '2':
                         break
@@ -669,6 +693,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                         else:
                             print('Озвучивание опций отключено')
                             continue
+                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                        print_help(v_a_settings)
+                        continue
                     else:
                         print(w(t_settings, v_a_settings))
                         continue

@@ -47,5 +47,11 @@ with open('../text/8_death&determination.txt', 'r', encoding='utf-8') as text:
     for index, line in enumerate(text):
         dnd[index] = line
 
+with open('../text/9_sights.txt', 'r', encoding='utf-8') as text:
+    sights = {}
+    i = 1
+    for index, line in enumerate(text):
+        sights[index] = line
 
-pprint(room_1)
+
+pprint(sights)

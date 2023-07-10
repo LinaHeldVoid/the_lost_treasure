@@ -3,65 +3,81 @@ import random
 import pygame.mixer
 from colorama import Fore, Style
 
-from sound_manager import room_1_mp3, room_2_mp3, dd_mp3
+from sound_manager import room_1_2
 from scenario_generator import generate_base
-from console_game.service_fuctions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
-    quit_menu as q, random_no as r_n
+from console_game.service_functions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
+    quit_menu as q, random_no as r_n, numbers_check as n_c, determination_announcement as d_a, \
+    new_determination, death_menu, print_help
 
 
-def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, book_found):
+def set_generator(line):
+    i = 0
+    g = generate_base('text/5_back_to_room_1.txt')
+    while i < line:
+        next(g)
+        i += 1
+    return g
 
-    """Перевод сценария в переменные"""
-    # begin = r_1_2[177]
-    # glass = r_1_2[182]
-    # pouring_potion = r_1_2[185]
-    # result_1 = r_1_2[187]
-    # result_2 = r_1_2[188]
-    # result_3 = r_1_2[189]
-    # result_4 = r_1_2[190]
-    # start_experiment = r_1_2[193]
-    # paper_in_glass = r_1_2[197]
-    # need_to_think = r_1_2[200]
-    # no_effect = r_1_2[203]
-    # of_course = r_1_2[206]
-    # effect_1 = r_1_2[207]
-    # effect_2 = r_1_2[208]
-    # effect_3 = r_1_2[209]
-    # coin_stuck = r_1_2[212]
-    # bowl_effect = r_1_2[214]
-    # bowl_destiny_1 = r_1_2[215]
-    # bowl_destiny_2 = r_1_2[216]
-    # read_paper = r_1_2[218]
-    # paper_1 = r_1_2[220]
-    # paper_2 = r_1_2[221]
-    # paper_3 = r_1_2[222]
-    # paper_4 = r_1_2[223]
-    # paper_5 = r_1_2[224]
-    # paper_6 = r_1_2[225]
-    # paper_7 = r_1_2[227]
-    # paper_8 = r_1_2[228]
-    # so_cool = r_1_2[230]
-    # lets_get_out = r_1_2[231]
-    # rope = r_1_2[234]
-    # sledgehammer = r_1_2[236]
-    # get_out = r_1_2[239]
-    #
-    # to_room_2 = r_1_2[0]
-    # open_chest = r_1_2[53]
-    # close_chest = r_1_2[61]
-    # no_use = r_1_2[73]
-    # get_rope = r_1_2[179]
-    # get_sledgehammer = r_1_2[180]
-    # get_glass = r_1_2[181]
-    # pour_potion = r_1_2[184]
-    # burn_paper = r_1_2[192]
-    # put_paper = r_1_2[196]
-    # put_glass = r_1_2[199]
-    # normal = r_1_2[202]
-    # upside_down = r_1_2[205]
-    # get_coin = r_1_2[211]
 
-    # """алгоритм"""
+def set_generator_1(line):
+    i = 0
+    g = generate_base('text/2_room_1.txt')
+    while i < line:
+        next(g)
+        i += 1
+    return g
+
+
+def no_use_generator():
+    no_use = []
+    i = 0
+    g = set_generator_1(145)
+    while i < 5:
+        no_use.append(next(g))
+        i += 1
+    return no_use
+
+
+def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, sack_found, determination):
+
+    """переменные"""
+    determination = determination
+    sack_found = sack_found
+    rope_taken = False
+    glass_taken = False
+    powder_used = False
+    steroids_used = False
+    steroids_eaten = False
+
+    """алгоритм"""
+    room_1_2.set_volume(0.2) if m_settings else None
+    room_1_2.play(-1) if m_settings else None
+    g = set_generator(0)
+    print(next(g))
+    print('')
+    p_e(next(g), t_settings)
+    time.sleep(1)
+    while True:
+        g = set_generator(4)
+        print(f'1) {next(g)}'
+              f'2) {next(g)}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            q(t_settings, v_a_settings)
+            continue
+        elif option == '200':
+            d_a(v_a_settings, determination)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
+
     # book_found = book_found
     # p_e(begin, t_settings)
     # glass_taken = False

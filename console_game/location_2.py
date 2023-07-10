@@ -3,9 +3,9 @@ import random
 
 from sound_manager import room_2_mp3, dd_mp3
 from scenario_generator import generate_base
-from console_game.service_fuctions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
+from console_game.service_functions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
     quit_menu as q, random_no as r_n, numbers_check as n_c, determination_announcement as d_a, \
-    new_determination, death_menu
+    new_determination, death_menu, print_help
 
 
 def set_generator(line):
@@ -232,6 +232,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     no_use = no_use_generator()
     chest_wont_open = generate_chest_wont_open()
     no_light = next(set_generator(60))
+    final_data = {}
 
     break_out_flag = False
     altar_examined = False
@@ -309,6 +310,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             else:
                 print('Озвучивание опций отключено')
                 continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
         elif option == '1':
 
             """осматриваем стол"""
@@ -369,6 +373,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         else:
                             print('Озвучивание опций отключено')
                             continue
+                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                        print_help(v_a_settings)
+                        continue
                     elif option == '1':
                         if open_1:
                             random_open_shelf(t_settings, v_p_settings, open_shelf_again)
@@ -565,6 +572,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                 else:
                                     print('Озвучивание опций отключено')
                                     continue
+                            elif option.lower() == 'помощь' or option.lower() == 'help':
+                                print_help(v_a_settings)
+                                continue
                             elif option == '5':
                                 s_e('sound/sound_effects/papers_open.mp3', s_settings)
                                 time.sleep(2) if s_settings else None
@@ -740,6 +750,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                     else:
                         print('Озвучивание опций отключено')
                         continue
+                elif option.lower() == 'помощь' or option.lower() == 'help':
+                    print_help(v_a_settings)
+                    continue
                 elif option == '1':
                     if paper_1_read:
                         r_n(t_settings, v_p_settings, no_use)
@@ -976,6 +989,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             else:
                 print('Озвучивание опций отключено')
                 continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
         elif option == '1':
             if papers_read:
                 r_n(t_settings, v_p_settings, no_use)
@@ -1081,6 +1097,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             else:
                 print('Озвучивание опций отключено')
                 continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
         elif option == '1':
             while True:
                 if break_indicator:
@@ -1108,6 +1127,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                     else:
                         print('Озвучивание опций отключено')
                         continue
+                elif option.lower() == 'помощь' or option.lower() == 'help':
+                    print_help(v_a_settings)
+                    continue
                 elif option == '1':
                     g = set_generator(197)
                     s_e('sound/voice_person/room_2/197.wav', v_p_settings)
@@ -1152,6 +1174,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             else:
                                 print('Озвучивание опций отключено')
                                 continue
+                        elif option.lower() == 'помощь' or option.lower() == 'help':
+                            print_help(v_a_settings)
+                            continue
                         elif option == '1':
                             g = set_generator(204)
                             p_e(next(g), t_settings)
@@ -1176,6 +1201,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                     else:
                                         print('Озвучивание опций отключено')
                                         continue
+                                elif option.lower() == 'помощь' or option.lower() == 'help':
+                                    print_help(v_a_settings)
+                                    continue
                                 elif option == '1':
                                     g = set_generator(207)
                                     break_indicator = True
@@ -1232,6 +1260,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             else:
                 print('Озвучивание опций отключено')
                 continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
         elif option == '1':
             while True:
                 if steroids_taken:
@@ -1265,6 +1296,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                     else:
                         print('Озвучивание опций отключено')
                         continue
+                elif option.lower() == 'помощь' or option.lower() == 'help':
+                    print_help(v_a_settings)
+                    continue
                 elif option == '1':
                     if book_read:
                         r_n(t_settings, v_p_settings, no_use)
@@ -1443,7 +1477,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                 p_e(next(g), t_settings)
                 time.sleep(2) if not t_settings and v_p_settings else None
                 time.sleep(1)
-                return determination
+                final_data['determination'] = determination
+                final_data['sack_took'] = sack_took
+                return final_data
             else:
                 g = set_generator(267)
                 s_e('sound/voice_person/room_2/267.wav', v_p_settings)
