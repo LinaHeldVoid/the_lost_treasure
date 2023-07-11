@@ -673,6 +673,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                             time.sleep(5) if not t_settings and v_p_settings else None
                                             time.sleep(1)
                                             death_menu(t_settings, v_a_settings, m_settings)
+                                            room_2_mp3.set_volume(0.1)
                                             room_2_mp3.play(-1) if m_settings else None
                                             determination = new_determination(t_settings, v_p_settings,
                                                                               v_a_settings, m_settings,
@@ -1313,8 +1314,6 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         book_read = True
                         next(g)
                         time.sleep(1)
-                        s_e('sound/sound_effects/papers_open.mp3', s_settings)
-                        time.sleep(2) if s_settings else None
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
@@ -1395,7 +1394,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         s_e('sound/voice_person/room_2/245.wav', v_p_settings)
                         time.sleep(60) if not t_settings and v_p_settings else None
                         s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                        time.sleep(15) if s_settings else None
+                        time.sleep(2) if s_settings else None
                         next(g)
                         time.sleep(2)
                         print('')
