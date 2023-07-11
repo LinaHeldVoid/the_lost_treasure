@@ -787,7 +787,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             time.sleep(7) if read_count == 3 and v_p_settings else None
                             time.sleep(1) if read_count == 3 else None
                             s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                            time.sleep(1) if s_settings else None
+                            time.sleep(2) if s_settings else None
                             continue
                         else:
                             p_e(no_light, t_settings)
@@ -843,7 +843,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             time.sleep(7) if read_count == 3 and v_p_settings else None
                             time.sleep(1) if read_count == 3 else None
                             s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                            time.sleep(1) if s_settings else None
+                            time.sleep(2) if s_settings else None
                             continue
                         else:
                             p_e(no_light, t_settings)
@@ -894,7 +894,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             time.sleep(7) if read_count == 3 and v_p_settings else None
                             time.sleep(1) if read_count == 3 else None
                             s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                            time.sleep(1) if s_settings else None
+                            time.sleep(2) if s_settings else None
                             continue
                         else:
                             p_e(no_light, t_settings)

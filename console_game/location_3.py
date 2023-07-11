@@ -31,7 +31,7 @@ def set_generator_1(line):
 def no_use_generator():
     no_use = []
     i = 0
-    g = set_generator(247)
+    g = set_generator(283)
     while i < 5:
         no_use.append(next(g))
         i += 1
@@ -48,13 +48,289 @@ def wont_eat_generator():
     return wont_eat
 
 
+def random_wont_eat(wont_eat_list, t_settings):
+    wont_eat = random.choice(wont_eat_list)
+    return wont_eat
+
+
+def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination, wont_eat, used):
+    d = {}
+    while True:
+        g = set_generator(125)
+        print(f'1) {next(g)}'
+              f'2) {next(g)}'
+              f'3) {next(g)}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            q(t_settings, v_a_settings)
+            continue
+        elif option == '200':
+            d_a(v_a_settings, determination)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
+
+        # съесть
+        elif option == '1':
+            if wont_eat:
+                random_wont_eat(wont_eat, t_settings)
+                continue
+            else:
+                wont_eat = True
+                g = set_generator(130)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                next(g)
+                time.sleep(1)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                determination = new_determination(t_settings, v_p_settings,
+                                                  v_a_settings, m_settings,
+                                                  s_settings, determination, 2, '-')
+                continue
+
+        # высыпать
+        elif option == '2':
+            used = True
+            g = set_generator(137)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            print(next(g))
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            break
+        elif option == '3':
+            break
+        else:
+            print(w(t_settings, v_a_settings))
+            continue
+
+    d['wont_eat'] = wont_eat
+    d['used'] = used
+    return d
+
+
+def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, used):
+    d = {}
+    while True:
+        g = set_generator(160)
+        print(f'1) {next(g)}'
+              f'2) {next(g)}'
+              f'3) {next(g)}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            q(t_settings, v_a_settings)
+            continue
+        elif option == '200':
+            d_a(v_a_settings, determination)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
+        elif option == '1':
+            if wont_eat:
+                random_wont_eat(wont_eat, t_settings)
+                continue
+            else:
+                g = set_generator(165)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                if determination > 42:
+                    eaten = True
+                    g = set_generator(168)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    break
+                else:
+                    wont_eat = True
+                    g = set_generator(178)
+                    p_e(next(g), t_settings)
+                    time.sleep(1)
+                    continue
+        elif option == '2':
+            used = True
+            g = set_generator(186)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            next(g)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            continue
+        elif option == '3':
+            break
+        else:
+            print(w(t_settings, v_a_settings))
+            continue
+
+    d['eaten'] = eaten
+    d['wont_eat'] = wont_eat
+    d['used'] = used
+    return d
+
+
+def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, determination):
+    while True:
+        g = set_generator(199)
+        p_e(next(g), t_settings)
+        time.sleep(1)
+        p_e(next(g), t_settings)
+        time.sleep(1)
+        while True:
+            g = set_generator(201)
+            print(f'1) {next(g)}' + '\n')
+            option = input('Введите цифру: ')
+            if option == '100':
+                q(t_settings, v_a_settings)
+                continue
+            elif option == '200':
+                d_a(v_a_settings, determination)
+                continue
+            elif option == '0':
+                if v_a_settings:
+                    continue
+                else:
+                    print('Озвучивание опций отключено')
+                    continue
+            elif option.lower() == 'помощь' or option.lower() == 'help':
+                print_help(v_a_settings)
+                continue
+            elif option == '1':
+                g = set_generator(203)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                while True:
+                    g = set_generator(205)
+                    print(f'1) {next(g)}' + '\n')
+                    option = input('Введите цифру: ')
+                    if option == '100':
+                        q(t_settings, v_a_settings)
+                        continue
+                    elif option == '200':
+                        d_a(v_a_settings, determination)
+                        continue
+                    elif option == '0':
+                        if v_a_settings:
+                            continue
+                        else:
+                            print('Озвучивание опций отключено')
+                            continue
+                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                        print_help(v_a_settings)
+                        continue
+                    elif option == '1':
+                        g = set_generator(206)
+                        while True:
+                            g = set_generator(208)
+                            print(f'1) {next(g)}' + '\n')
+                            option = input('Введите цифру: ')
+                            if option == '100':
+                                q(t_settings, v_a_settings)
+                                continue
+                            elif option == '200':
+                                d_a(v_a_settings, determination)
+                                continue
+                            elif option == '0':
+                                if v_a_settings:
+                                    continue
+                                else:
+                                    print('Озвучивание опций отключено')
+                                    continue
+                            elif option.lower() == 'помощь' or option.lower() == 'help':
+                                print_help(v_a_settings)
+                                continue
+                            elif option == '1':
+                                g = set_generator(209)
+                                p_e(next(g), t_settings)
+                                time.sleep(1)
+                                while True:
+                                    g = set_generator(211)
+                                    print(f'1) {next(g)}'
+                                          f'2) {next(g)}' + '\n')
+                                    option = input('Введите цифру: ')
+                                    if option == '100':
+                                        q(t_settings, v_a_settings)
+                                        continue
+                                    elif option == '200':
+                                        d_a(v_a_settings, determination)
+                                        continue
+                                    elif option == '0':
+                                        if v_a_settings:
+                                            continue
+                                        else:
+                                            print('Озвучивание опций отключено')
+                                            continue
+                                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                                        print_help(v_a_settings)
+                                        continue
+                                    elif option == '1':
+                                        g = set_generator(220)
+                                        p_e(next(g), t_settings)
+                                        time.sleep(1)
+                                        p_e(next(g), t_settings)
+                                        time.sleep(1)
+                                        p_e(next(g), t_settings)
+                                        time.sleep(1)
+                                        return
+                                    elif option == '2':
+                                        g = set_generator(215)
+                                        p_e(next(g), t_settings)
+                                        time.sleep(1)
+                                        new_determination(t_settings, v_p_settings, v_a_settings,
+                                                          m_settings, s_settings, determination, 1, '-')
+                                        continue
+                            else:
+                                print(w(t_settings, v_a_settings))
+                                continue
+                    else:
+                        print(w(t_settings, v_a_settings))
+                        continue
+            else:
+                print(w(t_settings, v_a_settings))
+                continue
+
+
 def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, sack_found, determination):
 
     """переменные"""
+    v_a_settings = False
+    v_p_settings = False
     determination = determination
     sack_found = sack_found
     no_use = no_use_generator()
     wont_eat = wont_eat_generator()
+    final_report = {}
+    ending = 0
 
     rope_taken = False
     glass_taken = False
@@ -77,9 +353,10 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
     room_1_2.play(-1) if m_settings else None
     g = set_generator(0)
     print(next(g))
-    print('')
+    next(g)
     p_e(next(g), t_settings)
     time.sleep(1)
+    print('')
     while True:
         if break_out_flag:
             break
@@ -170,23 +447,45 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
 
                     if sack_found:
                         if steroids_eaten:
-                            g = set_generator(38)
-                            print(f'1) {next(g)}'
-                                  f'2) {next(g)}'
-                                  f'3) {next(g)}'
-                                  f'4) {next(g)}'
-                                  f'5) {next(g)}'
-                                  f'6) {next(g)}' + '\n')
+                            if powder_used:
+                                g = set_generator(51)
+                                print(f'1) {next(g)}'
+                                      f'2) {next(g)}'
+                                      f'3) {next(g)}'
+                                      f'4) {next(g)}'
+                                      f'5) {next(g)}' + '\n')
+                            else:
+                                g = set_generator(44)
+                                print(f'1) {next(g)}'
+                                      f'2) {next(g)}'
+                                      f'3) {next(g)}'
+                                      f'4) {next(g)}'
+                                      f'5) {next(g)}'
+                                      f'6) {next(g)}' + '\n')
                         else:
-                            g = set_generator(25)
+                            if powder_used:
+                                g = set_generator(38)
+                                print(f'1) {next(g)}'
+                                      f'2) {next(g)}'
+                                      f'3) {next(g)}'
+                                      f'4) {next(g)}'
+                                      f'5) {next(g)}' + '\n')
+                            else:
+                                g = set_generator(25)
+                                print(f'1) {next(g)}'
+                                      f'2) {next(g)}'
+                                      f'3) {next(g)}'
+                                      f'4) {next(g)}'
+                                      f'5) {next(g)}'
+                                      f'6) {next(g)}' + '\n')
+                    else:
+                        if powder_used:
+                            g = set_generator(57)
                             print(f'1) {next(g)}'
                                   f'2) {next(g)}'
                                   f'3) {next(g)}'
-                                  f'4) {next(g)}'
-                                  f'5) {next(g)}'
-                                  f'6) {next(g)}' + '\n')
-                    else:
-                        g = set_generator(25)
+                                  f'4) {next(g)}' + '\n')
+                        g = set_generator(32)
                         print(f'1) {next(g)}'
                               f'2) {next(g)}'
                               f'3) {next(g)}'
@@ -213,7 +512,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                     elif option == '1':
                         read_count += 1
                         if read_count == 1:
-                            g = set_generator(46)
+                            g = set_generator(63)
                             p_e(next(g), t_settings)
                             time.sleep(1)
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
@@ -266,10 +565,10 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                     elif option == '2':
                         read_count += 1
                         if read_count == 1:
-                            g = set_generator(46)
+                            g = set_generator(63)
                             p_e(next(g), t_settings)
                             time.sleep(1)
-                        g = set_generator(67)
+                        g = set_generator(84)
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
                         time.sleep(2) if s_settings else None
                         p_e(next(g), t_settings)
@@ -296,11 +595,11 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
 
                         glass_count += 1
                         if glass_count == 1:
-                            g = set_generator(81)
+                            g = set_generator(98)
                             p_e(next(g), t_settings)
                             time.sleep(1)
 
-                        g = set_generator(83)
+                        g = set_generator(100)
                         print(f'1) {next(g)}'
                               f'2) {next(g)}'
                               f'3) {next(g)}' + '\n')
@@ -326,7 +625,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 continue
                             else:
                                 poison_poured = True
-                                g = set_generator(88)
+                                g = set_generator(105)
                                 p_e(next(g), t_settings)
                                 time.sleep(1)
                                 print(next(g))
@@ -342,12 +641,12 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                     p_e(next(g), t_settings)
                                     time.sleep(1)
                                 else:
-                                    g = set_generator(96)
+                                    g = set_generator(113)
                                     p_e(next(g), t_settings)
                                     time.sleep(1)
                                 continue
                         elif option == '2':
-                            g = set_generator(175)
+                            g = set_generator(192)
                             p_e(next(g), t_settings)
                             time.sleep(1)
                             if powder_used:
@@ -358,12 +657,17 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 time.sleep(1)
                                 p_e(next(g), t_settings)
                                 time.sleep(1)
-                                poison_effect(t_settings, v_a_settings, v_p_settings, m_settings,
-                                              s_settings, determination)
+                                report = poison_effect(t_settings, v_a_settings, v_p_settings, m_settings,
+                                                       s_settings, determination)
+                                determination = report['determination']
+                                g = set_generator(225)
+                                p_e(next(g), t_settings)
+                                time.sleep(1)
+                                continue
                             else:
 
                                 # смерть от кислоты
-                                g = set_generator(99)
+                                g = set_generator(116)
                                 room_1_2.stop() if m_settings else None
                                 s_e('sound/sound_effects/death.wav', s_settings)
                                 time.sleep(1) if s_settings else None
@@ -386,272 +690,273 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                             print(w(t_settings, v_a_settings))
                             continue
 
-                    # опции для порошка
-                    elif option == '4':
-                        powder_count += 1
-                        if powder_count == 1:
-                            g = set_generator(106)
-                            p_e(next(g), t_settings)
-                            time.sleep(1)
-
                     # опции для огнива
-                    elif option == '5':
+                    elif option == '4':
                         flint_count += 1
                         if flint_count == 1:
-                            g = set_generator(126)
+                            g = set_generator(143)
                             p_e(next(g), t_settings)
                             time.sleep(1)
+                    else:
+                        if option == '5':
+                            powder_count += 1
+                            if not powder_used:
 
-                    # используем кубы или проводим эксперимент (если это возможно)
-                    elif option == '6':
-                        if break_out_flag:
-                            break
-
-                        if sack_found:
-                            if steroids_eaten:
-                                pass
-                            elif steroids_used:
-                                print(w(t_settings, v_a_settings))
+                                # опции для порошка
+                                if powder_count == 1:
+                                    g = set_generator(123)
+                                    p_e(next(g), t_settings)
+                                    time.sleep(1)
+                                result = taking_powder(t_settings, v_a_settings, v_p_settings, m_settings,
+                                                       s_settings,
+                                                       determination, wont_eat_powder, powder_used)
+                                wont_eat_powder = result['wont_eat']
+                                powder_used = result['used']
                                 continue
                             else:
-                                pass
-                        else:
-                            print(w(t_settings, v_a_settings))
+                                if sack_found:
+
+                                    # эксперимент
+                                    if steroids_eaten:
+                                        break_out_flag = True
+                                        experiment(t_settings, v_p_settings, v_a_settings, m_settings,
+                                                   s_settings, determination)
+                                        report['outcomes'] = '+++'
+                                        continue
+
+                                    # опции для кубика
+                                    steroids_count += 1
+                                    if steroids_count == 1:
+                                        g = set_generator(158)
+                                        p_e(next(g), t_settings)
+                                        time.sleep(1)
+                                        continue
+                                    else:
+                                        result = taking_steroids(t_settings, v_a_settings, determination,
+                                                                 steroids_eaten, wont_eat_steroids, steroids_used)
+                                        steroids_eaten = result['eaten']
+                                        wont_eat_steroids = result['wont_eat']
+                                        steroids_used = result['used']
+                                        continue
+                                else:
+                                    print(w(t_settings, v_a_settings))
+                                    continue
+
+                        # используем кубы или проводим эксперимент (если это возможно)
+                        elif option == '6':
+                            if sack_found and not powder_used:
+
+                                # эксперимент
+                                if steroids_eaten:
+                                    break_out_flag = True
+                                    experiment(t_settings, v_p_settings, v_a_settings, m_settings,
+                                               s_settings, determination)
+                                    report['outcomes'] = '+++'
+                                    continue
+
+                                elif steroids_used:
+                                    print(w(t_settings, v_a_settings))
+                                    continue
+                                else:
+
+                                    # опции для кубика
+                                    result = taking_steroids(t_settings, v_a_settings, determination,
+                                                             steroids_eaten, wont_eat_steroids, steroids_used)
+                                    steroids_eaten = result['eaten']
+                                    wont_eat_steroids = result['wont_eat']
+                                    steroids_used = result['used']
+                                    continue
+                            else:
+                                print(w(t_settings, v_a_settings))
+                                continue
+
+    # определяем концовку
+    if report['outcomes'] == '+++':
+        ending = 1
+    elif report['outcomes'] == 0:
+        ending = 2
+    elif report['outcomes'] == 1:
+        ending = 3
+    elif report['outcomes'] == 2:
+        ending = 4
+    else:
+        ending = 5
+
+    # поднимаем монетку
+    g = set_generator(227)
+    p_e(next(g), t_settings)
+    time.sleep(1)
+    while True:
+        g = set_generator(229)
+        print(f'1) {next(g)}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            q(t_settings, v_a_settings)
+            continue
+        elif option == '200':
+            d_a(v_a_settings, determination)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
+        elif option == '1':
+            g = set_generator(230)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            print(next(g))
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            print(next(g))
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            next(g)
+
+            # читаем послание колдуна
+            s_e('sound/sound_effects/papers_open.mp3', s_settings)
+            time.sleep(2) if s_settings else None
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            print('')
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            print('')
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            p_e(next(g), t_settings)
+            time.sleep(1)
+            s_e('sound/sound_effects/papers_close.mp3', s_settings)
+            time.sleep(2) if s_settings else None
+
+            # реакция героя в зависимости от концовки
+            if ending == 1:
+                g = set_generator(252)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+            elif ending == 2 or ending == 3:
+                g = set_generator(255)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+            else:
+                g = set_generator(259)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                print('')
+                p_e(next(g), t_settings)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+        else:
+            print(w(t_settings, v_a_settings))
+            continue
+
+    # уходим
+    g = set_generator(264)
+    p_e(next(g), t_settings)
+    time.sleep(1)
+    p_e(next(g), t_settings)
+    time.sleep(1)
+    while True:
+        if rope_taken:
+            g = set_generator(279)
+            print(f'1) {next(g)}' + '\n')
+        else:
+            g = set_generator(267)
+            print(f'1) {next(g)}'
+                  f'2) {next(g)}' + '\n')
+        option = input('Введите цифру: ')
+        if option == '100':
+            q(t_settings, v_a_settings)
+            continue
+        elif option == '200':
+            d_a(v_a_settings, determination)
+            continue
+        elif option == '0':
+            if v_a_settings:
+                continue
+            else:
+                print('Озвучивание опций отключено')
+                continue
+        elif option.lower() == 'помощь' or option.lower() == 'help':
+            print_help(v_a_settings)
+            continue
+        elif option == '1':
+            if rope_taken:
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                final_report['determination'] = determination
+                final_report['ending'] = ending
+                return final_report
+            else:
+                s_e('sound/sound_effects/open_chest.wav', s_settings)
+                time.sleep(1.5) if s_settings else None
+                while True:
+                    g = set_generator(267)
+                    print(f'1) {next(g)}'
+                          f'2) {next(g)}' + '\n')
+                    option = input('Введите цифру: ')
+                    if option == '100':
+                        q(t_settings, v_a_settings)
+                        continue
+                    elif option == '200':
+                        d_a(v_a_settings, determination)
+                        continue
+                    elif option == '0':
+                        if v_a_settings:
                             continue
-    # book_found = book_found
-    # p_e(begin, t_settings)
-    # glass_taken = False
-    # while True:
-    #     if glass_taken:
-    #         break
-    #     else:
-    #         print(f'1) {open_chest}' + '\n')
-    #         record = s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #         time.sleep(2) if not t_settings and v_a_settings else None
-    #         option = input('Введите цифру: ')
-    #         record.stop() if v_a_settings else None
-    #         if option == '1':
-    #             s_e('../sound/voice_actions/6_menu_1.wav', v_a_settings)
-    #             time.sleep(13) if not t_settings and v_a_settings else None
-    #             while True:
-    #                 print(f'1) {get_glass}'
-    #                       f'2) {get_rope}'
-    #                       f'3) {get_sledgehammer}'
-    #                       f'4) {close_chest}'
-    #                       f'5) {to_room_2}' + '\n')
-    #                 s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #                 time.sleep(2) if not t_settings and v_a_settings else None
-    #                 option = input('Введите цифру: ')
-    #                 if option == '100':
-    #                     q(t_settings, v_a_settings)
-    #                     continue
-    #                 elif option == '0':
-    #                     if v_a_settings:
-    #                         s_e('../sound/voice_actions/6_menu_1.wav', v_a_settings)
-    #                         time.sleep(13) if not t_settings else None
-    #                         continue
-    #                     else:
-    #                         print('Озвучивание опций отключено')
-    #                         continue
-    #                 elif option == '1':
-    #                     if book_found:
-    #                         glass_taken = True
-    #                         p_e(glass, t_settings)
-    #                         time.sleep(1)
-    #                         continue
-    #                     else:
-    #                         p_e(no_use, t_settings)
-    #                         time.sleep(1)
-    #                         continue
-    #                 elif option == '2' or option == '3':
-    #                     p_e(no_use, t_settings)
-    #                     time.sleep(1)
-    #                     continue
-    #                 elif option == '4':
-    #                     break
-    #                 else:
-    #                     print(w(t_settings, v_a_settings))
-    #                     continue
-    #         else:
-    #             print(w(t_settings, v_a_settings))
-    #             continue
-    #
-    # """разбираемся с зельем"""
-    # while True:
-    #     print(f'1) {pour_potion}' + '\n')
-    #     s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '100':
-    #         q(t_settings, v_a_settings)
-    #         continue
-    #     elif option == '0':
-    #         if v_a_settings:
-    #             s_e('../sound/voice_actions/6_menu_1.wav', v_a_settings)
-    #             time.sleep(13) if not t_settings else None
-    #             continue
-    #         else:
-    #             print('Озвучивание опций отключено')
-    #             continue
-    #     elif option == '1':
-    #         p_e(pouring_potion, t_settings)
-    #         time.sleep(2)
-    #         p_e(result_1, t_settings)
-    #         time.sleep(1)
-    #         p_e(result_2, t_settings)
-    #         time.sleep(1)
-    #         p_e(result_3, t_settings)
-    #         time.sleep(1)
-    #         p_e(result_4, t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(w(t_settings, v_a_settings))
-    #         continue
-    # while True:
-    #     print(f'1) {burn_paper}' + '\n')
-    #     s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         p_e(start_experiment, t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(w(t_settings, v_a_settings))
-    #         continue
-    # while True:
-    #     print(f'1) {put_paper}' + '\n')
-    #     s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         p_e(paper_in_glass, t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(w(t_settings, v_a_settings))
-    #         continue
-    # bowl_ready = False
-    # mistake_made = False
-    # while True:
-    #     if bowl_ready:
-    #         break
-    #     else:
-    #         print(f'1) {put_glass}' + '\n')
-    #         s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #         time.sleep(2) if not t_settings and v_a_settings else None
-    #         option = input('Введите цифру: ')
-    #         if option == '1':
-    #             p_e(need_to_think, t_settings)
-    #             time.sleep(1)
-    #             while True:
-    #                 print(f'1) {normal}'
-    #                       f'2) {upside_down}' + '\n')
-    #                 s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #                 time.sleep(2) if not t_settings and v_a_settings else None
-    #                 option = input('Введите цифру: ')
-    #                 if option == '1':
-    #                     mistake_made = True
-    #                     p_e(no_effect, t_settings)
-    #                     time.sleep(1)
-    #                     continue
-    #                 elif option == '2':
-    #                     bowl_ready = True
-    #                     if mistake_made:
-    #                         p_e(of_course, t_settings)
-    #                         time.sleep(1)
-    #                     p_e(effect_1, t_settings)
-    #                     time.sleep(1)
-    #                     p_e(effect_2, t_settings)
-    #                     time.sleep(1)
-    #                     p_e(effect_3, t_settings)
-    #                     time.sleep(1)
-    #                     break
-    #         else:
-    #             print(w(t_settings, v_a_settings))
-    #             continue
-    # while True:
-    #     print(f'1) {get_coin}' + '\n')
-    #     s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #     time.sleep(2) if not t_settings and v_a_settings else None
-    #     option = input('Введите цифру: ')
-    #     if option == '1':
-    #         p_e(coin_stuck, t_settings)
-    #         time.sleep(1)
-    #         p_e(bowl_effect, t_settings)
-    #         time.sleep(1)
-    #         p_e(bowl_destiny_1, t_settings)
-    #         time.sleep(1)
-    #         p_e(bowl_destiny_2, t_settings)
-    #         time.sleep(1)
-    #         p_e(read_paper, t_settings)
-    #         time.sleep(2)
-    #         p_e(paper_1, t_settings)
-    #         time.sleep(1)
-    #         p_e(paper_2, t_settings)
-    #         p_e(paper_3, t_settings)
-    #         time.sleep(1)
-    #         p_e(paper_4, t_settings)
-    #         p_e(paper_5, t_settings)
-    #         p_e(paper_6 + '\n', t_settings)
-    #         time.sleep(2)
-    #         p_e(paper_7, t_settings)
-    #         time.sleep(1)
-    #         p_e(paper_8 + '\n', t_settings)
-    #         time.sleep(2)
-    #         p_e(so_cool, t_settings)
-    #         time.sleep(1)
-    #         p_e(lets_get_out, t_settings)
-    #         time.sleep(1)
-    #         break
-    #     else:
-    #         print(w(t_settings, v_a_settings))
-    #         continue
-    #
-    # """забираем всё из сундука"""
-    # rope_taken = False
-    # sledgehammer_taken = False
-    # print(f'1) {open_chest}' + '\n')
-    # s_e('../sound/voice_actions/option.wav', v_a_settings)
-    # time.sleep(2) if not t_settings and v_a_settings else None
-    # option = input('Введите цифру: ')
-    # while True:
-    #     if option == '1':
-    #         while True:
-    #             if rope_taken and sledgehammer_taken:
-    #                 break
-    #             else:
-    #                 print(f'1) {get_rope}'
-    #                       f'2) {get_sledgehammer}' + '\n')
-    #                 s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #                 time.sleep(2) if not t_settings and v_a_settings else None
-    #                 option = input('Введите цифру: ')
-    #                 if option == '1':
-    #                     rope_taken = True
-    #                     p_e(rope, t_settings)
-    #                     time.sleep(1)
-    #                     continue
-    #                 elif option == '2':
-    #                     sledgehammer_taken = True
-    #                     p_e(sledgehammer, t_settings)
-    #                     time.sleep(1)
-    #                     continue
-    #                 else:
-    #                     print(w(t_settings, v_a_settings))
-    #                     continue
-    #     else:
-    #         print(w(t_settings, v_a_settings))
-    #         continue
-    #
-    #     """уходим"""
-    #     while True:
-    #         print(f'1) {get_out}' + '\n')
-    #         s_e('../sound/voice_actions/option.wav', v_a_settings)
-    #         time.sleep(2) if not t_settings and v_a_settings else None
-    #         option = input('Введите цифру: ')
-    #         if option == '1':
-    #             return
-    #         else:
-    #             print(w(t_settings, v_a_settings))
-    #             continue
+                        else:
+                            print('Озвучивание опций отключено')
+                            continue
+                    elif option.lower() == 'помощь' or option.lower() == 'help':
+                        print_help(v_a_settings)
+                        continue
+                    elif option == '1':
+                        rope_taken = True
+                        s_e('sound/sound_effects/close_chest.wav', s_settings)
+                        time.sleep(1.5) if s_settings else None
+                        g = set_generator(276)
+                        p_e(next(g), t_settings)
+                        time.sleep(1)
+                        p_e(next(g), t_settings)
+                        time.sleep(1)
+                        break
+                    elif option == '2':
+                        s_e('sound/sound_effects/close_chest.wav', s_settings)
+                        time.sleep(1.5) if s_settings else None
+                        break
+        elif option == '2':
+            if rope_taken:
+                print(w(t_settings, v_a_settings))
+                continue
+            else:
+                g = set_generator(290)
+                p_e(next(g), t_settings)
+                time.sleep(1)
+                continue
+        else:
+            print(w(t_settings, v_a_settings))
+            continue

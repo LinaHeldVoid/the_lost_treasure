@@ -189,6 +189,8 @@ def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     sight_1.set_volume(0.2)
     sight_1.play(-1) if m_settings else None
 
+    report = {}
+
     g = set_generator(0)
     print(next(g))
     next(g)
@@ -284,11 +286,13 @@ def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             p_e(next(g), t_settings)
             time.sleep(1)
 
-        new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, determination,
-                          dice_result['bonus'], dice_result['operation'])
+        new_number = new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings,
+                                       determination, dice_result['bonus'], dice_result['operation'])
+        report['determination'] = new_number
+        report['outcome'] = dice_result['operation']
         sight_1.fadeout(3)
         time.sleep(3) if m_settings else None
-        return determination
+        return report
 
 
 # второе видение
@@ -298,6 +302,7 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
     break_point = False
     dice_result = {}
+    report = {}
 
     g = set_generator(60)
     print(next(g))
@@ -348,7 +353,6 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
         # кастуем заклинание
         elif option == '1':
-            break_point = True
             g = set_generator(79)
             p_e(next(g), t_settings)
             time.sleep(1)
@@ -361,6 +365,9 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             time.sleep(1)
             print('')
             while True:
+                if break_point:
+                    break
+
                 g = set_generator(88)
                 print(next(g))
                 g = set_generator(74)
@@ -386,6 +393,7 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
                 # телекинез
                 elif option == '1':
+                    break_point = True
                     dice_result = check_probability(2, determination, 1, 1)
 
                     # успех
@@ -400,10 +408,11 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                     # провал
                     else:
                         magic_fail(t_settings)
-                    continue
+                    break
 
                 # молния
                 elif option == '2':
+                    break_point = True
                     dice_result = check_probability(2, determination, 1, 2)
 
                     # успех
@@ -418,10 +427,11 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                     # провал
                     else:
                         magic_fail(t_settings)
-                    continue
+                    break
 
                 # инферно
                 elif option == '3':
+                    break_point = True
                     dice_result = check_probability(2, determination, 1, 3)
 
                     # успех
@@ -441,7 +451,7 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
                 else:
                     print(w(t_settings, v_a_settings))
-                    continue
+                    break
 
         # прячем сестру
         elif option == '2':
@@ -495,11 +505,13 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             print(w(t_settings, v_a_settings))
             continue
 
-    new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, determination,
-                      dice_result['bonus'], dice_result['operation'])
+    new_number = new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings,
+                                   determination, dice_result['bonus'], dice_result['operation'])
+    report['determination'] = new_number
+    report['outcome'] = dice_result['operation']
     sight_2.fadeout(3)
     time.sleep(3) if m_settings else None
-    return determination
+    return report
 
 
 # третье видение
@@ -509,6 +521,7 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
     break_point = False
     dice_result = {}
+    report = {}
 
     g = set_generator(187)
     print(next(g))
@@ -679,16 +692,33 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             print(w(t_settings, v_a_settings))
             continue
 
-    new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, determination,
-                      dice_result['bonus'], dice_result['operation'])
+    new_number = new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings,
+                                   determination, dice_result['bonus'], dice_result['operation'])
+    report['determination'] = new_number
+    report['outcome'] = dice_result['operation']
     sight_3.fadeout(3)
     time.sleep(3) if m_settings else None
-    return determination
+    return report
 
 
-# функция, соединяющая все видения вместе
+# определяем количество провалов и считаем новую решимость
 def poison_effect(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination):
-    point_1 = case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination)
-    point_2 = case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, point_1)
-    point_3 = case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, point_2)
-    return point_3
+    final_report = {}
+    fail_count = 0
+
+    report_1 = case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination)
+    if report_1['outcome'] == '-':
+        fail_count += 1
+    determination = report_1['determination']
+    report_2 = case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination)
+    if report_2['outcome'] == '-':
+        fail_count += 1
+    determination = report_2['determination']
+    report_3 = case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination)
+    if report_3['outcome'] == '-':
+        fail_count += 1
+    determination = report_3['determination']
+
+    final_report['determination'] = determination
+    final_report['fails'] = fail_count
+    return final_report
