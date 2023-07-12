@@ -7,7 +7,8 @@ from sound_manager import room_1_2, dd_mp3
 from scenario_generator import generate_base
 from console_game.sights import poison_effect
 from console_game.service_functions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
-    quit_menu as q, random_no as r_n, determination_announcement as d_a, new_determination, death_menu, print_help
+    quit_menu as q, random_no as r_n, determination_announcement as d_a, \
+    new_determination, death_menu, print_help, random_revival
 
 
 def set_generator(line):
@@ -53,7 +54,8 @@ def random_wont_eat(wont_eat_list, t_settings):
     return wont_eat
 
 
-def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination, wont_eat, used):
+def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination, wont_eat,
+                  used, refuses):
     d = {}
     while True:
         g = set_generator(125)
@@ -80,7 +82,7 @@ def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings
         # съесть
         elif option == '1':
             if wont_eat:
-                random_wont_eat(wont_eat, t_settings)
+                random_wont_eat(refuses, t_settings)
                 continue
             else:
                 wont_eat = True
@@ -120,7 +122,7 @@ def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings
     return d
 
 
-def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, used):
+def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, used, refuses):
     d = {}
     while True:
         g = set_generator(160)
@@ -145,7 +147,7 @@ def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, us
             continue
         elif option == '1':
             if wont_eat:
-                random_wont_eat(wont_eat, t_settings)
+                random_wont_eat(refuses, t_settings)
                 continue
             else:
                 g = set_generator(165)
@@ -250,6 +252,8 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                         continue
                     elif option == '1':
                         g = set_generator(206)
+                        p_e(next(g), t_settings)
+                        time.sleep(1)
                         while True:
                             g = set_generator(208)
                             print(f'1) {next(g)}' + '\n')
@@ -335,7 +339,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
     rope_taken = False
     glass_taken = False
     powder_used = False
-    powder_eaten = False
     wont_eat_powder = False
     steroids_used = False
     steroids_eaten = False
@@ -485,12 +488,13 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                   f'2) {next(g)}'
                                   f'3) {next(g)}'
                                   f'4) {next(g)}' + '\n')
-                        g = set_generator(32)
-                        print(f'1) {next(g)}'
-                              f'2) {next(g)}'
-                              f'3) {next(g)}'
-                              f'4) {next(g)}'
-                              f'5) {next(g)}' + '\n')
+                        else:
+                            g = set_generator(32)
+                            print(f'1) {next(g)}'
+                                  f'2) {next(g)}'
+                                  f'3) {next(g)}'
+                                  f'4) {next(g)}'
+                                  f'5) {next(g)}' + '\n')
                     option = input('Введите цифру: ')
                     if option == '100':
                         q(t_settings, v_a_settings)
@@ -522,8 +526,8 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
-                        s_e('sound/voice_person/room_2/226.wav', v_p_settings)
-                        time.sleep(33) if not t_settings and v_p_settings else None
+                        s_e('sound/voice_person/room_2/222.wav', v_p_settings)
+                        time.sleep(23) if not t_settings and v_p_settings else None
                         next(g)
                         print('')
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
@@ -532,8 +536,8 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
-                        s_e('sound/voice_person/room_2/231.wav', v_p_settings)
-                        time.sleep(24) if not t_settings and v_p_settings else None
+                        s_e('sound/voice_person/room_2/226.wav', v_p_settings)
+                        time.sleep(33) if not t_settings and v_p_settings else None
                         time.sleep(2)
                         next(g)
                         print('')
@@ -657,9 +661,11 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 time.sleep(1)
                                 p_e(next(g), t_settings)
                                 time.sleep(1)
-                                report = poison_effect(t_settings, v_a_settings, v_p_settings, m_settings,
-                                                       s_settings, determination)
-                                determination = report['determination']
+                                room_1_2.fadeout(2) if m_settings else None
+                                time.sleep(2) if m_settings else None
+                                final_report = poison_effect(t_settings, v_a_settings, v_p_settings,
+                                                             m_settings, s_settings, determination)
+                                determination = final_report['determination']
                                 g = set_generator(225)
                                 p_e(next(g), t_settings)
                                 time.sleep(1)
@@ -683,6 +689,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 determination = new_determination(t_settings, v_p_settings,
                                                                   v_a_settings, m_settings,
                                                                   s_settings, determination, 7, '-')
+                                random_revival(t_settings, v_p_settings)
                             continue
                         elif option == '3':
                             break
@@ -709,7 +716,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                     time.sleep(1)
                                 result = taking_powder(t_settings, v_a_settings, v_p_settings, m_settings,
                                                        s_settings,
-                                                       determination, wont_eat_powder, powder_used)
+                                                       determination, wont_eat_powder, powder_used, wont_eat)
                                 wont_eat_powder = result['wont_eat']
                                 powder_used = result['used']
                                 continue
@@ -721,7 +728,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                         break_out_flag = True
                                         experiment(t_settings, v_p_settings, v_a_settings, m_settings,
                                                    s_settings, determination)
-                                        report['outcomes'] = '+++'
+                                        final_report['fails'] = '+++'
                                         continue
 
                                     # опции для кубика
@@ -733,7 +740,8 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                         continue
                                     else:
                                         result = taking_steroids(t_settings, v_a_settings, determination,
-                                                                 steroids_eaten, wont_eat_steroids, steroids_used)
+                                                                 steroids_eaten, wont_eat_steroids, steroids_used,
+                                                                 wont_eat)
                                         steroids_eaten = result['eaten']
                                         wont_eat_steroids = result['wont_eat']
                                         steroids_used = result['used']
@@ -751,7 +759,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                     break_out_flag = True
                                     experiment(t_settings, v_p_settings, v_a_settings, m_settings,
                                                s_settings, determination)
-                                    report['outcomes'] = '+++'
+                                    final_report['outcomes'] = '+++'
                                     continue
 
                                 elif steroids_used:
@@ -761,7 +769,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
 
                                     # опции для кубика
                                     result = taking_steroids(t_settings, v_a_settings, determination,
-                                                             steroids_eaten, wont_eat_steroids, steroids_used)
+                                                             steroids_eaten, wont_eat_steroids, steroids_used, wont_eat)
                                     steroids_eaten = result['eaten']
                                     wont_eat_steroids = result['wont_eat']
                                     steroids_used = result['used']
@@ -771,13 +779,13 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 continue
 
     # определяем концовку
-    if report['outcomes'] == '+++':
+    if final_report['fails'] == '+++':
         ending = 1
-    elif report['outcomes'] == 0:
+    elif final_report['fails'] == 0:
         ending = 2
-    elif report['outcomes'] == 1:
+    elif final_report['fails'] == 1:
         ending = 3
-    elif report['outcomes'] == 2:
+    elif final_report['fails'] == 2:
         ending = 4
     else:
         ending = 5

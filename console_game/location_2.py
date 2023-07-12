@@ -5,7 +5,7 @@ from sound_manager import room_2_mp3, dd_mp3
 from scenario_generator import generate_base
 from console_game.service_functions import print_effect as p_e, sound_effect as s_e, wrong_input as w, \
     quit_menu as q, random_no as r_n, numbers_check as n_c, determination_announcement as d_a, \
-    new_determination, death_menu, print_help
+    new_determination, death_menu, print_help, random_revival
 
 
 def set_generator(line):
@@ -678,6 +678,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                             determination = new_determination(t_settings, v_p_settings,
                                                                               v_a_settings, m_settings,
                                                                               s_settings, determination, 7, '-')
+                                            random_revival(t_settings, v_p_settings)
                                 else:
                                     continue
                     else:

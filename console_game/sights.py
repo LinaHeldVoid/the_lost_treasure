@@ -12,7 +12,7 @@ from console_game.service_functions import print_effect as p_e, sound_effect as 
 
 def set_generator(line):
     i = 0
-    g = generate_base('text/8_death&determination.txt')
+    g = generate_base('text/9_sights.txt')
     while i < line:
         next(g)
         i += 1
@@ -105,7 +105,13 @@ def check_probability(sight, determination, move, spell=None):
     if result:
         operation = '+'
         if sight == 1:
-            bonus = 3
+            if move == 1:
+                bonus = 3
+            else:
+
+                # этот вариант всегда неудачный
+                operation = '-'
+                bonus = 5
         elif sight == 2:
             if move == 1:
                 if spell == 1:
@@ -194,53 +200,61 @@ def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     g = set_generator(0)
     print(next(g))
     next(g)
+    print('')
     p_e(next(g), t_settings)
     time.sleep(1)
     p_e(next(g), t_settings)
     time.sleep(1)
     next(g)
+    print('')
     p_e(next(g), t_settings)
     time.sleep(1)
     p_e(next(g), t_settings)
     next(g)
     time.sleep(1)
+    print('')
     p_e(next(g), t_settings)
     time.sleep(1)
     p_e(next(g), t_settings)
     time.sleep(1)
     next(g)
+    print('')
     p_e(next(g), t_settings)
     time.sleep(1)
     next(g)
+    print('')
     p_e(next(g), t_settings)
     time.sleep(1)
     p_e(next(g), t_settings)
     time.sleep(1)
+    print('')
     next(g)
     p_e(next(g), t_settings)
     time.sleep(1)
     next(g)
+    print('')
     p_e(next(g), t_settings)
     time.sleep(1)
     next(g)
+    print('')
     p_e(next(g), t_settings)
-    next(g)
-    time.sleep(1)
-    p_e(next(g), t_settings)
-    time.sleep(1)
-    next(g)
-    p_e(next(g), t_settings)
-    next(g)
     time.sleep(1)
     p_e(next(g), t_settings)
     time.sleep(1)
     next(g)
+    print('')
     p_e(next(g), t_settings)
     next(g)
+    print('')
     time.sleep(1)
     p_e(next(g), t_settings)
-    next(g)
     time.sleep(1)
+    p_e(next(g), t_settings)
+    time.sleep(1)
+    p_e(next(g), t_settings)
+    time.sleep(1)
+    print('')
+    next(g)
     p_e(next(g), t_settings)
     time.sleep(1)
     while True:
@@ -307,13 +321,14 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     g = set_generator(60)
     print(next(g))
     next(g)
-    print('')
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
     time.sleep(1)
     print('')
+    next(g)
     p_e(next(g), t_settings)
+    time.sleep(1)
     p_e(next(g), t_settings)
     time.sleep(1)
     print('')
@@ -324,8 +339,9 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
     time.sleep(1)
+    p_e(next(g), t_settings)
+    time.sleep(1)
     print('')
-    next(g)
     while True:
         if break_point:
             break
@@ -368,9 +384,7 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                 if break_point:
                     break
 
-                g = set_generator(88)
-                print(next(g))
-                g = set_generator(74)
+                g = set_generator(89)
                 print(f'1) {next(g)}'
                       f'2) {next(g)}'
                       f'3) {next(g)}' + '\n')
@@ -530,6 +544,7 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     p_e(next(g), t_settings)
     time.sleep(1)
     next(g)
+    print('')
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
     time.sleep(1)
@@ -538,17 +553,23 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     p_e(next(g), t_settings)
     time.sleep(1)
     p_e(next(g), t_settings)
-    p_e(next(g), t_settings)
     time.sleep(1)
     p_e(next(g), t_settings)
     time.sleep(1)
-    p_e(next(g), t_settings)
-    p_e(next(g), t_settings)
-    time.sleep(1)
+    print('')
     p_e(next(g), t_settings)
     time.sleep(1)
-    p_e(next(g), t_settings)
+    print(next(g))
+    print(next(g))
     time.sleep(1)
+    print(next(g))
+    time.sleep(1)
+    print(next(g))
+    time.sleep(1)
+    next(g)
+    print(next(g))
+    time.sleep(1)
+    print('')
 
     while True:
         if break_point:

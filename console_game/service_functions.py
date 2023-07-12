@@ -445,7 +445,6 @@ def new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_sett
     time.sleep(1) if v_a_settings else None
 
     determination_announcement(v_a_settings, new_number)
-    random_revival(t_settings, v_p_settings)
 
     if new_number <= 10:
         random_warning(t_settings, v_p_settings)
