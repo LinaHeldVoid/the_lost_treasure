@@ -15,7 +15,7 @@ from sound_manager import room_1_mp3, room_2_mp3, dd_mp3
 def run_game_console(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     print('')
     print_help(v_a_settings)
-    next_move = input('Нажмите Enter, чтобы продолжить: ')
+    input('Нажмите Enter, чтобы продолжить: ')
     room_1_mp3.set_volume(0.2) if m_settings else None
     room_1_mp3.play(-1) if m_settings else None
     start_game(t_settings, v_a_settings, v_p_settings)

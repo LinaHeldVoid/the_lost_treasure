@@ -503,6 +503,8 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                 time.sleep(4) if not t_settings and v_p_settings else None
                                                 time.sleep(2)
                                                 print(next(g))
+                                                room_1_mp3.fadeout(2) if m_settings else None
+                                                time.sleep(2) if m_settings else None
                                                 return determination
                                             else:
                                                 g = set_generator(137)

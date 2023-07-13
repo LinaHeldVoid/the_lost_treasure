@@ -310,8 +310,8 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                                         g = set_generator(215)
                                         p_e(next(g), t_settings)
                                         time.sleep(1)
-                                        new_determination(t_settings, v_p_settings, v_a_settings,
-                                                          m_settings, s_settings, determination, 1, '-')
+                                        determination = new_determination(t_settings, v_p_settings, v_a_settings,
+                                                                          m_settings, s_settings, determination, 1, '-')
                                         continue
                             else:
                                 print(w(t_settings, v_a_settings))
@@ -704,6 +704,51 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                             g = set_generator(143)
                             p_e(next(g), t_settings)
                             time.sleep(1)
+                        while True:
+                            g = set_generator(145)
+                            print(f'1) {next(g)}'
+                                  f'2) {next(g)}' + '\n')
+                            option = input('Введите цифру: ')
+                            if option == '100':
+                                q(t_settings, v_a_settings)
+                                continue
+                            elif option == '200':
+                                d_a(v_a_settings, determination)
+                                continue
+                            elif option == '0':
+                                if v_a_settings:
+                                    continue
+                                else:
+                                    print('Озвучивание опций отключено')
+                                    continue
+                            elif option.lower() == 'помощь' or option.lower() == 'help':
+                                print_help(v_a_settings)
+                                continue
+                            elif option == '1':
+
+                                # смерть от взрыва
+                                g = set_generator(149)
+                                room_1_2.stop() if m_settings else None
+                                s_e('sound/sound_effects/death.wav', s_settings)
+                                time.sleep(1) if s_settings else None
+                                dd_mp3.set_volume(0.2) if m_settings else None
+                                dd_mp3.play(-1) if m_settings else None
+                                p_e(next(g), t_settings)
+                                time.sleep(1)
+                                print(next(g))
+                                time.sleep(1)
+                                p_e(next(g), t_settings)
+                                time.sleep(1)
+                                p_e(next(g), t_settings)
+                                time.sleep(1)
+                                death_menu(t_settings, v_a_settings, m_settings)
+                                room_1_2.set_volume(0.2)
+                                room_1_2.play(-1) if m_settings else None
+                                determination = new_determination(t_settings, v_p_settings,
+                                                                  v_a_settings, m_settings,
+                                                                  s_settings, determination, 7, '-')
+                                random_revival(t_settings, v_p_settings)
+
                     else:
                         if option == '5':
                             powder_count += 1
@@ -759,7 +804,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                     break_out_flag = True
                                     experiment(t_settings, v_p_settings, v_a_settings, m_settings,
                                                s_settings, determination)
-                                    final_report['outcomes'] = '+++'
+                                    final_report['fails'] = '+++'
                                     continue
 
                                 elif steroids_used:
@@ -768,6 +813,11 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 else:
 
                                     # опции для кубика
+                                    steroids_count += 1
+                                    if steroids_count == 1:
+                                        g = set_generator(158)
+                                        p_e(next(g), t_settings)
+                                        time.sleep(1)
                                     result = taking_steroids(t_settings, v_a_settings, determination,
                                                              steroids_eaten, wont_eat_steroids, steroids_used, wont_eat)
                                     steroids_eaten = result['eaten']
@@ -791,10 +841,14 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
         ending = 5
 
     # поднимаем монетку
+    letter_read = False
     g = set_generator(227)
     p_e(next(g), t_settings)
     time.sleep(1)
     while True:
+        if letter_read:
+            break
+
         g = set_generator(229)
         print(f'1) {next(g)}' + '\n')
         option = input('Введите цифру: ')
@@ -829,9 +883,11 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             time.sleep(1)
             p_e(next(g), t_settings)
             time.sleep(1)
-            next(g)
+            p_e(next(g), t_settings)
+            time.sleep(1)
 
             # читаем послание колдуна
+            letter_read = True
             s_e('sound/sound_effects/papers_open.mp3', s_settings)
             time.sleep(2) if s_settings else None
             p_e(next(g), t_settings)
@@ -893,7 +949,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             g = set_generator(279)
             print(f'1) {next(g)}' + '\n')
         else:
-            g = set_generator(267)
+            g = set_generator(272)
             print(f'1) {next(g)}'
                   f'2) {next(g)}' + '\n')
         option = input('Введите цифру: ')
