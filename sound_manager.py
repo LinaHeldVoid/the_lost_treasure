@@ -40,3 +40,15 @@ sight_3 = pygame.mixer.Sound(sight_3_path)
 # обвал и смерть
 dd_mp3_path = 'sound/locations/danger_death.wav'
 dd_mp3 = pygame.mixer.Sound(dd_mp3_path)
+
+# музыка в эпилогах
+best_final_path = 'sound/endings/best.mp3'
+best_final = pygame.mixer.Sound(best_final_path)
+neutral_1_final_path = 'sound/endings/neutral_1.mp3'
+neutral_1_final = pygame.mixer.Sound(neutral_1_final_path)
+neutral_2_final_path = 'sound/endings/neutral_2.mp3'
+neutral_2_final = pygame.mixer.Sound(neutral_2_final_path)
+neutral_3_final_path = 'sound/endings/neutral_3.mp3'
+neutral_3_final = pygame.mixer.Sound(neutral_3_final_path)
+worst_final_path = 'sound/endings/worst.mp3'
+worst_final = pygame.mixer.Sound(best_final_path)

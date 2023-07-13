@@ -728,15 +728,15 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
 
                                 # смерть от взрыва
                                 g = set_generator(149)
+                                p_e(next(g), t_settings)
+                                time.sleep(1)
+                                print(next(g))
+                                time.sleep(1)
                                 room_1_2.stop() if m_settings else None
                                 s_e('sound/sound_effects/death.wav', s_settings)
                                 time.sleep(1) if s_settings else None
                                 dd_mp3.set_volume(0.2) if m_settings else None
                                 dd_mp3.play(-1) if m_settings else None
-                                p_e(next(g), t_settings)
-                                time.sleep(1)
-                                print(next(g))
-                                time.sleep(1)
                                 p_e(next(g), t_settings)
                                 time.sleep(1)
                                 p_e(next(g), t_settings)
@@ -748,6 +748,11 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                                                   v_a_settings, m_settings,
                                                                   s_settings, determination, 7, '-')
                                 random_revival(t_settings, v_p_settings)
+                            elif option == '2':
+                                break
+                            else:
+                                print(w(t_settings, v_a_settings))
+                                continue
 
                     else:
                         if option == '5':
@@ -906,6 +911,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             p_e(next(g), t_settings)
             time.sleep(1)
             print('')
+            next(g)
             p_e(next(g), t_settings)
             time.sleep(1)
             p_e(next(g), t_settings)
@@ -949,7 +955,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             g = set_generator(279)
             print(f'1) {next(g)}' + '\n')
         else:
-            g = set_generator(272)
+            g = set_generator(267)
             print(f'1) {next(g)}'
                   f'2) {next(g)}' + '\n')
         option = input('Введите цифру: ')
@@ -979,7 +985,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                 s_e('sound/sound_effects/open_chest.wav', s_settings)
                 time.sleep(1.5) if s_settings else None
                 while True:
-                    g = set_generator(267)
+                    g = set_generator(272)
                     print(f'1) {next(g)}'
                           f'2) {next(g)}' + '\n')
                     option = input('Введите цифру: ')
