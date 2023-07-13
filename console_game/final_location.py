@@ -368,7 +368,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     time.sleep(1)
 
     # титры
-    g = set_generator(58)
+    g = set_generator_epilogue(58)
     p_e(next(g), t_settings)
     time.sleep(1)
     p_e(next(g), t_settings)
