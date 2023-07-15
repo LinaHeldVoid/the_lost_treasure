@@ -650,11 +650,15 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                                         continue
                                     else:
                                         if tries_number < 3:
+                                            s_e('sound/sound_effects/candles_wind.wav', s_settings)
+                                            time.sleep(3.5) if s_settings else None
                                             random_failure(t_settings, v_p_settings, failures)
                                             continue
                                         else:
 
                                             """смерть от дротика"""
+                                            s_e('sound/sound_effects/dart.wav', s_settings)
+                                            time.sleep(1) if s_settings else None
                                             g = set_generator(150)
                                             print(next(g))
                                             time.sleep(1)

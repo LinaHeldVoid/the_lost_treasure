@@ -727,6 +727,8 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                             elif option == '1':
 
                                 # смерть от взрыва
+                                s_e('sound/sound_effects/flint.wav', v_a_settings)
+                                time.sleep(1.5) if s_settings else None
                                 g = set_generator(149)
                                 p_e(next(g), t_settings)
                                 time.sleep(1)
