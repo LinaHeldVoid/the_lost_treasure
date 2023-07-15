@@ -519,10 +519,10 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                             g = set_generator(63)
                             p_e(next(g), t_settings)
                             time.sleep(1)
+                        g = set_generator(65)
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
                         time.sleep(2) if s_settings else None
                         time.sleep(1)
-                        next(g)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
@@ -560,7 +560,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         s_e('sound/voice_person/room_2/235.wav', v_p_settings)
                         time.sleep(24) if not t_settings and v_p_settings else None
                         s_e('sound/sound_effects/papers_close.mp3', s_settings)
-                        time.sleep(15) if s_settings else None
+                        time.sleep(2) if s_settings else None
                         next(g)
                         time.sleep(2)
                         continue

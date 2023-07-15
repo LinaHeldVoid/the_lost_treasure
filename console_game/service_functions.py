@@ -100,7 +100,6 @@ def numbers_check(num_list):
     """проверяем уникальность чисел"""
     if len(set(num_list)) != len(num_list):
         print(message)
-        print(4)
         time.sleep(1)
         return
     else:
@@ -192,19 +191,19 @@ def death_menu(t_settings, v_a_settings, m_settings):
 # случайная реакция в ответ на попытку выполнить действие дважды
 def random_no(t_settings, v_p_settings, no_use):
     choose_no_use = random.choice(no_use)
-    if choose_no_use == next(set_generator_2(146)):
+    if choose_no_use == next(set_generator_2(275)):
         sound_effect('sound/voice_person/no_use.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(4) if not t_settings and v_p_settings else None
-    elif choose_no_use == next(set_generator_2(147)):
+    elif choose_no_use == next(set_generator_2(276)):
         sound_effect('sound/voice_person/no_use_2.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(2.5) if not t_settings and v_p_settings else None
-    elif choose_no_use == next(set_generator_2(148)):
+    elif choose_no_use == next(set_generator_2(277)):
         sound_effect('sound/voice_person/no_use_3.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(2) if not t_settings and v_p_settings else None
-    elif choose_no_use == next(set_generator_2(149)):
+    elif choose_no_use == next(set_generator_2(278)):
         sound_effect('sound/voice_person/no_use_4.wav', v_p_settings)
         print_effect(choose_no_use, t_settings)
         time.sleep(2) if not t_settings and v_p_settings else None
