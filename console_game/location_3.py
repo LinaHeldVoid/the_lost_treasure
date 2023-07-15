@@ -562,7 +562,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         s_e('sound/sound_effects/papers_close.mp3', s_settings)
                         time.sleep(2) if s_settings else None
                         next(g)
-                        time.sleep(2)
+                        time.sleep(1)
                         continue
 
                     # перечитываем журнал испытаний

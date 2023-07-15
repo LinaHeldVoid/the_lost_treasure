@@ -1282,7 +1282,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                           f'3) {next(g)}' + '\n')
                     s_e('sound/voice_actions/option.wav', v_a_settings)
                     time.sleep(2) if v_a_settings else None
-                    # место для озвучки меню
+                    record = s_e('sound/voice_actions/room_2/282.menu.wav', v_a_settings)
                 else:
                     g = set_generator(214)
                     print(f'1) {next(g)}'
@@ -1291,7 +1291,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                           f'4) {next(g)}' + '\n')
                     s_e('sound/voice_actions/option.wav', v_a_settings)
                     time.sleep(2) if v_a_settings else None
-                    record = s_e('sound/voice_actions/room_2/206.menu.wav', v_a_settings)
+                    record = s_e('sound/voice_actions/room_2/214.menu.wav', v_a_settings)
                 option = input('Введите цифру: ')
                 record.stop() if v_a_settings else None
                 if option == '100':
@@ -1314,6 +1314,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         r_n(t_settings, v_p_settings, no_use)
                         continue
                     else:
+                        book_read = True
                         g = set_generator(220)
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
                         time.sleep(2) if s_settings else None
@@ -1355,8 +1356,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         time.sleep(24) if not t_settings and v_p_settings else None
                         s_e('sound/sound_effects/papers_close.mp3', s_settings)
                         time.sleep(2) if s_settings else None
-                        time.sleep(2)
+                        time.sleep(1)
                         print('')
+                        next(g)
                         s_e('sound/voice_person/room_2/239.wav', v_p_settings)
                         p_e(next(g), t_settings)
                         time.sleep(10) if not t_settings and v_p_settings else None
@@ -1407,26 +1409,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         continue
                 elif option == '3':
                     if steroids_taken:
-                        if book_read and log_read:
-                            g = set_generator(269)
-                            s_e('sound/voice_person/room_2/269.wav', v_p_settings)
-                            p_e(next(g), t_settings)
-                            time.sleep(5) if not t_settings and v_p_settings else None
-                            time.sleep(1)
-                            s_e('sound/voice_person/room_2/270.wav', v_p_settings)
-                            p_e(next(g), t_settings)
-                            time.sleep(2) if not t_settings and v_p_settings else None
-                            time.sleep(1)
-                            final_data['determination'] = determination
-                            final_data['sack_took'] = sack_took
-                            return final_data
-                        else:
-                            g = set_generator(267)
-                            s_e('sound/voice_person/room_2/267.wav', v_p_settings)
-                            p_e(next(g), t_settings)
-                            time.sleep(4) if not t_settings and v_p_settings else None
-                            time.sleep(1)
-                            continue
+                        break
                     else:
                         g = set_generator(261)
                         steroids_taken = True
