@@ -868,7 +868,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                             if language_found == 2:
                                 s_e('sound/voice_person/room_2/80.wav', v_p_settings)
                                 p_e(reactions[7], t_settings)
-                                time.sleep(4)
+                                time.sleep(4) if v_p_settings else None
                             s_e('sound/voice_person/room_2/81.wav', v_p_settings)
                             p_e(reactions[8], t_settings)
                             time.sleep(8) if v_p_settings else None
@@ -1316,6 +1316,9 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                     else:
                         book_read = True
                         g = set_generator(220)
+                        s_e('sound/voice_person/room_2/226.wav', v_p_settings)
+                        p_e(next(g), t_settings)
+                        time.sleep(4) if not t_settings and v_p_settings else None
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
                         time.sleep(2) if s_settings else None
                         time.sleep(1)
