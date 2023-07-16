@@ -670,6 +670,8 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 final_report = poison_effect(t_settings, v_a_settings, v_p_settings,
                                                              m_settings, s_settings, determination)
                                 determination = final_report['determination']
+                                room_1_2.set_volume(0.2) if m_settings else None
+                                room_1_2.play(-1) if m_settings else None
                                 g = set_generator(225)
                                 p_e(next(g), t_settings)
                                 time.sleep(1)
@@ -731,7 +733,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                             elif option == '1':
 
                                 # смерть от взрыва
-                                s_e('sound/sound_effects/flint.wav', v_a_settings)
+                                s_e('sound/sound_effects/flint.wav', s_settings)
                                 time.sleep(1.5) if s_settings else None
                                 g = set_generator(149)
                                 p_e(next(g), t_settings)
@@ -958,10 +960,10 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
     time.sleep(1)
     while True:
         if rope_taken:
-            g = set_generator(279)
+            g = set_generator(278)
             print(f'1) {next(g)}' + '\n')
         else:
-            g = set_generator(267)
+            g = set_generator(266)
             print(f'1) {next(g)}'
                   f'2) {next(g)}' + '\n')
         option = input('Введите цифру: ')
@@ -991,7 +993,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                 s_e('sound/sound_effects/open_chest.wav', s_settings)
                 time.sleep(1.5) if s_settings else None
                 while True:
-                    g = set_generator(272)
+                    g = set_generator(271)
                     print(f'1) {next(g)}'
                           f'2) {next(g)}' + '\n')
                     option = input('Введите цифру: ')

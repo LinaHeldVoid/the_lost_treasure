@@ -38,7 +38,7 @@ def set_generator_dnd(line):
 
 
 def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination, ending):
-    if determination <= 10:
+    if determination <= 5:
 
         # смерть от потери решимости
         pygame.mixer.stop() if m_settings else None
@@ -398,8 +398,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
     print('')
-    input('Нажмите Enter, чтобы завершить игру: ')
     next(g)
+    input('Нажмите Enter, чтобы завершить игру: ')
     print('')
     p_e(next(g), t_settings)
     pygame.mixer.fadeout(3) if m_settings else None

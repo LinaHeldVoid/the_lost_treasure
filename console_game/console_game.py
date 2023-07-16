@@ -26,4 +26,5 @@ def run_game_console(t_settings, v_a_settings, v_p_settings, m_settings, s_setti
     final_report = room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, sack_found, points_2)
     determination = final_report['determination']
     ending = final_report['ending']
+    print(ending)
     final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination, ending)
