@@ -269,8 +269,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     time.sleep(1)
     print('')
     if ending == 1:
-        best_final.set_volume(0.2)
-        best_final.play(-1)
+        best_final.set_volume(0.2) if m_settings else None
+        best_final.play(-1) if m_settings else None
         g = set_generator_epilogue(3)
         p_e(next(g), t_settings)
         time.sleep(1)
@@ -284,8 +284,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         time.sleep(1)
     elif ending == 2:
-        neutral_1_final.set_volume(0.2)
-        neutral_1_final.play(-1)
+        neutral_1_final.set_volume(0.2) if m_settings else None
+        neutral_1_final.play(-1) if m_settings else None
         g = set_generator_epilogue(10)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -302,8 +302,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         time.sleep(1)
     elif ending == 3:
-        neutral_2_final.set_volume(0.2)
-        neutral_2_final.play(-1)
+        neutral_2_final.set_volume(0.2) if m_settings else None
+        neutral_2_final.play(-1) if m_settings else None
         g = set_generator_epilogue(21)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -320,8 +320,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         time.sleep(1)
     elif ending == 4:
-        neutral_2_final.set_volume(0.2)
-        neutral_2_final.play(-1)
+        neutral_2_final.set_volume(0.2) if m_settings else None
+        neutral_2_final.play(-1) if m_settings else None
         g = set_generator_epilogue(32)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -342,8 +342,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         time.sleep(1)
     else:
-        worst_final.set_volume(0.2)
-        worst_final.play(-1)
+        worst_final.set_volume(0.2) if m_settings else None
+        worst_final.play(-1) if m_settings else None
         g = set_generator_epilogue(44)
         p_e(next(g), t_settings)
         time.sleep(1)
@@ -398,6 +398,9 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
     print('')
-    next(g)
-    p_e(next(g), t_settings)
     input('Нажмите Enter, чтобы завершить игру: ')
+    next(g)
+    print('')
+    p_e(next(g), t_settings)
+    pygame.mixer.fadeout(3) if m_settings else None
+    time.sleep(3) if m_settings else None

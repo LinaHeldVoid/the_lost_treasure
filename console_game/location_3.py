@@ -148,6 +148,8 @@ def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, us
         elif option == '1':
             if wont_eat:
                 random_wont_eat(refuses, t_settings)
+                print('Не хватает решимости' + '\n'
+                      'Требуемое количество решимости: 43')
                 continue
             else:
                 g = set_generator(165)
@@ -177,6 +179,8 @@ def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, us
                     wont_eat = True
                     g = set_generator(178)
                     p_e(next(g), t_settings)
+                    print('Не хватает решимости' + '\n'
+                          'Требуемое количество решимости: 43')
                     time.sleep(1)
                     continue
         elif option == '2':

@@ -1446,6 +1446,8 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                 p_e(next(g), t_settings)
                 time.sleep(2) if not t_settings and v_p_settings else None
                 time.sleep(1)
+                room_2_mp3.fadeout(2) if m_settings else None
+                time.sleep(2) if m_settings else None
                 final_data['determination'] = determination
                 final_data['sack_took'] = sack_took
                 return final_data
