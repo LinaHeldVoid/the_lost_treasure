@@ -1453,7 +1453,7 @@ def room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                 room_2_mp3.fadeout(2) if m_settings else None
                 time.sleep(2) if m_settings else None
                 final_data['determination'] = determination
-                final_data['sack_took'] = sack_took
+                final_data['sack_took'] = steroids_taken
                 return final_data
             else:
                 g = set_generator(267)
