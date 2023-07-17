@@ -51,4 +51,4 @@ neutral_2_final = pygame.mixer.Sound(neutral_2_final_path)
 neutral_3_final_path = 'sound/endings/neutral_3.mp3'
 neutral_3_final = pygame.mixer.Sound(neutral_3_final_path)
 worst_final_path = 'sound/endings/worst.mp3'
-worst_final = pygame.mixer.Sound(best_final_path)
+worst_final = pygame.mixer.Sound(worst_final_path)
