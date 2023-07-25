@@ -1,25 +1,13 @@
 import pygame
 
-# button_pressed = pygame.mixer.Sound('sound/button.wav')
-
-
-def define_sound(picture):
-
-    """определяем, какая музыка нужна для локации"""
-
-    if picture == 'locations/door/2_trapped.png':
-        sound = 'danger_death.wav'
-    elif picture.startswith('locations/room_2/'):
-        sound = 'room_2.wav'
-    else:
-        sound = 'room_1.wav'
-
-    sound_path = 'sound/locations/' + sound
-    bg_sound = pygame.mixer.Sound(sound_path)
-    return bg_sound
-
 
 pygame.mixer.init()
+
+# интерфейс
+screen_path = 'sound/locations/intro.mp3'
+screen_mp3 = pygame.mixer.Sound(screen_path)
+button_path = 'sound/sound_effects/button.wav'
+button_wav = pygame.mixer.Sound(button_path)
 
 # музыка на локациях
 room_1_mp3_path = 'sound/locations/room_1.wav'

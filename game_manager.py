@@ -22,8 +22,6 @@ def run():
         if game_choice != '1' and game_choice != '2':
             wrong_input()
             continue
-        elif game_choice == '2':
-            print('Эта версия игры пока разрабатывается. Пожалуйста, выберите другую версию.')
         else:
             break
     print('\n' + 'Отлично!' + '\n')
