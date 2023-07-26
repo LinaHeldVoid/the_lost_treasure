@@ -1,17 +1,16 @@
 from web_game.wed_game import run_game_web
 from console_game.console_game import run_game_console
-
+from pprint import pprint
 
 def wrong_input():
     message = 'Извините, ваш ответ не распознан. Попробуйте ещё раз!'
     return message
 
 
-# функция, управляющая запуском игры
-def run():
+def settings_input():
+    settings = {}
 
     """Подбираем режим запуска игры"""
-    print('Приветствуем, путник!')
     print('Данная игра имеет несколько реализаций. Сейчас вам предстоит выбрать наиболее удобную.')
     print('Для этого вам нужно ответить на несколько несложных вопросов, после чего игра будет запущена.')
     while True:
@@ -59,7 +58,7 @@ def run():
     while True:
         print('Игра имеет опцию озвучивания текста. Какой вариант больше подходит вам?' + '\n'
               '1) Озвучивать весь текст' + '\n'
-              '2) Озвучивать только реплики и слова от автора' + '\n'         
+              '2) Озвучивать только реплики и слова от автора' + '\n'
               '3) Не озвучивать ничего' + '\n'
               '4) Озвучивать только действия' + '\n')
         record_choice = input('Введите любую цифру из предложенных: ')
@@ -104,15 +103,114 @@ def run():
             wrong_input()
             continue
 
+    # записываем параметры запуска в файл
+    console = False
+    if game_choice == '1':
+        console = True
+    settings['console'] = console
+    settings['text_settings'] = text_settings
+    settings['voice_action_settings'] = voice_action_settings
+    settings['voice_person_settings'] = voice_person_settings
+    settings['music_settings'] = music_settings
+    settings['sound_settings'] = sound_settings
+
+    with open('game_logs/settings_log.txt', 'w', encoding='utf-8') as file:
+        for key, value in settings.items():
+            file.write(f'{key}: {value}\n')
+
+    return settings
+
+
+# функция, управляющая запуском игры
+def check_settings():
+
+    settings = {}
+
+    """Проверяем, запускали ли ранее игру на этом устройстве"""
+    try:
+        with open('game_logs/settings_log.txt', 'r', encoding='utf-8') as file:
+            for line in file:
+                key, value = line.split(': ')
+                settings.update({key: value})
+
+        # достаём данные из словаря
+        console_mode = settings['console']
+        text_settings = settings['text_settings']
+        voice_action_settings = settings['voice_action_settings']
+        voice_person_settings = settings['voice_person_settings']
+        music_settings = settings['music_settings']
+        sound_settings = settings['sound_settings']
+
+        # готовим данные к печати
+        if console_mode == 'True\n':
+            mode = 'консоль'
+        else:
+            mode = 'отдельное окно'
+        if text_settings == 1:
+            text = 'включена'
+        else:
+            text = 'выключена'
+        if voice_action_settings == 'True\n':
+            voice_action = 'включено'
+        else:
+            voice_action = 'выключено'
+        if voice_person_settings == 'True\n':
+            voice_person = 'включено'
+        else:
+            voice_person = 'выключено'
+        if music_settings == 'True\n':
+            music = 'включена'
+        else:
+            music = 'выключена'
+        if sound_settings == 'True\n':
+            sound = 'включены'
+        else:
+            sound = 'выключены'
+        pprint(settings)
+
+        while True:
+            print('Приветствуем снова, путник!')
+            print('В прошлый раз вами были выбраны следующие параметры игры:' + '\n'
+                  '\n'
+                  f'    Режим запуска: {mode}' + '\n'
+                  f'    Замедленная печать текста (имитация чтения книги): {text}' + '\n'
+                  f'    Озвучивание реплик персонажа и слов от автора: {voice_person}' + '\n'
+                  f'    Озвучивание технического текста: {voice_action}' + '\n'
+                  f'    Музыка: {music}' + '\n'
+                  f'    Звуковые эффекты: {sound}' + '\n'
+                  '\n'
+                  'Желаете применить данные параметры снова?' + '\n'
+                  '1) Да, оставьте всё так' + '\n'
+                  '2) Нет, я хочу кое-что поменять' + '\n')
+            option = input('Введите любую цифру из предложенных: ')
+            if option == '1':
+                return settings
+            elif option == '2':
+                settings = settings_input()
+                return settings
+
+    except FileNotFoundError:
+        print('Приветствуем, путник!')
+        settings = settings_input()
+        return settings
+
+
+def run():
     # запуск игры
+
+    # достаём данные из словаря
+    settings = check_settings()
+    console_mode = settings['console']
+    text_settings = settings['text_settings']
+    voice_action_settings = settings['voice_action_settings']
+    voice_person_settings = settings['voice_person_settings']
+    music_settings = settings['music_settings']
+    sound_settings = settings['sound_settings']
+
     while True:
-        if game_choice == '1':
+        if console_mode == 'True\n':
             run_game_console(text_settings, voice_action_settings,
                              voice_person_settings, music_settings, sound_settings)
             return
-        elif game_choice == '2':
-            run_game_web()
-            return
         else:
-            print(wrong_input())
-            continue
+            run_game_web()

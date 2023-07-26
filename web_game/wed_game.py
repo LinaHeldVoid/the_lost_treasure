@@ -2,7 +2,7 @@ import pygame
 import sys
 
 from sound_manager import screen_mp3
-from screen_manager import Button
+from web_game.screen_manager import Button, Picture, print_text
 
 
 def run_game_web():
@@ -33,15 +33,12 @@ def main_screen():
         button.draw(640, 440, 'Настройки', None, 29)
         button.draw(640, 500, 'Выход', exit_game, 55)
 
-        pygame.display.update()
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
 
 
 def choose_media():
-    previous_screen = False
 
     screen = pygame.display.set_mode((1500, 800))
     pygame.display.set_caption('Затерянное сокровище')
@@ -51,7 +48,7 @@ def choose_media():
 
     button = Button(screen, 200, 50)
 
-    picture = pygame.image.load('visuals/achievements/screen_achievements.png')
+    picture = pygame.image.load('visuals/screen.png')
     screen.blit(picture, (235, 0))
 
     pygame.display.update()
@@ -60,9 +57,6 @@ def choose_media():
         button.draw(640, 380, 'Достижения', show_gallery, 10)
         button.draw(640, 440, 'Концовки', None, 40)
         button.draw(640, 500, 'Назад', main_screen, 55)
-
-        if previous_screen:
-            return
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -77,29 +71,56 @@ def show_gallery():
     pygame.display.set_icon(icon)
 
     button = Button(screen, 200, 50)
+    pic = Picture(screen)
 
     pygame.display.update()
 
+    button_drawn = False
+
     while True:
+
         picture = pygame.image.load('visuals/achievements/screen_achievements.png')
         screen.blit(picture, (235, 0))
+
+        # рисуем медали
         medal_gold = pygame.image.load('visuals/achievements/medal_gold.png')
-        screen.blit(medal_gold, (300, 200))
+        screen.blit(medal_gold, (300, 230))
+
         medal_silver = pygame.image.load('visuals/achievements/medal_silver.png')
         screen.blit(medal_silver, (300, 400))
+
         medal_bronze = pygame.image.load('visuals/achievements/medal_bronze.png')
-        screen.blit(medal_bronze, (300, 600))
+        screen.blit(medal_bronze, (300, 570))
 
-        pygame.display.update()
+        # рисуем подписи к достижениям
+        print_text(screen, 'Не открыто', 490, 330)
+        print_text(screen, 'Не открыто', 690, 330)
+        print_text(screen, 'Не открыто', 890, 330)
+        print_text(screen, 'Не открыто', 490, 500)
+        print_text(screen, 'Не открыто', 690, 500)
+        print_text(screen, 'Не открыто', 890, 500)
+        print_text(screen, 'Не открыто', 490, 670)
+        print_text(screen, 'Не открыто', 690, 670)
+        print_text(screen, 'Не открыто', 890, 670)
 
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        # рисуем значки достижений
+        pic.draw('visuals/achievements/locked.png', 465, 190)
+        pic.draw('visuals/achievements/locked.png', 665, 190)
+        pic.draw('visuals/achievements/locked.png', 865, 190)
+        pic.draw('visuals/achievements/locked.png', 465, 360)
+        pic.draw('visuals/achievements/locked.png', 665, 360)
+        pic.draw('visuals/achievements/locked.png', 865, 360)
+        pic.draw('visuals/achievements/locked.png', 465, 530)
+        pic.draw('visuals/achievements/locked.png', 665, 530)
+        pic.draw('visuals/achievements/locked.png', 865, 530)
 
+        # кнопка выхода из меню
+        while True:
+            button.draw(640, 725, 'Назад', choose_media, 55)
 
-def previous_screen():
-    prev_screen = True
-    return prev_screen
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    sys.exit()
 
 
 def exit_game():

@@ -6,7 +6,17 @@ from sound_manager import button_wav
 pygame.font.init()
 
 
-def print_text(screen, message, x, y, font_size, font_colour=(0, 0, 0), font_type='C:/Windows/Fonts/Gabriola.ttf'):
+# вывод текста на экран
+def print_text(screen, message, x, y, font_size=25, font_colour=(250, 250, 250),
+               font_type='C:/Windows/Fonts/Gabriola.ttf'):
+
+    font_type = pygame.font.Font(font_type, font_size)
+    text = font_type.render(message, True, font_colour)
+    screen.blit(text, (x, y))
+
+
+# системная кнопка
+def print_text_button(screen, message, x, y, font_size, font_colour=(0, 0, 0), font_type='C:/Windows/Fonts/Gabriola.ttf'):
     font_type = pygame.font.Font(font_type, font_size)
     text = font_type.render(message, True, font_colour)
     screen.blit(text, (x, y))
@@ -46,4 +56,17 @@ class Button():
             pygame.display.update()
             pygame.draw.rect(self.display, self.inactive_color, (x, y, self.width, self.height))
 
-        print_text(self.display, message=message, x=x+x_text, y=y+y_text, font_size=font_size)
+        print_text_button(self.display, message=message, x=x+x_text, y=y+y_text, font_size=font_size)
+
+
+class Picture():
+    def __init__(self, screen, clickable=False):
+        self.display = screen
+        self.clickable = clickable
+
+    def draw(self, path, x, y):
+        if self.clickable:
+            pass
+        else:
+            pic = pygame.image.load(path)
+            self.display.blit(pic, (x, y))
