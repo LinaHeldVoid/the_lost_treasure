@@ -126,6 +126,9 @@ def check_settings():
 
     settings = {}
 
+    print('')
+    print('')
+
     """Проверяем, запускали ли ранее игру на этом устройстве"""
     try:
         with open('game_logs/settings_log.txt', 'r', encoding='utf-8') as file:
@@ -166,9 +169,9 @@ def check_settings():
             sound = 'включены'
         else:
             sound = 'выключены'
-        pprint(settings)
 
         while True:
+
             print('Приветствуем снова, путник!')
             print('В прошлый раз вами были выбраны следующие параметры игры:' + '\n'
                   '\n'
