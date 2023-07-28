@@ -106,7 +106,7 @@ def settings_input():
     # записываем параметры запуска в файл
     console = False
     if game_choice == '1':
-        console = True
+        console = 'True\n'
     settings['console'] = console
     settings['text_settings'] = text_settings
     settings['voice_action_settings'] = voice_action_settings
