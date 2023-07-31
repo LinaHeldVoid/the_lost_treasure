@@ -51,12 +51,10 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
         s_e('sound/voice_person/d&d/34.wav', v_p_settings)
         p_e(next(g), t_settings)
         time.sleep(11) if not t_settings and v_p_settings else None
-        time.sleep(1)
         s_e('sound/voice_person/d&d/35.wav', v_p_settings)
         p_e(next(g), t_settings)
         print('')
         time.sleep(7) if not t_settings and v_p_settings else None
-        time.sleep(1)
         g = set_generator_dnd(0)
         print(Fore.RED, f'{next(g)}')
         dd_mp3.fadeout(3) if m_settings else None
@@ -66,9 +64,7 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
         # выходим из пещеры
         g = set_generator(42)
         p_e(next(g), t_settings)
-        time.sleep(1)
         p_e(next(g), t_settings)
-        time.sleep(1)
         while True:
             g = set_generator(48)
             print(f'1) {next(g)}' + '\n')
@@ -91,9 +87,7 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
             elif option == '1':
                 g = set_generator(49)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 break
             else:
                 print(w(t_settings, v_a_settings))
@@ -122,11 +116,9 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
                 if ending == 4 or ending == 5:
                     g = set_generator(58)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                 else:
                     g = set_generator(56)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                 return
             else:
                 print(w(t_settings, v_a_settings))
@@ -143,13 +135,11 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     g = set_generator(0)
     print('')
     print(next(g))
-    time.sleep(1)
     print('')
     while True:
         if asked_stone and stone_examined:
             g = set_generator(21)
             print(next(g))
-            time.sleep(1)
             print('')
 
         if not stone_examined:
@@ -194,9 +184,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 # смерть от обвала
                 g = set_generator(24)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 print(next(g))
-                time.sleep(1)
                 s_e('sound/sound_effects/stones.wav', s_settings)
                 time.sleep(1) if s_settings else None
                 s_e('sound/sound_effects/giant_stone.wav', s_settings)
@@ -208,7 +196,6 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 dd_mp3.play(-1) if m_settings else None
                 p_e(next(g), t_settings)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 print('')
                 death_menu(t_settings, v_a_settings, m_settings)
                 room_1_2.set_volume(0.2)
@@ -222,9 +209,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 stone_examined = True
                 g = set_generator(18)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 print('')
                 continue
         elif option == '2':
@@ -236,23 +221,16 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 if ending == 1:
                     g = set_generator(31)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                 elif ending == 2 or ending == 3:
                     g = set_generator(35)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                 else:
                     g = set_generator(39)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                 continue
         elif option == '3':
             if asked_stone:
@@ -266,23 +244,17 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     pygame.mixer.stop()
     g = set_generator_epilogue(0)
     p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     if ending == 1:
         best_final.set_volume(0.2) if m_settings else None
         best_final.play(-1) if m_settings else None
         g = set_generator_epilogue(3)
         p_e(next(g), t_settings)
-        time.sleep(1)
         p_e(next(g), t_settings)
-        time.sleep(1)
         p_e(next(g), t_settings)
-        time.sleep(1)
         p_e(next(g), t_settings)
-        time.sleep(1)
         print('')
         p_e(next(g), t_settings)
-        time.sleep(1)
     elif ending == 2:
         neutral_1_final.set_volume(0.2) if m_settings else None
         neutral_1_final.play(-1) if m_settings else None
@@ -292,15 +264,12 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
         print('')
         p_e(next(g), t_settings)
-        time.sleep(1)
     elif ending == 3:
         neutral_2_final.set_volume(0.2) if m_settings else None
         neutral_2_final.play(-1) if m_settings else None
@@ -310,70 +279,53 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
     elif ending == 4:
         neutral_2_final.set_volume(0.2) if m_settings else None
         neutral_2_final.play(-1) if m_settings else None
         g = set_generator_epilogue(32)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
-        print('')
-        p_e(next(g), t_settings)
-        time.sleep(1)
-        p_e(next(g), t_settings)
-        p_e(next(g), t_settings)
-        p_e(next(g), t_settings)
-        time.sleep(1)
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
+        p_e(next(g), t_settings)
+        p_e(next(g), t_settings)
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
+        print('')
+        p_e(next(g), t_settings)
+        p_e(next(g), t_settings)
     else:
         worst_final.set_volume(0.2) if m_settings else None
         worst_final.play(-1) if m_settings else None
         g = set_generator_epilogue(44)
         p_e(next(g), t_settings)
-        time.sleep(1)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
-        print('')
-        p_e(next(g), t_settings)
-        time.sleep(1)
-        p_e(next(g), t_settings)
-        p_e(next(g), t_settings)
-        time.sleep(1)
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
-        time.sleep(1)
+        print('')
+        p_e(next(g), t_settings)
+        p_e(next(g), t_settings)
+        p_e(next(g), t_settings)
     g = set_generator_epilogue(55)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
 
     # титры
     g = set_generator_epilogue(58)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
-    time.sleep(1)
     next(g)
     print('')
     p_e(next(g), t_settings)

@@ -88,11 +88,8 @@ def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings
                 wont_eat = True
                 g = set_generator(130)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 next(g)
-                time.sleep(1)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 determination = new_determination(t_settings, v_p_settings,
                                                   v_a_settings, m_settings,
                                                   s_settings, determination, 2, '-')
@@ -103,13 +100,9 @@ def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings
             used = True
             g = set_generator(137)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             print(next(g))
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             break
         elif option == '3':
             break
@@ -154,26 +147,17 @@ def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, us
             else:
                 g = set_generator(165)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 if determination > 42:
                     eaten = True
                     g = set_generator(168)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     p_e(next(g), t_settings)
-                    time.sleep(1)
                     break
                 else:
                     wont_eat = True
@@ -181,17 +165,13 @@ def taking_steroids(t_settings, v_a_settings, determination, eaten, wont_eat, us
                     p_e(next(g), t_settings)
                     print('Не хватает решимости' + '\n'
                           'Требуемое количество решимости: 43')
-                    time.sleep(1)
                     continue
         elif option == '2':
             used = True
             g = set_generator(186)
             p_e(next(g), t_settings)
-            time.sleep(1)
             next(g)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             continue
         elif option == '3':
             break
@@ -209,9 +189,7 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
     while True:
         g = set_generator(199)
         p_e(next(g), t_settings)
-        time.sleep(1)
         p_e(next(g), t_settings)
-        time.sleep(1)
         while True:
             g = set_generator(201)
             print(f'1) {next(g)}' + '\n')
@@ -234,7 +212,6 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
             elif option == '1':
                 g = set_generator(203)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 while True:
                     g = set_generator(205)
                     print(f'1) {next(g)}' + '\n')
@@ -257,7 +234,6 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                     elif option == '1':
                         g = set_generator(206)
                         p_e(next(g), t_settings)
-                        time.sleep(1)
                         while True:
                             g = set_generator(208)
                             print(f'1) {next(g)}' + '\n')
@@ -280,7 +256,6 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                             elif option == '1':
                                 g = set_generator(209)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 while True:
                                     g = set_generator(211)
                                     print(f'1) {next(g)}'
@@ -304,16 +279,12 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                                     elif option == '1':
                                         g = set_generator(220)
                                         p_e(next(g), t_settings)
-                                        time.sleep(1)
                                         p_e(next(g), t_settings)
-                                        time.sleep(1)
                                         p_e(next(g), t_settings)
-                                        time.sleep(1)
                                         return
                                     elif option == '2':
                                         g = set_generator(215)
                                         p_e(next(g), t_settings)
-                                        time.sleep(1)
                                         determination = new_determination(t_settings, v_p_settings, v_a_settings,
                                                                           m_settings, s_settings, determination, 1, '-')
                                         continue
@@ -362,7 +333,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
     print(next(g))
     next(g)
     p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     while True:
         if break_out_flag:
@@ -431,7 +401,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         glass_taken = True
                         g = set_generator(18)
                         p_e(next(g), t_settings)
-                        time.sleep(1)
                         continue
                 elif option == '3':
                     if glass_taken:
@@ -445,7 +414,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             if not glass_taken:
                 g = set_generator(21)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 continue
             else:
                 while True:
@@ -522,11 +490,9 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         if read_count == 1:
                             g = set_generator(63)
                             p_e(next(g), t_settings)
-                            time.sleep(1)
                         g = set_generator(65)
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
                         time.sleep(2) if s_settings else None
-                        time.sleep(1)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
@@ -542,7 +508,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         p_e(next(g), t_settings)
                         s_e('sound/voice_person/room_2/226.wav', v_p_settings)
                         time.sleep(33) if not t_settings and v_p_settings else None
-                        time.sleep(2)
                         next(g)
                         print('')
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
@@ -566,7 +531,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         s_e('sound/sound_effects/papers_close.mp3', s_settings)
                         time.sleep(2) if s_settings else None
                         next(g)
-                        time.sleep(1)
                         continue
 
                     # перечитываем журнал испытаний
@@ -575,7 +539,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         if read_count == 1:
                             g = set_generator(63)
                             p_e(next(g), t_settings)
-                            time.sleep(1)
                         g = set_generator(84)
                         s_e('sound/sound_effects/papers_open.mp3', s_settings)
                         time.sleep(2) if s_settings else None
@@ -605,7 +568,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         if glass_count == 1:
                             g = set_generator(98)
                             p_e(next(g), t_settings)
-                            time.sleep(1)
 
                         g = set_generator(100)
                         print(f'1) {next(g)}'
@@ -635,36 +597,26 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 poison_poured = True
                                 g = set_generator(105)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 print(next(g))
-                                time.sleep(1)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 if steroids_eaten:
                                     next(g)
                                     p_e(next(g), t_settings)
-                                    time.sleep(1)
                                 else:
                                     g = set_generator(113)
                                     p_e(next(g), t_settings)
-                                    time.sleep(1)
                                 continue
                         elif option == '2':
                             g = set_generator(192)
                             p_e(next(g), t_settings)
-                            time.sleep(1)
                             if powder_used:
 
                                 # начало видений
                                 break_out_flag = True
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 room_1_2.fadeout(2) if m_settings else None
                                 time.sleep(2) if m_settings else None
                                 final_report = poison_effect(t_settings, v_a_settings, v_p_settings,
@@ -674,7 +626,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 room_1_2.play(-1) if m_settings else None
                                 g = set_generator(225)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 continue
                             else:
 
@@ -687,7 +638,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 dd_mp3.play(-1) if m_settings else None
                                 p_e(next(g), t_settings)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 print('')
                                 death_menu(t_settings, v_a_settings, m_settings)
                                 room_1_2.set_volume(0.2)
@@ -709,7 +659,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         if flint_count == 1:
                             g = set_generator(143)
                             p_e(next(g), t_settings)
-                            time.sleep(1)
                         while True:
                             g = set_generator(145)
                             print(f'1) {next(g)}'
@@ -737,18 +686,14 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 time.sleep(1.5) if s_settings else None
                                 g = set_generator(149)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 print(next(g))
-                                time.sleep(1)
                                 room_1_2.stop() if m_settings else None
                                 s_e('sound/sound_effects/death.wav', s_settings)
                                 time.sleep(1) if s_settings else None
                                 dd_mp3.set_volume(0.2) if m_settings else None
                                 dd_mp3.play(-1) if m_settings else None
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 p_e(next(g), t_settings)
-                                time.sleep(1)
                                 death_menu(t_settings, v_a_settings, m_settings)
                                 room_1_2.set_volume(0.2)
                                 room_1_2.play(-1) if m_settings else None
@@ -771,7 +716,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 if powder_count == 1:
                                     g = set_generator(123)
                                     p_e(next(g), t_settings)
-                                    time.sleep(1)
                                 result = taking_powder(t_settings, v_a_settings, v_p_settings, m_settings,
                                                        s_settings,
                                                        determination, wont_eat_powder, powder_used, wont_eat)
@@ -794,7 +738,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                     if steroids_count == 1:
                                         g = set_generator(158)
                                         p_e(next(g), t_settings)
-                                        time.sleep(1)
                                         continue
                                     else:
                                         result = taking_steroids(t_settings, v_a_settings, determination,
@@ -830,7 +773,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                     if steroids_count == 1:
                                         g = set_generator(158)
                                         p_e(next(g), t_settings)
-                                        time.sleep(1)
                                     result = taking_steroids(t_settings, v_a_settings, determination,
                                                              steroids_eaten, wont_eat_steroids, steroids_used, wont_eat)
                                     steroids_eaten = result['eaten']
@@ -857,7 +799,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
     letter_read = False
     g = set_generator(227)
     p_e(next(g), t_settings)
-    time.sleep(1)
     while True:
         if letter_read:
             break
@@ -883,47 +824,31 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
         elif option == '1':
             g = set_generator(230)
             p_e(next(g), t_settings)
-            time.sleep(1)
             print(next(g))
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             print(next(g))
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
 
             # читаем послание колдуна
             letter_read = True
             s_e('sound/sound_effects/papers_open.mp3', s_settings)
             time.sleep(2) if s_settings else None
             p_e(next(g), t_settings)
-            time.sleep(1)
             print('')
             p_e(next(g), t_settings)
-            time.sleep(1)
-            p_e(next(g), t_settings)
-            time.sleep(1)
-            p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
             p_e(next(g), t_settings)
-            time.sleep(1)
+            p_e(next(g), t_settings)
+            p_e(next(g), t_settings)
             print('')
             next(g)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             s_e('sound/sound_effects/papers_close.mp3', s_settings)
             time.sleep(2) if s_settings else None
 
@@ -931,23 +856,17 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             if ending == 1:
                 g = set_generator(252)
                 p_e(next(g), t_settings)
-                time.sleep(1)
             elif ending == 2 or ending == 3:
                 g = set_generator(255)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 p_e(next(g), t_settings)
-                time.sleep(1)
             else:
                 g = set_generator(259)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 print('')
                 p_e(next(g), t_settings)
                 p_e(next(g), t_settings)
-                time.sleep(1)
         else:
             print(w(t_settings, v_a_settings))
             continue
@@ -955,9 +874,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
     # уходим
     g = set_generator(264)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     while True:
         if rope_taken:
             g = set_generator(278)
@@ -985,7 +902,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
         elif option == '1':
             if rope_taken:
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 final_report['determination'] = determination
                 final_report['ending'] = ending
                 return final_report
@@ -1018,9 +934,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         time.sleep(1.5) if s_settings else None
                         g = set_generator(276)
                         p_e(next(g), t_settings)
-                        time.sleep(1)
                         p_e(next(g), t_settings)
-                        time.sleep(1)
                         break
                     elif option == '2':
                         s_e('sound/sound_effects/close_chest.wav', s_settings)
@@ -1033,7 +947,6 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
             else:
                 g = set_generator(290)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 continue
         else:
             print(w(t_settings, v_a_settings))
