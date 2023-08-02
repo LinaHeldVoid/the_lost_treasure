@@ -193,7 +193,7 @@ def abyss_fail(t_settings):
 # первое видение
 def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination):
     sight_1.set_volume(0.2)
-    sight_1.play(-1) if m_settings else None
+    sight_1.play(-1) if m_settings == 'True' else None
 
     report = {}
 
@@ -305,14 +305,14 @@ def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
         report['determination'] = new_number
         report['outcome'] = dice_result['operation']
         sight_1.fadeout(3)
-        time.sleep(3) if m_settings else None
+        time.sleep(3) if m_settings == 'True' else None
         return report
 
 
 # второе видение
 def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination):
     sight_2.set_volume(0.2)
-    sight_2.play(-1) if m_settings else None
+    sight_2.play(-1) if m_settings == 'True' else None
 
     break_point = False
     dice_result = {}
@@ -524,14 +524,14 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     report['determination'] = new_number
     report['outcome'] = dice_result['operation']
     sight_2.fadeout(3)
-    time.sleep(3) if m_settings else None
+    time.sleep(3) if m_settings == 'True' else None
     return report
 
 
 # третье видение
 def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, determination):
     sight_3.set_volume(0.2)
-    sight_3.play(-1) if m_settings else None
+    sight_3.play(-1) if m_settings == 'True' else None
 
     break_point = False
     dice_result = {}
@@ -718,7 +718,7 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     report['determination'] = new_number
     report['outcome'] = dice_result['operation']
     sight_3.fadeout(3)
-    time.sleep(3) if m_settings else None
+    time.sleep(3) if m_settings == 'True' else None
     return report
 
 

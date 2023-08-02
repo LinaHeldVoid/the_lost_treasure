@@ -44,15 +44,15 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
 
     g = set_generator(0)
     print(next(g))
-    s_e('sound/voice_actions/room_1/4_room_1.wav', v_a_settings)
+    s_e('sound/voice_actions/room_1/4_room_1.wav', v_a_settings, 1)
     time.sleep(2)
-    s_e('sound/voice_person/room_1/8_enter_1.wav', v_p_settings)
+    s_e('sound/voice_person/room_1/8_enter_1.wav', v_p_settings, 2)
     p_e(next(g), t_settings)
     time.sleep(10) if not t_settings and v_p_settings else None
-    s_e('sound/voice_person/room_1/9_enter_2.wav', v_p_settings)
+    s_e('sound/voice_person/room_1/9_enter_2.wav', v_p_settings, 2)
     p_e(next(g), t_settings)
     time.sleep(9) if not t_settings and v_p_settings else None
-    s_e('sound/voice_person/room_1/10_enter_3.wav', v_p_settings)
+    s_e('sound/voice_person/room_1/10_enter_3.wav', v_p_settings, 2)
     p_e(next(g), t_settings)
     time.sleep(2) if not t_settings and v_p_settings else None
 
@@ -60,11 +60,11 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
     while True:
         g = set_generator(5)
         print(f'1) {next(g)}')
-        s_e('sound/voice_actions/option.wav', v_a_settings)
+        s_e('sound/voice_actions/option.wav', v_a_settings, 1)
         time.sleep(2) if v_a_settings else None
-        record = s_e('sound/voice_actions/room_1/5_look_around.wav', v_a_settings)
+        record = s_e('sound/voice_actions/room_1/5_look_around.wav', v_a_settings, 1)
         option = input('Введите цифру: ')
-        record.stop() if v_a_settings else None if v_a_settings else None
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -81,7 +81,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             print_help(v_a_settings)
             continue
         elif option == '1':
-            s_e('sound/voice_person/room_1/11_room_examined.wav', v_p_settings)
+            s_e('sound/voice_person/room_1/11_room_examined.wav', v_p_settings, 2)
             p_e(next(g), t_settings)
             time.sleep(8) if not t_settings and v_p_settings else None
             break
@@ -96,9 +96,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                   f'2) {next(g)}'
                   f'3) {next(g)}'
                   f'4) {next(g)}' + '\n')
-            s_e('sound/voice_actions/option.wav', v_a_settings)
+            s_e('sound/voice_actions/option.wav', v_a_settings, 1)
             time.sleep(2) if v_a_settings else None
-            record = s_e('sound/voice_actions/room_1/12_menu_2.wav', v_a_settings)
+            record = s_e('sound/voice_actions/room_1/12_menu_2.wav', v_a_settings, 1)
             option = input('Введите цифру: ')
             record.stop() if v_a_settings else None
         else:
@@ -107,9 +107,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                   f'2) {next(g)}'
                   f'3) {next(g)}'
                   f'4) {next(g)}' + '\n')
-            s_e('sound/voice_actions/option.wav', v_a_settings)
+            s_e('sound/voice_actions/option.wav', v_a_settings, 1)
             time.sleep(2) if v_a_settings else None
-            record = s_e('sound/voice_actions/room_1/6_menu_1.wav', v_a_settings)
+            record = s_e('sound/voice_actions/room_1/6_menu_1.wav', v_a_settings, 1)
             option = input('Введите цифру: ')
             record.stop() if v_a_settings else None
         if option == '100':
@@ -130,10 +130,10 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
         elif option == '1':
             g = set_generator(19)
             bowl_is_examined = True
-            s_e('sound/voice_person/room_1/12_bowl_examined_1.wav', v_p_settings)
+            s_e('sound/voice_person/room_1/12_bowl_examined_1.wav', v_p_settings, 2)
             p_e(next(g), t_settings)
             time.sleep(17) if not t_settings and v_p_settings else None
-            s_e('sound/voice_person/room_1/13_bowl_examined_2.wav', v_p_settings)
+            s_e('sound/voice_person/room_1/13_bowl_examined_2.wav', v_p_settings, 2)
             p_e(next(g), t_settings)
             time.sleep(6) if not t_settings and v_p_settings else None
 
@@ -143,36 +143,36 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                 print(f'1) {next(g)}'
                       f'2) {next(g)}'
                       f'3) {next(g)}' + '\n')
-                s_e('sound/voice_actions/option.wav', v_a_settings)
+                s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                 time.sleep(2) if v_a_settings else None
-                record = s_e('sound/voice_actions/room_1/7_bowl_options.wav', v_a_settings)
+                record = s_e('sound/voice_actions/room_1/7_bowl_options.wav', v_a_settings, 1)
                 option = input('Введите цифру: ')
                 record.stop() if v_a_settings else None
 
                 """смерть"""
                 if option == '1':
                         g = set_generator(27)
-                        room_1_mp3.stop() if m_settings else None
-                        s_e('sound/sound_effects/death.wav', s_settings)
+                        room_1_mp3.stop() if m_settings == 'True' else None
+                        s_e('sound/sound_effects/death.wav', s_settings, 3)
                         time.sleep(1) if s_settings else None
-                        dd_mp3.set_volume(0.5) if m_settings else None
-                        dd_mp3.play(-1) if m_settings else None
-                        s_e('sound/voice_person/room_1/14_painful_death.wav', v_p_settings)
+                        dd_mp3.set_volume(0.5) if m_settings == 'True' else None
+                        dd_mp3.play(-1) if m_settings == 'True' else None
+                        s_e('sound/voice_person/room_1/14_painful_death.wav', v_p_settings, 2)
                         p_e(next(g), t_settings)
                         time.sleep(10) if not t_settings and v_p_settings else None
-                        s_e('sound/voice_person/room_1/15_the_end.wav', v_p_settings)
+                        s_e('sound/voice_person/room_1/15_the_end.wav', v_p_settings, 2)
                         p_e(next(g), t_settings)
                         print('')
                         time.sleep(9) if not t_settings and v_p_settings else None
                         print(Fore.RED, f'{next(g)}')
                         print(Style.RESET_ALL)
                         death_menu(t_settings, v_a_settings, m_settings)
-                        room_1_mp3.play(-1) if m_settings else None
+                        room_1_mp3.play(-1) if m_settings == 'True' else None
                         determination = new_determination(t_settings, v_p_settings, v_a_settings, m_settings,
                                                           s_settings, determination, 7, '-')
                 elif option == '2':
                     g = set_generator(39)
-                    s_e('sound/voice_person/room_1/16_bowl_not_lifted.wav', v_p_settings)
+                    s_e('sound/voice_person/room_1/16_bowl_not_lifted.wav', v_p_settings, 2)
                     p_e(next(g), t_settings)
                     time.sleep(9) if not t_settings and v_p_settings else None
                     continue
@@ -202,10 +202,10 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             if chest_is_opened:
                 open_count += 1
                 g = set_generator(74)
-                s_e('sound/sound_effects/open_chest.wav', s_settings)
+                s_e('sound/sound_effects/open_chest.wav', s_settings, 3)
                 time.sleep(1.5) if s_settings else None
                 if open_count == 1:
-                    s_e('sound/voice_person/room_1/22_need_to_think.wav', v_p_settings)
+                    s_e('sound/voice_person/room_1/22_need_to_think.wav', v_p_settings, 2)
                     p_e(next(g), t_settings)
                     time.sleep(3) if not t_settings and v_p_settings else None
                 while True:
@@ -216,9 +216,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                               f'3) {next(g)}'
                               f'4) {next(g)}'
                               f'5) {next(g)}' + '\n')
-                        s_e('sound/voice_actions/option.wav', v_a_settings)
+                        s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                         time.sleep(2) if v_a_settings else None
-                        record = s_e('sound/voice_actions/room_1/17_chest_opened_no_diamond.wav', v_a_settings)
+                        record = s_e('sound/voice_actions/room_1/17_chest_opened_no_diamond.wav', v_a_settings, 1)
                     else:
                         g = set_generator(61)
                         print(f'1) {next(g)}'
@@ -227,9 +227,9 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                               f'4) {next(g)}'
                               f'5) {next(g)}'
                               f'6) {next(g)}' + '\n')
-                        s_e('sound/voice_actions/option.wav', v_a_settings)
+                        s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                         time.sleep(2) if v_a_settings else None
-                        record = s_e('sound/voice_actions/room_1/17_chest_inside.wav', v_a_settings)
+                        record = s_e('sound/voice_actions/room_1/17_chest_inside.wav', v_a_settings, 1)
                     option = input('Введите цифру: ')
                     record.stop() if v_a_settings else None
 
@@ -241,31 +241,31 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                 if twig_melted:
                                     g = set_generator(87)
                                     p_e(next(g), t_settings)
-                                    s_e('sound/voice_person/room_1/26_no_use_twig.wav', v_a_settings)
+                                    s_e('sound/voice_person/room_1/26_no_use_twig.wav', v_a_settings, 1)
                                     time.sleep(5.5) if not t_settings and v_a_settings else None
                                     break
                                 else:
                                     g = set_generator(78)
                                     print(f'1) {next(g)}'
                                           f'2) {next(g)}' + '\n')
-                                    s_e('sound/voice_actions/option.wav', v_a_settings)
+                                    s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                                     time.sleep(2) if v_a_settings else None
-                                    record = s_e('sound/voice_actions/room_1/9_twig_options.wav', v_a_settings)
+                                    record = s_e('sound/voice_actions/room_1/9_twig_options.wav', v_a_settings, 1)
                                     option = input('Введите цифру: ')
                                     record.stop() if v_a_settings else None
                                     if option == '1':
                                         g = set_generator(82)
                                         twig_melted = True
-                                        s_e('sound/voice_person/room_1/23_twig_attempt.wav', v_p_settings)
+                                        s_e('sound/voice_person/room_1/23_twig_attempt.wav', v_p_settings, 2)
                                         p_e(next(g), t_settings)
                                         time.sleep(1.5) if not t_settings and v_p_settings else None
                                         print(next(g))
-                                        s_e('sound/sound_effects/acid_hiss.wav', s_settings)
+                                        s_e('sound/sound_effects/acid_hiss.wav', s_settings, 3)
                                         time.sleep(2.5) if s_settings else None
-                                        s_e('sound/voice_person/room_1/24_twig_failure_1.wav', v_p_settings)
+                                        s_e('sound/voice_person/room_1/24_twig_failure_1.wav', v_p_settings, 2)
                                         p_e(next(g), t_settings)
                                         time.sleep(10) if not t_settings and v_p_settings else None
-                                        s_e('sound/voice_person/room_1/25_twig_failure_2.wav', v_p_settings)
+                                        s_e('sound/voice_person/room_1/25_twig_failure_2.wav', v_p_settings, 2)
                                         p_e(next(g), t_settings)
                                         time.sleep(15) if not t_settings and v_p_settings else None
                                         break
@@ -302,54 +302,54 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                             while True:
                                 g = set_generator(107)
                                 print(f'1) {next(g)}' + '\n')
-                                s_e('sound/voice_actions/option.wav', v_a_settings)
+                                s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                                 time.sleep(2) if v_a_settings else None
-                                record = s_e('sound/voice_actions/room_1/14_smash_menu.wav', v_a_settings)
+                                record = s_e('sound/voice_actions/room_1/14_smash_menu.wav', v_a_settings, 1)
                                 option = input('Введите цифру: ')
                                 record.stop() if v_a_settings else None
                                 if option == '1':
                                     g = set_generator(108)
-                                    s_e('sound/voice_person/room_1/29_lets_smash.wav', v_p_settings)
+                                    s_e('sound/voice_person/room_1/29_lets_smash.wav', v_p_settings, 2)
                                     p_e(next(g), t_settings)
                                     time.sleep(5) if not t_settings and v_p_settings else None
                                     print(next(g))
-                                    s_e('sound/sound_effects/wall_smashed.wav', s_settings)
+                                    s_e('sound/sound_effects/wall_smashed.wav', s_settings, 3)
                                     time.sleep(8) if s_settings else None
-                                    s_e('sound/voice_person/room_1/30_wall_smashed.wav', v_p_settings)
+                                    s_e('sound/voice_person/room_1/30_wall_smashed.wav', v_p_settings, 2)
                                     p_e(next(g), t_settings)
                                     time.sleep(5) if not t_settings and v_p_settings else None
                                     print(next(g))
-                                    s_e('sound/sound_effects/stones.wav', s_settings)
+                                    s_e('sound/sound_effects/stones.wav', s_settings, 3)
                                     time.sleep(1) if s_settings else None
-                                    s_e('sound/sound_effects/giant_stone.wav', s_settings)
+                                    s_e('sound/sound_effects/giant_stone.wav', s_settings, 3)
                                     time.sleep(7) if s_settings else None
-                                    s_e('sound/voice_person/room_1/30_something_wrong.wav', v_p_settings)
+                                    s_e('sound/voice_person/room_1/30_something_wrong.wav', v_p_settings, 2)
                                     p_e(next(g), t_settings)
                                     time.sleep(4) if not t_settings and v_p_settings else None
 
                                     """обвал"""
                                     next(g)
                                     print(next(g))
-                                    room_1_mp3.stop() if m_settings else None
-                                    dd_mp3.set_volume(0.2) if m_settings else None
-                                    dd_mp3.play(-1) if m_settings else None
-                                    s_e('sound/voice_person/room_1/31_trapped_1.wav', v_p_settings)
+                                    room_1_mp3.stop() if m_settings == 'True' else None
+                                    dd_mp3.set_volume(0.2) if m_settings == 'True' else None
+                                    dd_mp3.play(-1) if m_settings == 'True' else None
+                                    s_e('sound/voice_person/room_1/31_trapped_1.wav', v_p_settings, 2)
                                     p_e(next(g), t_settings)
                                     time.sleep(4) if not t_settings and v_p_settings else None
                                     determination = new_determination(t_settings, v_p_settings, v_a_settings,
                                                                       m_settings,
                                                                       s_settings, determination, 10, '-')
-                                    s_e('sound/voice_person/room_1/32_trapped_2.wav', v_p_settings)
+                                    s_e('sound/voice_person/room_1/32_trapped_2.wav', v_p_settings, 2)
                                     p_e(next(g), t_settings)
                                     time.sleep(12) if not t_settings and v_p_settings else None
-                                    s_e('sound/voice_person/room_1/33_trapped_3.wav', v_p_settings)
+                                    s_e('sound/voice_person/room_1/33_trapped_3.wav', v_p_settings, 2)
                                     p_e(next(g), t_settings)
                                     time.sleep(6) if not t_settings and v_p_settings else None
                                     next(g)
                                     print(next(g))
-                                    dd_mp3.stop() if m_settings else None
-                                    room_1_mp3.play(-1) if m_settings else None
-                                    s_e('sound/voice_person/room_1/34_decision.wav', v_p_settings)
+                                    dd_mp3.stop() if m_settings == 'True' else None
+                                    room_1_mp3.play(-1) if m_settings == 'True' else None
+                                    s_e('sound/voice_person/room_1/34_decision.wav', v_p_settings, 2)
                                     p_e(next(g), t_settings)
                                     time.sleep(16) if not t_settings and v_p_settings else None
 
@@ -358,13 +358,13 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                         g = set_generator(122)
                                         print(f'1) {next(g)}'
                                               f'2) {next(g)}')
-                                        s_e('sound/voice_actions/option.wav', v_a_settings)
+                                        s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                                         time.sleep(2) if v_a_settings else None
-                                        record = s_e('sound/voice_actions/room_1/16_final_menu.wav', v_a_settings)
+                                        record = s_e('sound/voice_actions/room_1/16_final_menu.wav', v_a_settings, 1)
                                         option = input('Введите цифру: ')
                                         record.stop() if v_a_settings else None
                                         if option == '1':
-                                            s_e('sound/sound_effects/open_chest.wav', s_settings)
+                                            s_e('sound/sound_effects/open_chest.wav', s_settings, 3)
                                             time.sleep(1.5) if s_settings else None
                                             while True:
                                                 g = set_generator(127)
@@ -372,10 +372,10 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                     print(f'1) {next(g)}'
                                                           f'2) {next(g)}'
                                                           f'3) {next(g)}')
-                                                    s_e('sound/voice_actions/option.wav', v_a_settings)
+                                                    s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                                                     time.sleep(2) if v_a_settings else None
                                                     record = s_e('sound/voice_actions/room_1/18_fm_2.wav',
-                                                                 v_a_settings)
+                                                                 v_a_settings, 1)
                                                     option = input('Введите цифру: ')
                                                     record.stop() if v_a_settings else None
                                                     if option == '1':
@@ -387,12 +387,12 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                         else:
                                                             g = set_generator(93)
                                                             s_e('sound/voice_person/room_1/27_no_glass.wav',
-                                                                v_p_settings)
+                                                                v_p_settings, 2)
                                                             p_e(next(g), t_settings)
                                                             time.sleep(6) if not t_settings and v_p_settings else None
                                                         continue
                                                     elif option == '3':
-                                                        s_e('sound/sound_effects/close_chest.wav', s_settings)
+                                                        s_e('sound/sound_effects/close_chest.wav', s_settings, 3)
                                                         time.sleep(1.5) if s_settings else None
                                                         break
                                                     elif option == '100':
@@ -419,10 +419,10 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                           f'2) {next(g)}'
                                                           f'3) {next(g)}'
                                                           f'4) {next(g)}')
-                                                    s_e('sound/voice_actions/option.wav', v_a_settings)
+                                                    s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                                                     time.sleep(2) if v_a_settings else None
                                                     record = s_e('sound/voice_actions/room_1/19_fm_3.wav',
-                                                                 v_a_settings)
+                                                                 v_a_settings, 1)
                                                     option = input('Введите цифру: ')
                                                     record.stop() if v_a_settings else None
                                                     if option == '1':
@@ -434,7 +434,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                         else:
                                                             g = set_generator(93)
                                                             s_e('sound/voice_person/room_1/27_no_glass.wav',
-                                                                v_p_settings)
+                                                                v_p_settings, 2)
                                                             p_e(next(g), t_settings)
                                                             time.sleep(6) if not t_settings and v_p_settings else None
                                                         continue
@@ -442,12 +442,12 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                                         g = set_generator(98)
                                                         diamond_is_taken = True
                                                         s_e('sound/voice_person/room_1/28_took_diamond.wav',
-                                                            v_p_settings)
+                                                            v_p_settings, 2)
                                                         p_e(next(g), t_settings)
                                                         time.sleep(16) if not t_settings and v_p_settings else None
                                                         continue
                                                     elif option == '4':
-                                                        s_e('sound/sound_effects/close_chest.wav', s_settings)
+                                                        s_e('sound/sound_effects/close_chest.wav', s_settings, 3)
                                                         time.sleep(1.5) if s_settings else None
                                                         break
                                                     elif option == '100':
@@ -472,16 +472,16 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                         elif option == '2':
                                             if diamond_is_taken:
                                                 g = set_generator(139)
-                                                s_e('sound/voice_person/room_1/36_last_hope.wav', v_p_settings)
+                                                s_e('sound/voice_person/room_1/36_last_hope.wav', v_p_settings, 2)
                                                 p_e(next(g), t_settings)
                                                 time.sleep(4) if not t_settings and v_p_settings else None
                                                 print(next(g))
-                                                room_1_mp3.fadeout(2) if m_settings else None
-                                                time.sleep(2) if m_settings else None
+                                                room_1_mp3.fadeout(2) if m_settings == 'True' else None
+                                                time.sleep(2) if m_settings == 'True' else None
                                                 return determination
                                             else:
                                                 g = set_generator(137)
-                                                s_e('sound/voice_person/room_1/35_need_diamond.wav', v_p_settings)
+                                                s_e('sound/voice_person/room_1/35_need_diamond.wav', v_p_settings, 2)
                                                 p_e(next(g), t_settings)
                                                 time.sleep(6.5) if not t_settings and v_p_settings else None
                                                 continue
@@ -499,20 +499,20 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                 break
                             else:
                                 g = set_generator(93)
-                                s_e('sound/voice_person/room_1/27_no_glass.wav', v_p_settings)
+                                s_e('sound/voice_person/room_1/27_no_glass.wav', v_p_settings, 2)
                                 p_e(next(g), t_settings)
                                 time.sleep(6) if not t_settings and v_p_settings else None
                                 continue
                         else:
                             g = set_generator(98)
                             diamond_is_taken = True
-                            s_e('sound/voice_person/room_1/28_took_diamond.wav', v_p_settings)
+                            s_e('sound/voice_person/room_1/28_took_diamond.wav', v_p_settings, 2)
                             p_e(next(g), t_settings)
                             time.sleep(16) if not t_settings and v_p_settings else None
                             continue
                     elif option == '5':
                         if diamond_is_taken:
-                            s_e('sound/sound_effects/close_chest.wav', s_settings)
+                            s_e('sound/sound_effects/close_chest.wav', s_settings, 3)
                             time.sleep(1.5) if s_settings else None
                             break
                         else:
@@ -522,7 +522,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                                 break
                             else:
                                 g = set_generator(93)
-                                s_e('sound/voice_person/room_1/27_no_glass.wav', v_p_settings)
+                                s_e('sound/voice_person/room_1/27_no_glass.wav', v_p_settings, 2)
                                 p_e(next(g), t_settings)
                                 time.sleep(6) if not t_settings and v_p_settings else None
                                 continue
@@ -531,7 +531,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                             print(w(t_settings, v_a_settings))
                             continue
                         else:
-                            s_e('sound/sound_effects/close_chest.wav', s_settings)
+                            s_e('sound/sound_effects/close_chest.wav', s_settings, 3)
                             time.sleep(1.5) if s_settings else None
                             break
                     elif option == '100':
@@ -560,7 +560,7 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                 else:
                     g = set_generator(42)
                     chest_is_examined = True
-                    s_e('sound/voice_person/room_1/17_chest_examined.wav', v_p_settings)
+                    s_e('sound/voice_person/room_1/17_chest_examined.wav', v_p_settings, 2)
                     p_e(next(g), t_settings)
                     time.sleep(11) if not t_settings and v_p_settings else None
         elif option == '3':
@@ -571,14 +571,14 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
             else:
                 g = set_generator(45)
                 stonewall_is_examined = True
-                s_e('sound/voice_person/room_1/18_stonewall_examined.wav', v_p_settings)
+                s_e('sound/voice_person/room_1/18_stonewall_examined.wav', v_p_settings, 2)
                 p_e(next(g), t_settings)
                 time.sleep(12.5) if not t_settings and v_p_settings else None
                 continue
         elif option == '4':
             if stone_moved:
                 g = set_generator(100)
-                s_e('sound/voice_person/no_use_2.wav', v_p_settings)
+                s_e('sound/voice_person/no_use_2.wav', v_p_settings, 2)
                 p_e(next(g), t_settings)
                 time.sleep(2.5) if not t_settings and v_p_settings else None
                 continue
@@ -586,45 +586,45 @@ def room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings):
                 """двигаем камень"""
                 g = set_generator(48)
                 stone_moved = True
-                s_e('sound/voice_person/room_1/19_stone_examined.wav', v_p_settings)
+                s_e('sound/voice_person/room_1/19_stone_examined.wav', v_p_settings, 2)
                 p_e(next(g), t_settings)
                 time.sleep(6.5) if not t_settings and v_p_settings else None
                 while True:
                     g = set_generator(50)
                     print(f'1) {next(g)}'
                           f'2) {next(g)}' + '\n')
-                    s_e('sound/voice_actions/option.wav', v_a_settings)
+                    s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                     time.sleep(2) if v_a_settings else None
-                    record = s_e('sound/voice_actions/room_1/13_stone_menu.wav', v_a_settings)
+                    record = s_e('sound/voice_actions/room_1/13_stone_menu.wav', v_a_settings, 1)
                     option = input('Введите цифру: ')
                     record.stop() if v_a_settings else None
                     if option == '1':
                         g = set_generator(54)
-                        s_e('sound/sound_effects/move_stone.wav', s_settings)
+                        s_e('sound/sound_effects/move_stone.wav', s_settings, 3)
                         time.sleep(6.5) if s_settings else None
                         if chest_is_examined:
-                            s_e('sound/voice_person/room_1/20_key_found.wav', v_p_settings)
+                            s_e('sound/voice_person/room_1/20_key_found.wav', v_p_settings, 2)
                             p_e(next(g), t_settings)
                             time.sleep(3) if not t_settings and v_p_settings else None
                         else:
                             chest_is_examined = True
                             g = set_generator(56)
-                            s_e('sound/voice_person/room_1/57_unexpected_key.wav', v_p_settings)
+                            s_e('sound/voice_person/room_1/57_unexpected_key.wav', v_p_settings, 2)
                             p_e(next(g), t_settings)
                             time.sleep(5.5) if not t_settings and v_p_settings else None
                         while True:
                             g = set_generator(58)
                             print(f'1) {next(g)}' + '\n')
-                            s_e('sound/voice_actions/option.wav', v_a_settings)
+                            s_e('sound/voice_actions/option.wav', v_a_settings, 1)
                             time.sleep(2) if v_a_settings else None
-                            record = s_e('sound/voice_actions/room_1/17_open_chest_menu.wav', v_a_settings)
+                            record = s_e('sound/voice_actions/room_1/17_open_chest_menu.wav', v_a_settings, 1)
                             option = input('Введите цифру: ')
                             record.stop() if v_a_settings else None
                             if option == '1':
                                 g = set_generator(59)
-                                s_e('sound/sound_effects/key.wav', s_settings)
+                                s_e('sound/sound_effects/key.wav', s_settings, 3)
                                 time.sleep(2) if s_settings else None
-                                s_e('sound/voice_person/room_1/21_chest_opened.wav', v_p_settings)
+                                s_e('sound/voice_person/room_1/21_chest_opened.wav', v_p_settings, 2)
                                 p_e(next(g), t_settings)
                                 time.sleep(6.5) if not t_settings and v_p_settings else None
                                 chest_is_opened = True

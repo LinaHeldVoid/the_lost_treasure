@@ -1,6 +1,6 @@
 from web_game.wed_game import run_game_web
 from console_game.console_game import run_game_console
-from pprint import pprint
+
 
 def wrong_input():
     message = 'Извините, ваш ответ не распознан. Попробуйте ещё раз!'
@@ -47,7 +47,7 @@ def settings_input():
         if text_option == '1':
             break
         elif text_option == '2':
-            text_settings = False
+            text_settings = ''
             break
         else:
             print(wrong_input())
@@ -65,15 +65,15 @@ def settings_input():
         if record_choice == '1':
             break
         elif record_choice == '2':
-            voice_action_settings = False
+            voice_action_settings = ''
             break
         elif record_choice == '3':
-            voice_action_settings = False
-            voice_person_settings = False
+            voice_action_settings = ''
+            voice_person_settings = ''
             break
         elif record_choice == '4':
             voice_action_settings = True
-            voice_person_settings = False
+            voice_person_settings = ''
             break
         else:
             wrong_input()
@@ -90,23 +90,23 @@ def settings_input():
         if sound_choice == '1':
             break
         elif sound_choice == '2':
-            sound_settings = False
+            sound_settings = ''
             break
         elif sound_choice == '3':
-            music_settings = False
+            music_settings = ''
             break
         elif sound_choice == '4':
-            sound_settings = False
-            music_settings = False
+            sound_settings = ''
+            music_settings = ''
             break
         else:
             wrong_input()
             continue
 
     # записываем параметры запуска в файл
-    console = False
+    console = ''
     if game_choice == '1':
-        console = 'True\n'
+        console = True
     settings['console'] = console
     settings['text_settings'] = text_settings
     settings['voice_action_settings'] = voice_action_settings
@@ -116,7 +116,7 @@ def settings_input():
 
     with open('game_logs/settings_log.txt', 'w', encoding='utf-8') as file:
         for key, value in settings.items():
-            file.write(f'{key}: {value}\n')
+            file.write(f"{key}: {value}" + '\n')
 
     return settings
 
@@ -144,8 +144,15 @@ def check_settings():
         music_settings = settings['music_settings']
         sound_settings = settings['sound_settings']
 
+        # убираем служебные символы
+        for key in settings.keys():
+            par = str(settings[key])
+            new_par = par[:-1]
+            settings[key] = new_par
+
         # готовим данные к печати
-        if console_mode == 'True\n':
+        print(console_mode)
+        if console_mode:
             mode = 'консоль'
         else:
             mode = 'отдельное окно'
@@ -153,19 +160,19 @@ def check_settings():
             text = 'включена'
         else:
             text = 'выключена'
-        if voice_action_settings == 'True\n':
+        if voice_action_settings == 1:
             voice_action = 'включено'
         else:
             voice_action = 'выключено'
-        if voice_person_settings == 'True\n':
+        if voice_person_settings == 1:
             voice_person = 'включено'
         else:
             voice_person = 'выключено'
-        if music_settings == 'True\n':
+        if music_settings == 1:
             music = 'включена'
         else:
             music = 'выключена'
-        if sound_settings == 'True\n':
+        if sound_settings == 1:
             sound = 'включены'
         else:
             sound = 'выключены'
@@ -203,6 +210,7 @@ def run():
 
     # достаём данные из словаря
     settings = check_settings()
+
     console_mode = settings['console']
     text_settings = settings['text_settings']
     voice_action_settings = settings['voice_action_settings']
@@ -211,7 +219,7 @@ def run():
     sound_settings = settings['sound_settings']
 
     while True:
-        if console_mode == 'True\n':
+        if console_mode:
             run_game_console(text_settings, voice_action_settings,
                              voice_person_settings, music_settings, sound_settings)
             return

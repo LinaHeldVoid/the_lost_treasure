@@ -16,8 +16,8 @@ def run_game_console(t_settings, v_a_settings, v_p_settings, m_settings, s_setti
     print('')
     print_help(v_a_settings)
     input('Нажмите Enter, чтобы продолжить: ')
-    room_1_mp3.set_volume(0.2) if m_settings else None
-    room_1_mp3.play(-1) if m_settings else None
+    room_1_mp3.set_volume(0.2) if m_settings == 'True' else None
+    room_1_mp3.play(-1) if m_settings == 'True' else None
     start_game(t_settings, v_a_settings, v_p_settings)
     points_1 = room_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings)
     # points_1 = 50

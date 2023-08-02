@@ -41,12 +41,12 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
     if determination <= 5:
 
         # смерть от потери решимости
-        pygame.mixer.stop() if m_settings else None
+        pygame.mixer.stop() if m_settings == 'True' else None
         random_death(t_settings, v_p_settings)
         s_e('sound/sound_effects/death.wav', s_settings)
         time.sleep(1) if s_settings else None
-        dd_mp3.set_volume(0.2) if m_settings else None
-        dd_mp3.play(-1) if m_settings else None
+        dd_mp3.set_volume(0.2) if m_settings == 'True' else None
+        dd_mp3.play(-1) if m_settings == 'True' else None
         g = set_generator_dnd(34)
         s_e('sound/voice_person/d&d/34.wav', v_p_settings)
         p_e(next(g), t_settings)
@@ -57,8 +57,8 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
         time.sleep(7) if not t_settings and v_p_settings else None
         g = set_generator_dnd(0)
         print(Fore.RED, f'{next(g)}')
-        dd_mp3.fadeout(3) if m_settings else None
-        time.sleep(3) if m_settings else None
+        dd_mp3.fadeout(3) if m_settings == 'True' else None
+        time.sleep(3) if m_settings == 'True' else None
         exit()
     else:
         # выходим из пещеры
@@ -189,17 +189,17 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 time.sleep(1) if s_settings else None
                 s_e('sound/sound_effects/giant_stone.wav', s_settings)
                 time.sleep(7) if s_settings else None
-                pygame.mixer.stop() if m_settings else None
+                pygame.mixer.stop() if m_settings == 'True' else None
                 s_e('sound/sound_effects/death.wav', s_settings)
                 time.sleep(1) if s_settings else None
-                dd_mp3.set_volume(0.2) if m_settings else None
-                dd_mp3.play(-1) if m_settings else None
+                dd_mp3.set_volume(0.2) if m_settings == 'True' else None
+                dd_mp3.play(-1) if m_settings == 'True' else None
                 p_e(next(g), t_settings)
                 p_e(next(g), t_settings)
                 print('')
                 death_menu(t_settings, v_a_settings, m_settings)
                 room_1_2.set_volume(0.2)
-                room_1_2.play(-1) if m_settings else None
+                room_1_2.play(-1) if m_settings == 'True' else None
                 determination = new_determination(t_settings, v_p_settings,
                                                   v_a_settings, m_settings,
                                                   s_settings, determination, 7, '-')
@@ -246,8 +246,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     p_e(next(g), t_settings)
     print('')
     if ending == 1:
-        best_final.set_volume(0.2) if m_settings else None
-        best_final.play(-1) if m_settings else None
+        best_final.set_volume(0.2) if m_settings == 'True' else None
+        best_final.play(-1) if m_settings == 'True' else None
         g = set_generator_epilogue(3)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -256,8 +256,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         print('')
         p_e(next(g), t_settings)
     elif ending == 2:
-        neutral_1_final.set_volume(0.2) if m_settings else None
-        neutral_1_final.play(-1) if m_settings else None
+        neutral_1_final.set_volume(0.2) if m_settings == 'True' else None
+        neutral_1_final.play(-1) if m_settings == 'True' else None
         g = set_generator_epilogue(10)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -271,8 +271,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         print('')
         p_e(next(g), t_settings)
     elif ending == 3:
-        neutral_2_final.set_volume(0.2) if m_settings else None
-        neutral_2_final.play(-1) if m_settings else None
+        neutral_2_final.set_volume(0.2) if m_settings == 'True' else None
+        neutral_2_final.play(-1) if m_settings == 'True' else None
         g = set_generator_epilogue(21)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -286,8 +286,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
     elif ending == 4:
-        neutral_2_final.set_volume(0.2) if m_settings else None
-        neutral_2_final.play(-1) if m_settings else None
+        neutral_2_final.set_volume(0.2) if m_settings == 'True' else None
+        neutral_2_final.play(-1) if m_settings == 'True' else None
         g = set_generator_epilogue(32)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -303,8 +303,8 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
     else:
-        worst_final.set_volume(0.2) if m_settings else None
-        worst_final.play(-1) if m_settings else None
+        worst_final.set_volume(0.2) if m_settings == 'True' else None
+        worst_final.play(-1) if m_settings == 'True' else None
         g = set_generator_epilogue(44)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -354,5 +354,5 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
     input('Нажмите Enter, чтобы завершить игру: ')
     print('')
     p_e(next(g), t_settings)
-    pygame.mixer.fadeout(3) if m_settings else None
-    time.sleep(3) if m_settings else None
+    pygame.mixer.fadeout(3) if m_settings == 'True' else None
+    time.sleep(3) if m_settings == 'True' else None

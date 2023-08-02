@@ -327,8 +327,8 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
     flint_count = 0
 
     """алгоритм"""
-    room_1_2.set_volume(0.2) if m_settings else None
-    room_1_2.play(-1) if m_settings else None
+    room_1_2.set_volume(0.2) if m_settings == 'True' else None
+    room_1_2.play(-1) if m_settings == 'True' else None
     g = set_generator(0)
     print(next(g))
     next(g)
@@ -617,13 +617,13 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 break_out_flag = True
                                 p_e(next(g), t_settings)
                                 p_e(next(g), t_settings)
-                                room_1_2.fadeout(2) if m_settings else None
-                                time.sleep(2) if m_settings else None
+                                room_1_2.fadeout(2) if m_settings == 'True' else None
+                                time.sleep(2) if m_settings == 'True' else None
                                 final_report = poison_effect(t_settings, v_a_settings, v_p_settings,
                                                              m_settings, s_settings, determination)
                                 determination = final_report['determination']
-                                room_1_2.set_volume(0.2) if m_settings else None
-                                room_1_2.play(-1) if m_settings else None
+                                room_1_2.set_volume(0.2) if m_settings == 'True' else None
+                                room_1_2.play(-1) if m_settings == 'True' else None
                                 g = set_generator(225)
                                 p_e(next(g), t_settings)
                                 continue
@@ -631,17 +631,17 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
 
                                 # смерть от кислоты
                                 g = set_generator(116)
-                                room_1_2.stop() if m_settings else None
+                                room_1_2.stop() if m_settings == 'True' else None
                                 s_e('sound/sound_effects/death.wav', s_settings)
                                 time.sleep(1) if s_settings else None
-                                dd_mp3.set_volume(0.2) if m_settings else None
-                                dd_mp3.play(-1) if m_settings else None
+                                dd_mp3.set_volume(0.2) if m_settings == 'True' else None
+                                dd_mp3.play(-1) if m_settings == 'True' else None
                                 p_e(next(g), t_settings)
                                 p_e(next(g), t_settings)
                                 print('')
                                 death_menu(t_settings, v_a_settings, m_settings)
                                 room_1_2.set_volume(0.2)
-                                room_1_2.play(-1) if m_settings else None
+                                room_1_2.play(-1) if m_settings == 'True' else None
                                 determination = new_determination(t_settings, v_p_settings,
                                                                   v_a_settings, m_settings,
                                                                   s_settings, determination, 7, '-')
@@ -687,16 +687,16 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                 g = set_generator(149)
                                 p_e(next(g), t_settings)
                                 print(next(g))
-                                room_1_2.stop() if m_settings else None
+                                room_1_2.stop() if m_settings == 'True' else None
                                 s_e('sound/sound_effects/death.wav', s_settings)
                                 time.sleep(1) if s_settings else None
-                                dd_mp3.set_volume(0.2) if m_settings else None
-                                dd_mp3.play(-1) if m_settings else None
+                                dd_mp3.set_volume(0.2) if m_settings == 'True' else None
+                                dd_mp3.play(-1) if m_settings == 'True' else None
                                 p_e(next(g), t_settings)
                                 p_e(next(g), t_settings)
                                 death_menu(t_settings, v_a_settings, m_settings)
                                 room_1_2.set_volume(0.2)
-                                room_1_2.play(-1) if m_settings else None
+                                room_1_2.play(-1) if m_settings == 'True' else None
                                 determination = new_determination(t_settings, v_p_settings,
                                                                   v_a_settings, m_settings,
                                                                   s_settings, determination, 7, '-')
