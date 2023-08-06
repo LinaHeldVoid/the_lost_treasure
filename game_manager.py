@@ -29,15 +29,15 @@ def settings_input():
 
     """выбираем параметры запуска"""
     # скорость печати текста
-    text_settings = True
+    text_settings = 1
     # озвучка технического текста
-    voice_action_settings = True
+    voice_action_settings = 1
     # озвучка реплик и слов от автора
-    voice_person_settings = True
+    voice_person_settings = 1
     # музыка
-    music_settings = True
+    music_settings = 1
     # звуки
-    sound_settings = True
+    sound_settings = 1
 
     # текст
     while True:
@@ -74,7 +74,7 @@ def settings_input():
             voice_person_settings = 0
             break
         elif record_choice == '4':
-            voice_action_settings = True
+            voice_action_settings = 1
             voice_person_settings = 0
             break
         else:
@@ -108,7 +108,7 @@ def settings_input():
     # записываем параметры запуска в файл
     console = 0
     if game_choice == '1':
-        console = True
+        console = 1
     settings['console'] = console
     settings['text_settings'] = text_settings
     settings['voice_action_settings'] = voice_action_settings
@@ -215,14 +215,13 @@ def run():
     # достаём данные из словаря
     settings = check_settings()
 
-    pprint(settings)
+    console_mode = bool(int(settings['console']))
+    text_settings = bool(int(settings['text_settings']))
+    voice_action_settings = bool(int(settings['voice_action_settings']))
+    voice_person_settings = bool(int(settings['voice_person_settings']))
+    music_settings = bool(int(settings['music_settings']))
+    sound_settings = bool(int(settings['sound_settings']))
 
-    console_mode = bool(settings['console'])
-    text_settings = bool(settings['text_settings'])
-    voice_action_settings = bool(settings['voice_action_settings'])
-    voice_person_settings = bool(settings['voice_person_settings'])
-    music_settings = bool(settings['music_settings'])
-    sound_settings = bool(settings['sound_settings'])
 
     while True:
         if console_mode:
