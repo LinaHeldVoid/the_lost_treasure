@@ -1,7 +1,5 @@
 import time
 import random
-import pygame.mixer
-from colorama import Fore, Style
 
 from sound_manager import sight_1, sight_2, sight_3
 from scenario_generator import generate_base
@@ -166,7 +164,7 @@ def magic_fail(t_settings):
     g = set_generator(127)
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
-    time.sleep(1)
+
     return
 
 
@@ -175,7 +173,7 @@ def non_magic_fail(t_settings):
     g = set_generator(177)
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
-    time.sleep(1)
+
     return
 
 
@@ -184,9 +182,9 @@ def abyss_fail(t_settings):
     g = set_generator(235)
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
-    time.sleep(1)
+
     p_e(next(g), t_settings)
-    time.sleep(1)
+
     return
 
 
@@ -196,67 +194,49 @@ def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     sight_1.play(-1) if m_settings == 'True' else None
 
     report = {}
-
     g = set_generator(0)
     print(next(g))
     next(g)
     print('')
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     next(g)
     print('')
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    next(g)
-    time.sleep(1)
-    print('')
-    p_e(next(g), t_settings)
-    time.sleep(1)
-    p_e(next(g), t_settings)
-    time.sleep(1)
     next(g)
     print('')
     p_e(next(g), t_settings)
-    time.sleep(1)
-    next(g)
-    print('')
     p_e(next(g), t_settings)
-    time.sleep(1)
-    p_e(next(g), t_settings)
-    time.sleep(1)
-    print('')
-    next(g)
-    p_e(next(g), t_settings)
-    time.sleep(1)
-    next(g)
-    print('')
-    p_e(next(g), t_settings)
-    time.sleep(1)
-    next(g)
-    print('')
-    p_e(next(g), t_settings)
-    time.sleep(1)
-    p_e(next(g), t_settings)
-    time.sleep(1)
     next(g)
     print('')
     p_e(next(g), t_settings)
     next(g)
     print('')
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
-    p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     next(g)
     p_e(next(g), t_settings)
-    time.sleep(1)
+    next(g)
+    print('')
+    p_e(next(g), t_settings)
+    next(g)
+    print('')
+    p_e(next(g), t_settings)
+    p_e(next(g), t_settings)
+    next(g)
+    print('')
+    p_e(next(g), t_settings)
+    next(g)
+    print('')
+    p_e(next(g), t_settings)
+    p_e(next(g), t_settings)
+    p_e(next(g), t_settings)
+    print('')
+    next(g)
+    p_e(next(g), t_settings)
+
     while True:
         g = set_generator(31)
         print(f'1) {next(g)}'
@@ -289,16 +269,13 @@ def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             g = set_generator(42)
             p_e(next(g), t_settings)
             next(g)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
+
         else:
             g = set_generator(49)
             p_e(next(g), t_settings)
             p_e(next(g), t_settings)
-            time.sleep(1)
 
         new_number = new_determination(t_settings, v_p_settings, v_a_settings, m_settings, s_settings,
                                        determination, dice_result['bonus'], dice_result['operation'])
@@ -324,28 +301,21 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     next(g)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     next(g)
     p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     while True:
         if break_point:
             break
-
         g = set_generator(74)
         print(f'1) {next(g)}'
               f'2) {next(g)}' 
@@ -371,19 +341,15 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
         elif option == '1':
             g = set_generator(79)
             p_e(next(g), t_settings)
-            time.sleep(1)
             next(g)
             p_e(next(g), t_settings)
-            time.sleep(1)
             next(g)
             p_e(next(g), t_settings)
             p_e(next(g), t_settings)
-            time.sleep(1)
             print('')
             while True:
                 if break_point:
                     break
-
                 g = set_generator(89)
                 print(f'1) {next(g)}'
                       f'2) {next(g)}'
@@ -417,7 +383,6 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
-                        time.sleep(1)
 
                     # провал
                     else:
@@ -436,7 +401,6 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
-                        time.sleep(1)
 
                     # провал
                     else:
@@ -454,9 +418,8 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
                         p_e(next(g), t_settings)
-                        time.sleep(1)
+
                         p_e(next(g), t_settings)
-                        time.sleep(1)
 
                     # провал
                     else:
@@ -472,21 +435,18 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             break_point = True
             g = set_generator(137)
             p_e(next(g), t_settings)
-            time.sleep(1)
             next(g)
             p_e(next(g), t_settings)
-            time.sleep(1)
             dice_result = check_probability(2, determination, 2)
 
             # успех
             if dice_result['operation'] == '+':
                 g = set_generator(148)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
                 p_e(next(g), t_settings)
-                time.sleep(1)
 
             # провал
             else:
@@ -498,17 +458,14 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
             break_point = True
             g = set_generator(163)
             p_e(next(g), t_settings)
-            time.sleep(1)
             next(g)
             p_e(next(g), t_settings)
-            time.sleep(1)
             dice_result = check_probability(2, determination, 3)
 
             # успех
             if dice_result['operation'] == '+':
                 g = set_generator(174)
                 p_e(next(g), t_settings)
-                time.sleep(1)
 
             # провал
             else:
@@ -539,36 +496,26 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
     g = set_generator(187)
     print(next(g))
-    time.sleep(1)
     next(g)
     p_e(next(g), t_settings)
-    time.sleep(1)
     next(g)
     print('')
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     p_e(next(g), t_settings)
-    time.sleep(1)
     print('')
     p_e(next(g), t_settings)
-    time.sleep(1)
-    print(next(g))
-    print(next(g))
-    time.sleep(1)
-    print(next(g))
-    time.sleep(1)
-    print(next(g))
-    time.sleep(1)
+    p_e(next(g), t_settings)
+    p_e(next(g), t_settings)
+    p_e(next(g), t_settings)
+    p_e(next(g), t_settings)
     next(g)
-    print(next(g))
-    time.sleep(1)
+    print('')
+    p_e(next(g), t_settings)
+
     print('')
 
     while True:
@@ -600,37 +547,33 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
         elif option == '1':
             break_point = True
             dice_result = check_probability(3, determination, 1)
-
             g = set_generator(216)
             p_e(next(g), t_settings)
-            time.sleep(1)
             next(g)
             p_e(next(g), t_settings)
-            time.sleep(1)
             p_e(next(g), t_settings)
-            time.sleep(1)
 
             # успех
             if dice_result['operation'] == '+':
                 g = set_generator(223)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
             # провал
             else:
                 g = set_generator(231)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 abyss_fail(t_settings)
             continue
@@ -642,37 +585,35 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
             g = set_generator(251)
             p_e(next(g), t_settings)
-            time.sleep(1)
+
             next(g)
             p_e(next(g), t_settings)
-            time.sleep(1)
 
             # успех
             if dice_result['operation'] == '+':
                 g = set_generator(256)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
 
             # провал
             else:
                 g = set_generator(265)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 abyss_fail(t_settings)
             continue
 
@@ -683,30 +624,25 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
 
             g = set_generator(285)
             p_e(next(g), t_settings)
-            time.sleep(1)
 
             # успех
             if dice_result['operation'] == '+':
                 g = set_generator(288)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 p_e(next(g), t_settings)
-                time.sleep(1)
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
 
             # провал
             else:
                 g = set_generator(298)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 next(g)
                 p_e(next(g), t_settings)
-                time.sleep(1)
+
                 abyss_fail(t_settings)
             continue
         else:

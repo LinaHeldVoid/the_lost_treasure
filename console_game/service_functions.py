@@ -122,7 +122,7 @@ def print_effect(text, t_settings):
 # управление запуском звука
 def sound_effect(sound_path, settings, category):
     try:
-        if settings == 'True':
+        if settings:
             record = pygame.mixer.Sound(sound_path)
             record.play()
             return record

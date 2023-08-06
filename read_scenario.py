@@ -54,4 +54,4 @@ with open('../text/9_sights.txt', 'r', encoding='utf-8') as text:
         sights[index] = line
 
 
-pprint(room_2)
+pprint(room_1_again)
