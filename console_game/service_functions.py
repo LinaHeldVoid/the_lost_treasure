@@ -159,20 +159,16 @@ def sound_bug_report(category, path):
         error = 'отсутствует файл звукового эффекта'
 
     # записываем отчёт в файл
-    try:
-        bug_report = open('game_logs/bug_log.txt', 'a', encoding='utf-8')
-    except FileNotFoundError:
-        bug_report = open('game_logs/bug_log.txt', 'w', encoding='utf-8')
-    bug_report.write(f'Дата: {current_date}' + '\n')
-    bug_report.write(f'Время: {current_time}' + '\n')
-    bug_report.write(f'Коммит: {version}' + '\n')
-    bug_report.write(f'Описание ошибки: {error}' + '\n')
-    bug_report.write(f'Адрес файла на устройстве: {path}' + '\n')
-    bug_report.write('\n')
-    bug_report.write('\n')
-    bug_report.close()
-    print(Fore.CYAN, f'Ошибка воспроизведения: {error}' + '\n')
-    print(Style.RESET_ALL)
+    with open('game_logs/bug_log.txt', 'a', encoding='utf-8') as bug_report:
+        bug_report.write(f'Дата: {current_date}' + '\n')
+        bug_report.write(f'Время: {current_time}' + '\n')
+        bug_report.write(f'Коммит: {version}' + '\n')
+        bug_report.write(f'Описание ошибки: {error}' + '\n')
+        bug_report.write(f'Адрес файла на устройстве: {path}' + '\n')
+        bug_report.write('\n')
+        bug_report.write('\n')
+        print(Fore.CYAN, f'Ошибка воспроизведения: {error}' + '\n')
+        print(Style.RESET_ALL)
     return
 
 

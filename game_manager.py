@@ -139,35 +139,35 @@ def check_settings():
                 settings.update({key: value})
 
         # достаём данные из словаря
-        console_mode = settings['console']
-        text_settings = settings['text_settings']
-        voice_action_settings = settings['voice_action_settings']
-        voice_person_settings = settings['voice_person_settings']
-        music_settings = settings['music_settings']
-        sound_settings = settings['sound_settings']
+        console_mode = int(settings['console'])
+        text_settings = int(settings['text_settings'])
+        voice_action_settings = int(settings['voice_action_settings'])
+        voice_person_settings = int(settings['voice_person_settings'])
+        music_settings = int(settings['music_settings'])
+        sound_settings = int(settings['sound_settings'])
 
         # готовим данные к печати
-        if console_mode == 'True\n':
+        if console_mode == 1:
             mode = 'консоль'
         else:
             mode = 'отдельное окно'
-        if text_settings == 1:
+        if text_settings:
             text = 'включена'
         else:
             text = 'выключена'
-        if voice_action_settings == 'True\n':
+        if voice_action_settings == 1:
             voice_action = 'включено'
         else:
             voice_action = 'выключено'
-        if voice_person_settings == 'True\n':
+        if voice_person_settings == 1:
             voice_person = 'включено'
         else:
             voice_person = 'выключено'
-        if music_settings == 'True\n':
+        if music_settings == 1:
             music = 'включена'
         else:
             music = 'выключена'
-        if sound_settings == 'True\n':
+        if sound_settings == 1:
             sound = 'включены'
         else:
             sound = 'выключены'
@@ -177,6 +177,8 @@ def check_settings():
             par = str(settings[key])
             new_par = par[:-1]
             settings[key] = new_par
+
+        pprint(settings)
 
         while True:
 
@@ -212,6 +214,10 @@ def check_settings():
 def run():
     # запуск игры
 
+    # очищаем баг репорт
+    with open('game_logs/bug_log.txt', 'w', encoding='utf-8') as file:
+        file.write('')
+
     # достаём данные из словаря
     settings = check_settings()
 
@@ -221,7 +227,6 @@ def run():
     voice_person_settings = bool(int(settings['voice_person_settings']))
     music_settings = bool(int(settings['music_settings']))
     sound_settings = bool(int(settings['sound_settings']))
-
 
     while True:
         if console_mode:
