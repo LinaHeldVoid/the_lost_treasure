@@ -4,7 +4,7 @@ import pygame
 pygame.mixer.init()
 
 # интерфейс
-screen_path = 'sound/locations/intro.mp3'
+screen_path = 'sound/locations/intro.ogg'
 screen_mp3 = pygame.mixer.Sound(screen_path)
 button_path = 'sound/sound_effects/button.ogg'
 button_wav = pygame.mixer.Sound(button_path)
