@@ -7,8 +7,6 @@ from console_game.location_3 import room_1_again
 from console_game.service_functions import print_help
 from console_game.final_location import final_location
 from sound_manager import room_1_mp3, room_2_mp3, dd_mp3
-# from read_scenario import prologue as p, room_1 as r_1, room_2 as r_2, \
-#     riddle, room_1_again as r_1_2, escape as e, epilogue as ep
 
 
 # запуск игры в консоли
@@ -24,6 +22,8 @@ def run_game_console(t_settings, v_a_settings, v_p_settings, m_settings, s_setti
     game_data = room_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, points_1)
     points_2 = game_data['determination']
     sack_found = game_data['sack_took']
+    # sack_found = True
+    # points_2 = 45
     final_report = room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, sack_found, points_2)
     determination = final_report['determination']
     ending = final_report['ending']

@@ -1,7 +1,6 @@
 import pygame
 import time
 from colorama import Fore
-import random
 
 from sound_manager import best_final, neutral_1_final, neutral_2_final, neutral_3_final, worst_final, dd_mp3, room_1_2
 from scenario_generator import generate_base
@@ -43,15 +42,15 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
         # смерть от потери решимости
         pygame.mixer.stop() if m_settings == 'True' else None
         random_death(t_settings, v_p_settings)
-        s_e('sound/sound_effects/death.wav', s_settings)
+        s_e('sound/sound_effects/death.ogg', s_settings, 3)
         time.sleep(1) if s_settings else None
         dd_mp3.set_volume(0.2) if m_settings == 'True' else None
         dd_mp3.play(-1) if m_settings == 'True' else None
         g = set_generator_dnd(34)
-        s_e('sound/voice_person/d&d/34.wav', v_p_settings)
+        s_e('sound/voice_person/d&d/34.ogg', v_p_settings, 2)
         p_e(next(g), t_settings)
         time.sleep(11) if not t_settings and v_p_settings else None
-        s_e('sound/voice_person/d&d/35.wav', v_p_settings)
+        s_e('sound/voice_person/d&d/35.ogg', v_p_settings, 2)
         p_e(next(g), t_settings)
         print('')
         time.sleep(7) if not t_settings and v_p_settings else None
@@ -185,12 +184,12 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 g = set_generator(24)
                 p_e(next(g), t_settings)
                 print(next(g))
-                s_e('sound/sound_effects/stones.wav', s_settings)
+                s_e('sound/sound_effects/stones.ogg', s_settings, 3)
                 time.sleep(1) if s_settings else None
-                s_e('sound/sound_effects/giant_stone.wav', s_settings)
+                s_e('sound/sound_effects/giant_stone.ogg', s_settings, 3)
                 time.sleep(7) if s_settings else None
                 pygame.mixer.stop() if m_settings == 'True' else None
-                s_e('sound/sound_effects/death.wav', s_settings)
+                s_e('sound/sound_effects/death.ogg', s_settings, 3)
                 time.sleep(1) if s_settings else None
                 dd_mp3.set_volume(0.2) if m_settings == 'True' else None
                 dd_mp3.play(-1) if m_settings == 'True' else None
@@ -203,7 +202,7 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 determination = new_determination(t_settings, v_p_settings,
                                                   v_a_settings, m_settings,
                                                   s_settings, determination, 7, '-')
-                random_revival(t_settings, v_p_settings)
+                random_revival(t_settings, v_p_settings, s_settings)
 
             else:
                 stone_examined = True
@@ -255,6 +254,9 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         print('')
         p_e(next(g), t_settings)
+        s_e('sound/voice_person/epilogue/Ep_1.ogg', v_p_settings, 2)
+        time.sleep(61) if not t_settings and v_p_settings else None
+
     elif ending == 2:
         neutral_1_final.set_volume(0.2) if m_settings == 'True' else None
         neutral_1_final.play(-1) if m_settings == 'True' else None
@@ -270,6 +272,9 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         print('')
         p_e(next(g), t_settings)
+        s_e('sound/voice_person/epilogue/Ep_2.ogg', v_p_settings, 2)
+        time.sleep(109) if not t_settings and v_p_settings else None
+
     elif ending == 3:
         neutral_2_final.set_volume(0.2) if m_settings == 'True' else None
         neutral_2_final.play(-1) if m_settings == 'True' else None
@@ -285,9 +290,12 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
+        s_e('sound/voice_person/epilogue/Ep_3.ogg', v_p_settings, 2)
+        time.sleep(106) if not t_settings and v_p_settings else None
+
     elif ending == 4:
-        neutral_2_final.set_volume(0.2) if m_settings == 'True' else None
-        neutral_2_final.play(-1) if m_settings == 'True' else None
+        neutral_3_final.set_volume(0.2) if m_settings == 'True' else None
+        neutral_3_final.play(-1) if m_settings == 'True' else None
         g = set_generator_epilogue(32)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
@@ -302,6 +310,9 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         print('')
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
+        s_e('sound/voice_person/epilogue/Ep_4.ogg', v_p_settings, 2)
+        time.sleep(123) if not t_settings and v_p_settings else None
+
     else:
         worst_final.set_volume(0.2) if m_settings == 'True' else None
         worst_final.play(-1) if m_settings == 'True' else None
@@ -317,6 +328,9 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
         p_e(next(g), t_settings)
+        s_e('sound/voice_person/epilogue/Ep_5.ogg', v_p_settings, 2)
+        time.sleep(119) if not t_settings and v_p_settings else None
+
     g = set_generator_epilogue(55)
     p_e(next(g), t_settings)
     p_e(next(g), t_settings)
