@@ -67,7 +67,9 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
         while True:
             g = set_generator(48)
             print(f'1) {next(g)}' + '\n')
+            record = s_e('sound/voice_actions/exit/42.ogg', v_a_settings, 1)
             option = input('Введите цифру: ')
+            record.stop() if v_a_settings else None
             if option == '100':
                 q(t_settings, v_a_settings)
                 continue
@@ -95,7 +97,9 @@ def escaping(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, det
         while True:
             g = set_generator(53)
             print(f'1) {next(g)}' + '\n')
+            record = s_e('sound/voice_actions/exit/53.ogg', v_a_settings, 1)
             option = input('Введите цифру: ')
+            record.stop() if v_a_settings else None
             if option == '100':
                 q(t_settings, v_a_settings)
                 continue
@@ -147,21 +151,26 @@ def final_location(t_settings, v_a_settings, v_p_settings, m_settings, s_setting
                 print(f'1) {next(g)}'
                       f'2) {next(g)}'
                       f'3) {next(g)}' + '\n')
+                record = s_e('sound/voice_actions/exit/3.ogg', v_a_settings, 1)
             else:
                 g = set_generator(14)
                 print(f'1) {next(g)}'
                       f'2) {next(g)}' + '\n')
+                record = s_e('sound/voice_actions/exit/14.ogg', v_a_settings, 1)
         else:
             if not asked_stone:
                 g = set_generator(7)
                 print(f'1) {next(g)}'
                       f'2) {next(g)}'
                       f'3) {next(g)}' + '\n')
+                record = s_e('sound/voice_actions/exit/7.ogg', v_a_settings, 1)
             else:
                 g = set_generator(11)
                 print(f'1) {next(g)}'
                       f'2) {next(g)}' + '\n')
+                record = s_e('sound/voice_actions/exit/11.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue

@@ -263,7 +263,9 @@ def case_1(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
         g = set_generator(31)
         print(f'1) {next(g)}'
               f'2) {next(g)}' + '\n')
+        record = s_e('sound/voice_actions/visions/31.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -356,7 +358,9 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
         print(f'1) {next(g)}'
               f'2) {next(g)}' 
               f'3) {next(g)}' + '\n')
+        record = s_e('sound/voice_actions/visions/74.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -395,7 +399,9 @@ def case_2(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
                 print(f'1) {next(g)}'
                       f'2) {next(g)}'
                       f'3) {next(g)}' + '\n')
+                record = s_e('sound/voice_actions/visions/89.ogg', v_a_settings, 1)
                 option = input('Введите цифру: ')
+                record.stop() if v_a_settings else None
                 if option == '100':
                     q(t_settings, v_a_settings)
                     continue
@@ -603,7 +609,9 @@ def case_3(t_settings, v_a_settings, v_p_settings, m_settings, s_settings, deter
         print(f'1) {next(g)}'
               f'2) {next(g)}' 
               f'3) {next(g)}' + '\n')
+        record = s_e('sound/voice_actions/visions/205.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue

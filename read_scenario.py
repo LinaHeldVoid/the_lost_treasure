@@ -54,4 +54,4 @@ with open('../text/9_visions.txt', 'r', encoding='utf-8') as text:
         visions[index] = line
 
 
-pprint(visions)
+pprint(escape)

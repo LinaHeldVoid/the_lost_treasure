@@ -72,7 +72,9 @@ def taking_powder(t_settings, v_a_settings, v_p_settings, m_settings, s_settings
         print(f'1) {next(g)}'
               f'2) {next(g)}'
               f'3) {next(g)}' + '\n')
+        record = s_e('sound/voice_actions/room_1_2/125.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -142,7 +144,9 @@ def taking_steroids(t_settings, v_a_settings, v_p_settings, determination, eaten
         print(f'1) {next(g)}'
               f'2) {next(g)}'
               f'3) {next(g)}' + '\n')
+        record = s_e('sound/voice_actions/room_1_2/160.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -242,7 +246,9 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
         while True:
             g = set_generator(201)
             print(f'1) {next(g)}' + '\n')
+            record = s_e('sound/voice_actions/room_1_2/201.ogg', v_a_settings, 1)
             option = input('Введите цифру: ')
+            record.stop() if v_a_settings else None
             if option == '100':
                 q(t_settings, v_a_settings)
                 continue
@@ -264,7 +270,9 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                 while True:
                     g = set_generator(205)
                     print(f'1) {next(g)}' + '\n')
+                    record = s_e('sound/voice_actions/room_1_2/205.ogg', v_a_settings, 1)
                     option = input('Введите цифру: ')
+                    record.stop() if v_a_settings else None
                     if option == '100':
                         q(t_settings, v_a_settings)
                         continue
@@ -288,7 +296,9 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                         while True:
                             g = set_generator(208)
                             print(f'1) {next(g)}' + '\n')
+                            record = s_e('sound/voice_actions/room_1_2/208.ogg', v_a_settings, 1)
                             option = input('Введите цифру: ')
+                            record.stop() if v_a_settings else None
                             if option == '100':
                                 q(t_settings, v_a_settings)
                                 continue
@@ -313,7 +323,9 @@ def experiment(t_settings, v_p_settings, v_a_settings, m_settings, s_settings, d
                                     g = set_generator(211)
                                     print(f'1) {next(g)}'
                                           f'2) {next(g)}' + '\n')
+                                    record = s_e('sound/voice_actions/room_1_2/211.ogg', v_a_settings, 1)
                                     option = input('Введите цифру: ')
+                                    record.stop() if v_a_settings else None
                                     if option == '100':
                                         q(t_settings, v_a_settings)
                                         continue
@@ -402,7 +414,9 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
         g = set_generator(4)
         print(f'1) {next(g)}'
               f'2) {next(g)}' + '\n')
+        record = s_e('sound/voice_actions/room_1_2/4.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -429,12 +443,15 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                     g = set_generator(14)
                     print(f'1) {next(g)}'
                           f'2) {next(g)}' + '\n')
+                    record = s_e('sound/voice_actions/room_1_2/14.ogg', v_a_settings, 1)
                 else:
                     g = set_generator(10)
                     print(f'1) {next(g)}'
                           f'2) {next(g)}'
                           f'3) {next(g)}' + '\n')
+                    record = s_e('sound/voice_actions/room_1_2/10.ogg', v_a_settings, 1)
                 option = input('Введите цифру: ')
+                record.stop() if v_a_settings else None
                 if option == '100':
                     q(t_settings, v_a_settings)
                     continue
@@ -494,6 +511,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                       f'3) {next(g)}'
                                       f'4) {next(g)}'
                                       f'5) {next(g)}' + '\n')
+                                record = s_e('sound/voice_actions/room_1_2/51.ogg', v_a_settings, 1)
                             else:
                                 g = set_generator(44)
                                 print(f'1) {next(g)}'
@@ -502,6 +520,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                       f'4) {next(g)}'
                                       f'5) {next(g)}'
                                       f'6) {next(g)}' + '\n')
+                                record = s_e('sound/voice_actions/room_1_2/44.ogg', v_a_settings, 1)
                         else:
                             if powder_used:
                                 g = set_generator(38)
@@ -510,6 +529,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                       f'3) {next(g)}'
                                       f'4) {next(g)}'
                                       f'5) {next(g)}' + '\n')
+                                record = s_e('sound/voice_actions/room_1_2/38.ogg', v_a_settings, 1)
                             else:
                                 g = set_generator(25)
                                 print(f'1) {next(g)}'
@@ -518,6 +538,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                       f'4) {next(g)}'
                                       f'5) {next(g)}'
                                       f'6) {next(g)}' + '\n')
+                                record = s_e('sound/voice_actions/room_1_2/25.ogg', v_a_settings, 1)
                     else:
                         if powder_used:
                             g = set_generator(57)
@@ -525,6 +546,7 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                   f'2) {next(g)}'
                                   f'3) {next(g)}'
                                   f'4) {next(g)}' + '\n')
+                            record = s_e('sound/voice_actions/room_1_2/57.ogg', v_a_settings, 1)
                         else:
                             g = set_generator(32)
                             print(f'1) {next(g)}'
@@ -532,7 +554,9 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                                   f'3) {next(g)}'
                                   f'4) {next(g)}'
                                   f'5) {next(g)}' + '\n')
+                            record = s_e('sound/voice_actions/room_1_2/32.ogg', v_a_settings, 1)
                     option = input('Введите цифру: ')
+                    record.stop() if v_a_settings else None
                     if option == '100':
                         q(t_settings, v_a_settings)
                         continue
@@ -644,7 +668,9 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                         print(f'1) {next(g)}'
                               f'2) {next(g)}'
                               f'3) {next(g)}' + '\n')
+                        record = s_e('sound/voice_actions/room_1_2/100.ogg', v_a_settings, 1)
                         option = input('Введите цифру: ')
+                        record.stop() if v_a_settings else None
                         if option == '100':
                             q(t_settings, v_a_settings)
                             continue
@@ -756,7 +782,9 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                             g = set_generator(145)
                             print(f'1) {next(g)}'
                                   f'2) {next(g)}' + '\n')
+                            record = s_e('sound/voice_actions/room_1_2/145.ogg', v_a_settings, 1)
                             option = input('Введите цифру: ')
+                            record.stop() if v_a_settings else None
                             if option == '100':
                                 q(t_settings, v_a_settings)
                                 continue
@@ -913,7 +941,9 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
 
         g = set_generator(229)
         print(f'1) {next(g)}' + '\n')
+        record = s_e('sound/voice_actions/room_1_2/229.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -1016,11 +1046,14 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
         if rope_taken:
             g = set_generator(278)
             print(f'1) {next(g)}' + '\n')
+            record = s_e('sound/voice_actions/room_1_2/278.ogg', v_a_settings, 1)
         else:
             g = set_generator(266)
             print(f'1) {next(g)}'
                   f'2) {next(g)}' + '\n')
+            record = s_e('sound/voice_actions/room_1_2/266.ogg', v_a_settings, 1)
         option = input('Введите цифру: ')
+        record.stop() if v_a_settings else None
         if option == '100':
             q(t_settings, v_a_settings)
             continue
@@ -1051,7 +1084,9 @@ def room_1_again(t_settings, v_a_settings, v_p_settings, m_settings, s_settings,
                     g = set_generator(271)
                     print(f'1) {next(g)}'
                           f'2) {next(g)}' + '\n')
+                    record = s_e('sound/voice_actions/room_1_2/271.ogg', v_a_settings, 1)
                     option = input('Введите цифру: ')
+                    record.stop() if v_a_settings else None
                     if option == '100':
                         q(t_settings, v_a_settings)
                         continue
